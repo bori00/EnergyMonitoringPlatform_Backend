@@ -6,14 +6,15 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name="person")
+@Table(name="users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @ToString
-public class Person {
+public abstract class User {
+
     @Id
     @GeneratedValue
 //    @GeneratedValue(generator = "uuid2")
@@ -34,7 +35,7 @@ public class Person {
         return id;
     }
 
-    public Person(String userName, String emailAddress, String password) {
+    public User(String userName, String emailAddress, String password) {
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.password = password;
@@ -45,7 +46,7 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Person user = (Person) o;
+        User user = (User) o;
 
         return id != null ? id.equals(user.id) : user.id == null;
     }

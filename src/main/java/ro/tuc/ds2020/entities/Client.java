@@ -1,14 +1,21 @@
 package ro.tuc.ds2020.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "client")
+@ToString
+@Setter
+@NoArgsConstructor
+@Getter
 public class Client extends User {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Device> devices;
+
+    public Client(String userName, String emailAddress, String password) {
+        super(userName, emailAddress, password);
+    }
 }
