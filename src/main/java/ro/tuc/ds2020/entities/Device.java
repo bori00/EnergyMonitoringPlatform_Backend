@@ -1,19 +1,20 @@
 package ro.tuc.ds2020.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Device {
     @Id
     @GeneratedValue
@@ -32,6 +33,18 @@ public class Device {
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
     @OrderBy("dateTime")
     private List<Measurement> measurements;
+
+    public Device(String name, Client client) {
+        this.name = name;
+        this.client = client;
+        this.measurements = new ArrayList<>();
+    }
+
+    public Device(Long id, String name, Client client) {
+        this.id = id;
+        this.name = name;
+        this.client = client;
+    }
 
     public List<Measurement> getMeasurements() {
         return Collections.unmodifiableList(measurements);
