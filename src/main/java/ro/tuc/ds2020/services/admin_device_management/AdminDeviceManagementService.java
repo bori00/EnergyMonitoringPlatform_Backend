@@ -41,7 +41,7 @@ public class AdminDeviceManagementService {
 
         Optional<Client> client = clientRepository.findByUserName(newDeviceDTO.getUserName());
         if (client.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("User with name %s",
+            throw new ResourceNotFoundException(String.format("Client with name %s",
                     newDeviceDTO.getUserName()));
         }
 
@@ -64,7 +64,7 @@ public class AdminDeviceManagementService {
 
         Optional<Client> client = clientRepository.findByUserName(deviceDTO.getUserName());
         if (client.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("User with name %s",
+            throw new ResourceNotFoundException(String.format("Client with name %s",
                     deviceDTO.getUserName()));
         }
 

@@ -49,7 +49,7 @@ public class AuthenticationService {
         Optional<Admin> optUser =
                 adminRepository.findByUserName(((UserDetailsServiceImpl.UserDetailsImpl) auth.getPrincipal()).getUsername());
         if (optUser.isEmpty()) {
-            LOGGER.warn("Non-Teacher User tried to access Admin-Only resources.");
+            LOGGER.warn("Non-Admin User tried to access Admin-Only resources.");
             throw new AccessRoleRequiredException(resource, "ADMIN");
         }
         return optUser.get();
@@ -60,7 +60,7 @@ public class AuthenticationService {
         Optional<Client> optUser =
                 clientRepository.findByUserName(((UserDetailsServiceImpl.UserDetailsImpl) auth.getPrincipal()).getUsername());
         if (optUser.isEmpty()) {
-            LOGGER.warn("Non-Student User tried to access Student-Only resources.");
+            LOGGER.warn("Non-Client User tried to access Student-Only resources.");
             throw new AccessRoleRequiredException(resource, "CLIENT");
         }
         return optUser.get();

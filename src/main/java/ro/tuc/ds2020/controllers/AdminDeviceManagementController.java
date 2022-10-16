@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.DuplicateUsernameException;
 import ro.tuc.ds2020.dtos.DeviceDTO;
@@ -15,6 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("device-management")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminDeviceManagementController {
 
     @Autowired
@@ -24,25 +27,25 @@ public class AdminDeviceManagementController {
 
     @PostMapping("/create-device")
     @ResponseStatus(HttpStatus.OK)
-    void createDevice(@Valid @RequestBody NewDeviceDTO newDeviceDTO) {
+    DeviceDTO createDevice(@Valid @RequestBody NewDeviceDTO newDeviceDTO) {
         LOGGER.info(String.format("REQUEST - /create-device, for device %s",
                 newDeviceDTO.toString()));
-        adminDeviceManagementService.createNewDevice(newDeviceDTO);
+        return adminDeviceManagementService.createNewDevice(newDeviceDTO);
     }
 
     @PutMapping("/update-device")
     @ResponseStatus(HttpStatus.OK)
-    void createDevice(@Valid @RequestBody DeviceDTO deviceDTO) {
+    DeviceDTO updateDevice(@Valid @RequestBody DeviceDTO deviceDTO) {
         LOGGER.info(String.format("REQUEST - /update-device, for device %s",
                 deviceDTO.toString()));
-        adminDeviceManagementService.updateDevice(deviceDTO);
+        return adminDeviceManagementService.updateDevice(deviceDTO);
     }
 
-    @DeleteMapping("/delete-device")
+    @DeleteMapping("/delete-device/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void deleteDevice(@Valid @RequestBody Long deviceId) {
-        LOGGER.info(String.format("REQUEST - /device-device, for device with id %d",
-                deviceId));
-        adminDeviceManagementService.deleteDevice(deviceId);
+    void deleteDevice(@PathVariable Long id) {
+        LOGGER.info(String.format("REQUEST - /delete-device, for device with id %d",
+                id));
+        adminDeviceManagementService.deleteDevice(id);
     }
 }

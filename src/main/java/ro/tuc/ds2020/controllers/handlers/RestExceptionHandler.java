@@ -15,6 +15,7 @@ import ro.tuc.ds2020.controllers.handlers.exceptions.model.*;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.time.DateTimeException;
 import java.util.*;
 
 @ControllerAdvice
@@ -33,6 +34,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(
                 e,
                 errorInformation,
+                new HttpHeaders(),
+                status,
+                request
+        );
+    }
+
+    @ExceptionHandler(value = {DateTimeException.class})
+    public ResponseEntity<Object> handleDateTimeException(DateTimeException e, WebRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        return handleExceptionInternal(
+                e,
+                "The selected date is invalid",
                 new HttpHeaders(),
                 status,
                 request

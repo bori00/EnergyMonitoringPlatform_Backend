@@ -23,7 +23,5 @@ public class DeviceDTO {
 
     @NotBlank(message = "The device owner's userName cannot be blank. Please choose to which user" +
             " this device belongs")
-    @Size(min = 3, max = 30, message = "The device owner's name should have a length between 3 " +
-            "and 30")
     private String userName;
 }
