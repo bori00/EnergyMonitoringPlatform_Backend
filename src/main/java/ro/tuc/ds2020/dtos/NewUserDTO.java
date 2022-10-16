@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Setter
 @ToString
-// TODO: validation
 public class NewUserDTO {
 
     @NotBlank(message = "The username cannot be blank.")
