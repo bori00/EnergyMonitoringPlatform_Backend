@@ -5,11 +5,11 @@ import ro.tuc.ds2020.controllers.handlers.exceptions.model.CustomException;
 
 import java.util.ArrayList;
 
-public class NoAccessToDataException extends CustomException {
-    private static final String MESSAGE = "You don't have access to this data/functionality";
+public class NoRightToModifyDataException extends CustomException {
+    private static final String MESSAGE = "You don't have the right to modify this data";
     private static final HttpStatus httpStatus = HttpStatus.UNAUTHORIZED;
 
-    public NoAccessToDataException(String resource) {
+    public NoRightToModifyDataException(String resource) {
         super(MESSAGE, httpStatus, resource, new ArrayList<>());
     }
 }

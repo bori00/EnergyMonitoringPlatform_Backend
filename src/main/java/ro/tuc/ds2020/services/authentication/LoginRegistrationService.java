@@ -12,14 +12,20 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ro.tuc.ds2020.controllers.handlers.exceptions.model.ResourceNotFoundException;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.DuplicateUsernameException;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.InvalidLoginException;
+import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.NoAccessToDataException;
+import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.NoRightToModifyDataException;
 import ro.tuc.ds2020.dtos.LoginJwtDTO;
 import ro.tuc.ds2020.dtos.NewUserDTO;
 import ro.tuc.ds2020.dtos.UserDTO;
+import ro.tuc.ds2020.entities.Client;
 import ro.tuc.ds2020.entities.User;
+import ro.tuc.ds2020.repositories.ClientRepository;
 import ro.tuc.ds2020.repositories.UserRepository;
 import ro.tuc.ds2020.services.authentication.jwt.JwtUtils;
+import ro.tuc.ds2020.services.rightverifier.RightVerifier;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,16 +49,11 @@ public class LoginRegistrationService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private AuthenticationService authenticationService;
-
-    @Autowired
     JwtUtils jwtUtils;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginRegistrationService.class);
 
     public void register(NewUserDTO userDTO) throws DuplicateUsernameException {
-        System.out.println(userDTO);
-
         // check that username is not taken
         Optional<User> userWithSameName = userRepository.findByUserName(userDTO.getUserName());
         if (userWithSameName.isPresent()) {

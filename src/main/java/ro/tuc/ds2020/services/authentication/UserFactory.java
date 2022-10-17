@@ -2,6 +2,7 @@ package ro.tuc.ds2020.services.authentication;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ro.tuc.ds2020.dtos.NewUserDTO;
+import ro.tuc.ds2020.dtos.UserDTO;
 import ro.tuc.ds2020.dtos.builders.UserBuilder;
 import ro.tuc.ds2020.entities.User;
 
