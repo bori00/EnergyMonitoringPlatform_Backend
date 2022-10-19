@@ -24,10 +24,6 @@ function Home() {
                     <p style={textStyle}> <b>This assignment represents the first module of the distributed software system "Integrated
                         Energy Monitoring Platform for Households" that represents the final project
                         for the Distributed Systems course. </b> </p>
-                    <p className="lead">
-                        <Button color="primary" onClick={() => window.open('http://coned.utcluj.ro/~salomie/DS_Lic/')}>Learn
-                            More</Button>
-                    </p>
                 </Container>
             </Jumbotron>
         </div>
