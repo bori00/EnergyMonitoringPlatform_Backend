@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Col, Row } from "reactstrap";
 import { FormGroup, Input, Label } from 'reactstrap';
 import Button from "react-bootstrap/Button";
+import { useHistory } from "react-router-dom";
 
 import APIResponseErrorMessage from "../commons/errorhandling/api-response-error-message";
 import * as API_AUTH from "../commons/authentication/auth-api";
@@ -32,6 +33,7 @@ function LoginForm() {
     const [error, setError] = useState({ status: 0, errorMessage: null });
     const [formIsValid, setFormIsValid] = useState(false);
     const [formControls, setFormControls] = useState(formControlsInit);
+    const history = useHistory();
 
     function handleChange(event) {
         let name = event.target.name;
@@ -58,13 +60,11 @@ function LoginForm() {
 
     function login(userName, password) {
         const callback = (result, status, err) => {
-            console.log("Login results")
-            console.log(result, status, err)
             if (result !== null && (status === 200 || status === 201)) {
-                API_AUTH.setActiveUser(result);
-
-                //this.props.history.push("/home");
-                //window.location.reload();
+                API_AUTH.setActiveUser(result, () => {
+                    history.push("/");
+                    window.location.reload();
+                })
             } else {
                 setError((error) => ({ status: status, errorMessage: err }));
             }

@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import { DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavLink, UncontrolledDropdown } from 'reactstrap';
+import React, {useState, useEffect, Fragment, useLayoutEffect} from 'react'
+import { DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavLink, UncontrolledDropdown,  } from 'reactstrap';
 
-import logo from './commons/images/logo.jpg';
+import logo from './commons/images/logo.png';
 import * as API_AUTH from "./commons/authentication/auth-api";
 
 const textStyle = {
@@ -12,7 +12,7 @@ const textStyle = {
 function NavigationBar() {
     const [userRole, setUserRole] = useState(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setUserRole(API_AUTH.getCurrentUserRole());
         console.log("UserRole: ", userRole)
     });
@@ -21,45 +21,75 @@ function NavigationBar() {
         <div>
             <Navbar color="dark" light expand="md">
                 <NavbarBrand href="/">
-                    <img src={logo} width={"50"}
+                    <img src={logo} width={"75"}
                         height={"50"} />
                 </NavbarBrand>
+
                 <Nav className="mr-auto" navbar>
 
                     {
                         userRole === 'ADMIN' &&
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle style={textStyle} nav caret>
-                                Admin Menu
-                            </DropdownToggle>
-                            <DropdownMenu right>
+                        (
+                            <Fragment>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle style={textStyle} nav caret>
+                                    Admin Menu
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
 
                                 {/*<DropdownItem>*/}
                                 {/*    <NavLink href="/person">Persons</NavLink>*/}
                                 {/*</DropdownItem>*/}
 
 
-                            </DropdownMenu>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
 
-                        </UncontrolledDropdown>
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle style={textStyle} nav caret>
+                                    Account
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                    <DropdownItem>
+                                    <NavLink href="/logout">Logout</NavLink>
+                                    </DropdownItem>
+                                    </DropdownMenu>
+
+                                </UncontrolledDropdown>
+                            </Fragment>
+                        )
                     }
 
                     {
                         userRole === 'CLIENT' &&
-                        <UncontrolledDropdown nav inNavbar>
-                            <DropdownToggle style={textStyle} nav caret>
-                                Client Menu
-                            </DropdownToggle>
-                            <DropdownMenu right>
+                        <Fragment>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle style={textStyle} nav caret>
+                                    Client Menu
+                                </DropdownToggle>
+                                <DropdownMenu right>
 
-                                {/*<DropdownItem>*/}
-                                {/*    <NavLink href="/person">Persons</NavLink>*/}
-                                {/*</DropdownItem>*/}
+                                    {/*<DropdownItem>*/}
+                                    {/*    <NavLink href="/person">Persons</NavLink>*/}
+                                    {/*</DropdownItem>*/}
 
 
-                            </DropdownMenu>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
 
-                        </UncontrolledDropdown>
+
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle style={textStyle} nav caret>
+                                    Account
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        <NavLink href="/logout">Logout</NavLink>
+                                    </DropdownItem>
+                                </DropdownMenu>
+
+                            </UncontrolledDropdown>
+                        </Fragment>
                     }
 
                     {

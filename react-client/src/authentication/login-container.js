@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Card, CardHeader, Col, Modal, ModalBody, ModalHeader, Row } from 'reactstrap';
-
-import APIResponseErrorMessage from "../commons/errorhandling/api-response-error-message";
+import React  from 'react';
+import {Card, CardHeader, Col, Row } from 'reactstrap';
 
 import LoginForm from "./login-form";
 

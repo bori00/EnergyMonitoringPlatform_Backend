@@ -26,8 +26,22 @@ const USER_KEY = 'user';
     RestApiClient.performRequest(request, callback);
 }
 
-function setActiveUser(user) {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+const asyncLocalStorage = {
+    setItem: function (key, value) {
+        return Promise.resolve().then(function () {
+            localStorage.setItem(key, value);
+        });
+    },
+    getItem: function (key) {
+        return Promise.resolve().then(function () {
+            return localStorage.getItem(key);
+        });
+    }
+};
+
+
+function setActiveUser(user, callback) {
+    asyncLocalStorage.setItem(USER_KEY, JSON.stringify(user)).then(() => callback());
 }
 
 function logout() {

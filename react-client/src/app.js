@@ -6,6 +6,7 @@ import Home from './home/home';
 import PersonContainer from './person/person-container';
 import LoginContainer from "./authentication/login-container";
 import ErrorPage from './commons/errorhandling/error-page';
+import LogoutFunction from "./authentication/logout-container";
 import styles from './commons/styles/project-style.css';
 
 /*
@@ -36,6 +37,12 @@ function App() {
                             exact
                             path='/login'
                             render={() => <LoginContainer />}
+                        />
+
+                        <Route
+                            exact
+                            path='/logout'
+                            render={() => <LogoutFunction />}
                         />
 
                         {/*Error*/}
