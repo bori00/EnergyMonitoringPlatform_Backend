@@ -5,6 +5,7 @@ import NavigationBar from './navigation-bar';
 import Home from './home/home';
 import PersonContainer from './person/person-container';
 import LoginContainer from "./authentication/login-container";
+import RegistrationContainer from "./registration/registration-container";
 import ErrorPage from './commons/errorhandling/error-page';
 import LogoutFunction from "./authentication/logout-container";
 import styles from './commons/styles/project-style.css';
@@ -43,6 +44,12 @@ function App() {
                             exact
                             path='/logout'
                             render={() => <LogoutFunction />}
+                        />
+
+                        <Route
+                            exact
+                            path='/register'
+                            render={() => <RegistrationContainer />}
                         />
 
                         {/*Error*/}

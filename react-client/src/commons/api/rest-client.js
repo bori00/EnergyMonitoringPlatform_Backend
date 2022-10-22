@@ -1,7 +1,8 @@
-function performRequest(request, callback) {
+function performRequestWithJsonResponse(request, callback) {
     fetch(request)
         .then(
             function (response) {
+                console.log("Response: ", response)
                 if (response.ok) {
                     response.json().then(json => callback(json, response.status, null));
                 }
@@ -15,6 +16,25 @@ function performRequest(request, callback) {
         });
 }
 
+function performRequestWithNoResponse(request, callback) {
+    fetch(request)
+        .then(
+            function (response) {
+                console.log("Response: ", response)
+                if (response.ok) {
+                    callback(null);
+                }
+                else {
+                    response.json().then(err => callback(err));
+                }
+            })
+        .catch(function (err) {
+            //catch any other unexpected error, and set custom code for error = 1
+            callback(err)
+        });
+}
+
 module.exports = {
-    performRequest
+    performRequestWithJsonResponse,
+    performRequestWithNoResponse
 };

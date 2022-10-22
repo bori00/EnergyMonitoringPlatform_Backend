@@ -104,6 +104,10 @@ function NavigationBar() {
                                     <NavLink href="/login">Login</NavLink>
                                 </DropdownItem>
 
+                                <DropdownItem>
+                                    <NavLink href="/register">Register</NavLink>
+                                </DropdownItem>
+
 
                             </DropdownMenu>
 

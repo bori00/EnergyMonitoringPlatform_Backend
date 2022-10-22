@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row, UncontrolledAlert } from 'reactstrap';
+import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row, UncontrolledAlert, Alert } from 'reactstrap';
 
 import styles from '../styles/project-style.css';
 
@@ -14,10 +14,10 @@ function APIResponseErrorMessage(props) {
 
     return (
         <div>
-            <UncontrolledAlert color="danger">
-                An unexpected error occurred on the server side!
+            <Alert color="danger">
+                {error.message}
                 {errorStatus > 1 && <Button color="link" onClick={toggleForm}>Details...</Button>}
-            </UncontrolledAlert>
+            </Alert>
 
             {errorStatus > 1 &&
                 <Modal isOpen={collapseForm} toggle={toggleForm}

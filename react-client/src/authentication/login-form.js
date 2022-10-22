@@ -62,8 +62,8 @@ function LoginForm() {
         const callback = (result, status, err) => {
             if (result !== null && (status === 200 || status === 201)) {
                 API_AUTH.setActiveUser(result, () => {
-                    history.push("/");
-                    window.location.reload();
+                   history.push("/");
+                   window.location.reload();
                 })
             } else {
                 setError((error) => ({ status: status, errorMessage: err }));

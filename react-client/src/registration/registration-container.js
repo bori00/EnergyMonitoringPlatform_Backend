@@ -1,20 +1,20 @@
 import React  from 'react';
 import {Card, CardHeader, Col, Row } from 'reactstrap';
 
-import LoginForm from "./login-form";
+import RegistrationForm from "./registration-form";
 
-function LoginContainer() {
+function RegistrationContainer() {
     return (
         <div>
             <CardHeader>
-                <strong> Login </strong>
+                <strong> User Registration </strong>
             </CardHeader>
 
             <Card>
                 <br />
                 <Row>
                     <Col sm={{ size: '8', offset: 1 }}>
-                        <LoginForm />
+                        <RegistrationForm />
                     </Col>
                 </Row>
 
@@ -25,4 +25,4 @@ function LoginContainer() {
 
 }
 
-export default LoginContainer;
+export default RegistrationContainer;
