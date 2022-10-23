@@ -19,6 +19,7 @@ import ro.tuc.ds2020.services.rightverifier.RightVerifierFactory;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminDeviceManagementService {
@@ -92,5 +93,11 @@ public class AdminDeviceManagementService {
         }
 
         deviceRepository.delete(device);
+    }
+
+    public List<DeviceDTO> getAllDevices() {
+        return deviceRepository.findAll().stream()
+                .map(DeviceBuilder::toDTO)
+                .collect(Collectors.toList());
     }
 }

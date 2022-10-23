@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -28,7 +29,11 @@ public class Ds2020Application extends SpringBootServletInitializer {
     @Bean
     protected CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        CorsConfiguration corsCfg = new CorsConfiguration();
+        corsCfg.applyPermitDefaultValues();
+        corsCfg.addAllowedMethod(HttpMethod.DELETE);
+        corsCfg.addAllowedMethod(HttpMethod.PUT);
+        source.registerCorsConfiguration("/**", corsCfg);
         return source;
     }
 }

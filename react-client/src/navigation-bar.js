@@ -14,7 +14,6 @@ function NavigationBar() {
 
     useLayoutEffect(() => {
         setUserRole(API_AUTH.getCurrentUserRole());
-        console.log("UserRole: ", userRole)
     });
 
     return (
@@ -37,10 +36,9 @@ function NavigationBar() {
                                     </DropdownToggle>
                                     <DropdownMenu right>
 
-                                {/*<DropdownItem>*/}
-                                {/*    <NavLink href="/person">Persons</NavLink>*/}
-                                {/*</DropdownItem>*/}
-
+                                    <DropdownItem>
+                                        <NavLink href="/admin-device-management">Devices</NavLink>
+                                    </DropdownItem>
 
                                     </DropdownMenu>
                                 </UncontrolledDropdown>

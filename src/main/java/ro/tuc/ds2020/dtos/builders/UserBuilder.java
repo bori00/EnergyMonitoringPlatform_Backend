@@ -15,4 +15,9 @@ public class UserBuilder {
         user.setEmailAddress(userDTO.getEmailAddress());
         user.setUserName(userDTO.getUserName());
     }
+
+    public static UserDTO toDTO(User user) {
+        return new UserDTO(user.getId(), user.getUserName(), user.getEmailAddress(),
+                user.getPassword());
+    }
 }

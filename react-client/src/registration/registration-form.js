@@ -8,7 +8,7 @@ import Select from 'react-select'
 import APIResponseErrorMessage from "../commons/errorhandling/api-response-error-message";
 import * as API_REGISTER from "./api/registration-api";
 import * as API_AUTH from "../commons/authentication/auth-api";
-import Validate from "./validators/user-register-validators";
+import Validate from "../commons/validators/validators";
 
 function getValueLabelDictionary(v) {
     return { value: v, label: v }

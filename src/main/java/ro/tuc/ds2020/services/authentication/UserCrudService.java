@@ -21,13 +21,18 @@ import ro.tuc.ds2020.repositories.UserRepository;
 import ro.tuc.ds2020.services.authentication.jwt.JwtUtils;
 import ro.tuc.ds2020.services.rightverifier.RightVerifier;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserCrudService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -97,5 +102,9 @@ public class UserCrudService {
 
         LOGGER.info(String.format("UPDATE - user %s's data updated",
                 userToUpdate.getUserName()));
+    }
+
+    public List<UserDTO> getAllClients() {
+        return clientRepository.findAll().stream().map(UserBuilder::toDTO).collect(Collectors.toList());
     }
 }

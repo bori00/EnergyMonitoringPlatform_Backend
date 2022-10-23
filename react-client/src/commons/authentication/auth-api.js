@@ -59,6 +59,15 @@ function getCurrentUserRole() {
      return null;
 }
 
+function authHeader() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.accessToken) {
+        return { Authorization: 'Bearer ' + user.accessToken };
+    } else {
+        return {};
+    }
+}
+
 // guaranteeUserHasRole(role, component) {
 //     const user = this.getCurrentUser();
 //     if (user.role !== role) {
@@ -75,5 +84,6 @@ export {
     setActiveUser,
     logout,
     getCurrentUser,
-    getCurrentUserRole
+    getCurrentUserRole,
+    authHeader
 };

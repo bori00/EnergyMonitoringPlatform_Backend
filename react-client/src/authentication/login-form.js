@@ -68,7 +68,7 @@ function LoginForm() {
             } else {
                 setError((error) => ({ status: status, errorMessage: err }));
             }
-        }
+        };
 
         API_AUTH.login(callback, userName, password);
     }

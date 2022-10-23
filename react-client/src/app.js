@@ -9,6 +9,9 @@ import RegistrationContainer from "./registration/registration-container";
 import ErrorPage from './commons/errorhandling/error-page';
 import LogoutFunction from "./authentication/logout-container";
 import styles from './commons/styles/project-style.css';
+import AdminDeviceManagementContainer
+    from "./admin-device-management/admin-device-management-container";
+import ManageDeviceModal from "./admin-device-management/manage-device-modal";
 
 /*
     Namings: https://reactjs.org/docs/jsx-in-depth.html#html-tags-vs.-react-components
@@ -50,6 +53,12 @@ function App() {
                             exact
                             path='/register'
                             render={() => <RegistrationContainer />}
+                        />
+
+                        <Route
+                            exact
+                            path='/admin-device-management'
+                            render={() => <AdminDeviceManagementContainer />}
                         />
 
                         {/*Error*/}

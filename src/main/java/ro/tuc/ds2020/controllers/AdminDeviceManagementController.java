@@ -14,6 +14,7 @@ import ro.tuc.ds2020.dtos.NewUserDTO;
 import ro.tuc.ds2020.services.admin_device_management.AdminDeviceManagementService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("device-management")
@@ -47,5 +48,12 @@ public class AdminDeviceManagementController {
         LOGGER.info(String.format("REQUEST - /delete-device, for device with id %d",
                 id));
         adminDeviceManagementService.deleteDevice(id);
+    }
+
+    @GetMapping("/get-all-devices")
+    @ResponseStatus(HttpStatus.OK)
+    List<DeviceDTO> getAllDevices() {
+        LOGGER.info("REQUEST - /get-all-devices");
+        return adminDeviceManagementService.getAllDevices();
     }
 }

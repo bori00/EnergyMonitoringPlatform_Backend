@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.dtos.NewUserDTO;
 import ro.tuc.ds2020.dtos.UserDTO;
@@ -11,9 +12,11 @@ import ro.tuc.ds2020.services.authentication.LoginRegistrationService;
 import ro.tuc.ds2020.services.authentication.UserCrudService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("client-crud")
+@RequestMapping("user-crud")
+@PreAuthorize("hasAuthority('ADMIN')")
 public class UserCrudController {
     @Autowired
     private UserCrudService userCrudService;
@@ -34,5 +37,12 @@ public class UserCrudController {
         LOGGER.info(String.format("REQUEST - /updateUser, for id %d",
                 userDTO.getId()));
         userCrudService.updateUser(userDTO);
+    }
+
+    @GetMapping("/get-all-clients")
+    @ResponseStatus(HttpStatus.OK)
+    List<UserDTO> getAllClients() {
+        LOGGER.info("REQUEST - /get-all-clients");
+        return userCrudService.getAllClients();
     }
 }
