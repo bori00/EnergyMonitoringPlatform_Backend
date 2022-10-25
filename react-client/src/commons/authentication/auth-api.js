@@ -68,16 +68,14 @@ function authHeader() {
     }
 }
 
-// guaranteeUserHasRole(role, component) {
-//     const user = this.getCurrentUser();
-//     if (user.role !== role) {
-//         this.logout();
-//         component.props.history.push("/login");
-//         window.location.reload();
-//         window.alert("Please sign in with a " + role + " account to access this" +
-//             " functionality.");
-//     }
-// }
+function guaranteeUserHasRole(role, history) {
+    if (getCurrentUserRole() !== role) {
+        history.push("/login");
+        window.location.reload();
+        window.alert("Please sign in with a " + role + " account to access this" +
+            " functionality.");
+    }
+}
 
 export {
     login,
@@ -85,5 +83,6 @@ export {
     logout,
     getCurrentUser,
     getCurrentUserRole,
-    authHeader
+    authHeader,
+    guaranteeUserHasRole
 };

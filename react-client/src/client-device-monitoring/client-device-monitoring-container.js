@@ -1,9 +1,18 @@
-import React  from 'react';
+import React, {useEffect} from 'react';
 import {Card, CardHeader, Col, Row } from 'reactstrap';
 
 import ClientDeviceList from "./client-device-list"
+import {useHistory} from "react-router-dom";
+import * as API_AUTH from "../commons/authentication/auth-api";
 
 function ClientDeviceMonitoringContainer() {
+
+    const history = useHistory();
+
+    useEffect(() => {
+        API_AUTH.guaranteeUserHasRole('CLIENT', history);
+    })
+
     return (
         <div>
             <CardHeader>

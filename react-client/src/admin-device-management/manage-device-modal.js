@@ -12,7 +12,6 @@ import * as API_DEVICES from "./api/admin-device-api";
 import APIResponseErrorMessage from "../commons/errorhandling/api-response-error-message";
 import styles from "../commons/styles/project-style.css";
 import Validate from "../commons/validators/validators";
-import * as API_AUTH from "../commons/authentication/auth-api";
 
 let formControlsInit = {
     name: {
