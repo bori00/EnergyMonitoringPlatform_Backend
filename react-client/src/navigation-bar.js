@@ -20,8 +20,8 @@ function NavigationBar() {
         <div>
             <Navbar color="dark" light expand="md">
                 <NavbarBrand href="/">
-                    <img src={logo} width={"75"}
-                        height={"50"} />
+                    <img src={logo} width={"60"}
+                        height={"55"} />
                 </NavbarBrand>
 
                 <Nav className="mr-auto" navbar>
@@ -39,6 +39,11 @@ function NavigationBar() {
                                     <DropdownItem>
                                         <NavLink href="/admin-device-management">Devices</NavLink>
                                     </DropdownItem>
+
+                                    <DropdownItem>
+                                        <NavLink href="/admin-user-management">Users</NavLink>
+                                    </DropdownItem>
+
 
                                     </DropdownMenu>
                                 </UncontrolledDropdown>

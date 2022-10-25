@@ -49,11 +49,11 @@ function AdminDeviceList() {
 
     return (
         <Fragment>
+            <Button color="info" onClick={() => onAddDeviceIntention()}>New</Button>
+            
             <ListGroup>
                 {devices}
             </ListGroup>
-
-            <Button color="info" onClick={() => onAddDeviceIntention()}>New</Button>
 
             {
                 error.status > 0 &&

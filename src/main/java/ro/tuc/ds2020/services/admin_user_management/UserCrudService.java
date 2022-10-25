@@ -1,4 +1,4 @@
-package ro.tuc.ds2020.services.authentication;
+package ro.tuc.ds2020.services.admin_user_management;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,15 +9,13 @@ import org.springframework.stereotype.Service;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.ResourceNotFoundException;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.DuplicateUsernameException;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.NoRightToModifyDataException;
-import ro.tuc.ds2020.dtos.NewUserDTO;
 import ro.tuc.ds2020.dtos.UserDTO;
 import ro.tuc.ds2020.dtos.builders.UserBuilder;
-import ro.tuc.ds2020.entities.Admin;
-import ro.tuc.ds2020.entities.Client;
 import ro.tuc.ds2020.entities.User;
-import ro.tuc.ds2020.repositories.AdminRepository;
 import ro.tuc.ds2020.repositories.ClientRepository;
 import ro.tuc.ds2020.repositories.UserRepository;
+import ro.tuc.ds2020.services.authentication.AuthenticationService;
+import ro.tuc.ds2020.services.authentication.LoginRegistrationService;
 import ro.tuc.ds2020.services.authentication.jwt.JwtUtils;
 import ro.tuc.ds2020.services.rightverifier.RightVerifier;
 
@@ -106,5 +104,9 @@ public class UserCrudService {
 
     public List<UserDTO> getAllClients() {
         return clientRepository.findAll().stream().map(UserBuilder::toDTO).collect(Collectors.toList());
+    }
+
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll().stream().map(UserBuilder::toDTO).collect(Collectors.toList());
     }
 }

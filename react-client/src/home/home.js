@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Jumbotron } from 'reactstrap';
 
-import BackgroundImg from '../commons/images/blue.png';
+import BackgroundImg from '../commons/images/background.png';
 
 const backgroundStyle = {
     backgroundPosition: 'center',

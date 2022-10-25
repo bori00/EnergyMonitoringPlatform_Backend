@@ -69,7 +69,7 @@ function ManageDeviceModal(props) {
                 setFormIsValid(true);
 
             } else {
-                setError((error) => ({ status: status, errorMessage: err }));
+                setError({ status: err.status, errorMessage: err });
             }
         }
 
@@ -82,11 +82,11 @@ function ManageDeviceModal(props) {
 
     function deleteDevice() {
         if (window.confirm("Are you sure you want to delete device " + device.name + "?")) {
-            const callback = (error) => {
-                if (error === null) {
+            const callback = (err) => {
+                if (err === null) {
                     setSuccess(1);
                 } else {
-                    setError((error) => ({status: error.status, errorMessage: error}));
+                    setError({ status: err.status, errorMessage: err });
                 }
             };
 
@@ -96,12 +96,12 @@ function ManageDeviceModal(props) {
 
     function updateDevice(name, userName) {
         if (window.confirm("Are you sure you want to update device " + device.name + "?")) {
-            const callback = (error) => {
-                if (error === null) {
+            const callback = (err) => {
+                if (err === null) {
                     setSuccess(1);
                 } else {
-                    console.log(error)
-                    setError((error) => ({status: error.status, errorMessage: error}));
+                    console.log(err)
+                    setError({ status: err.status, errorMessage: err });
                 }
             };
 

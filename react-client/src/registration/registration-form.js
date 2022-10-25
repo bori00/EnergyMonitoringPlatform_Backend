@@ -53,7 +53,9 @@ const formControlsInit = {
         value: 'CLIENT',
         placeholder: 'User role...',
         possibleValues: ['CLIENT', 'ADMIN'].map(v => getValueLabelDictionary(v)),
-        valid: true
+        valid: true,
+        validationRules: {
+        },
     }
 };
 
@@ -69,10 +71,7 @@ function RegistrationForm() {
         setUserIsAdmin(API_AUTH.getCurrentUserRole() === 'ADMIN');
     })
 
-    function handleChange(event) {
-        let name = event.target.name;
-        let value = event.target.value;
-
+    function handleFormChange(name, value) {
         let updatedControls = { ...formControls };
 
         let updatedFormElement = updatedControls[name];
@@ -94,12 +93,26 @@ function RegistrationForm() {
         setFormIsValid((formIsValidPrev) => (formIsValid));
     }
 
+    function handleChange(event) {
+        let name = event.target.name;
+        let value = event.target.value;
+
+        handleFormChange(name, value);
+    }
+
+    function handleUserTypeChange(e) {
+        let name = "userType";
+        let value = e.value;
+
+        handleFormChange(name, value);
+    }
+
     function register(userName, password, emailAddress, userType) {
-        const callback = (error) => {
-            if (error === null) {
+        const callback = (err) => {
+            if (err === null) {
                 setSuccess(1);
             } else {
-                setError((error) => ({ status: error.status, errorMessage: error }));
+                setError({ status: err.status, errorMessage: err });
             }
         }
 
@@ -132,6 +145,7 @@ function RegistrationForm() {
                 <Label for='Field'>Password: </Label>
                 <Input name='password' id='passwordField' placeholder={formControls.password.placeholder}
                        onChange={handleChange}
+                       type="password"
                        defaultValue={formControls.password.value}
                        touched={formControls.password.touched ? 1 : 0}
                        valid={formControls.password.valid}
@@ -161,6 +175,7 @@ function RegistrationForm() {
                         defaultValue={getValueLabelDictionary(formControls.userType.value)}
                         isClearable={0}
                         isDisabled={!userIsAdmin}
+                        onChange={handleUserTypeChange}
                 />
             </FormGroup>
 

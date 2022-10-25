@@ -8,8 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.dtos.NewUserDTO;
 import ro.tuc.ds2020.dtos.UserDTO;
-import ro.tuc.ds2020.services.authentication.LoginRegistrationService;
-import ro.tuc.ds2020.services.authentication.UserCrudService;
+import ro.tuc.ds2020.services.admin_user_management.UserCrudService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,7 +30,7 @@ public class UserCrudController {
         userCrudService.deleteUser(id);
     }
 
-    @PostMapping("/update-user")
+    @PutMapping("/update-user")
     @ResponseStatus(HttpStatus.OK)
     void updateUser(@Valid @RequestBody UserDTO userDTO) {
         LOGGER.info(String.format("REQUEST - /updateUser, for id %d",
@@ -44,5 +43,12 @@ public class UserCrudController {
     List<UserDTO> getAllClients() {
         LOGGER.info("REQUEST - /get-all-clients");
         return userCrudService.getAllClients();
+    }
+
+    @GetMapping("/get-all-users")
+    @ResponseStatus(HttpStatus.OK)
+    List<UserDTO> getAllUserss() {
+        LOGGER.info("REQUEST - /get-all-users");
+        return userCrudService.getAllUsers();
     }
 }

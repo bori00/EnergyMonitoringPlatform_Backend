@@ -11,12 +11,9 @@ import LogoutFunction from "./authentication/logout-container";
 import styles from './commons/styles/project-style.css';
 import AdminDeviceManagementContainer
     from "./admin-device-management/admin-device-management-container";
-import ManageDeviceModal from "./admin-device-management/manage-device-modal";
+import AdminUserManagementContainer
+    from "./admin-user-management/admin-user-management-container";
 
-/*
-    Namings: https://reactjs.org/docs/jsx-in-depth.html#html-tags-vs.-react-components
-    Should I use hooks?: https://reactjs.org/docs/hooks-faq.html#should-i-use-hooks-classes-or-a-mix-of-both
-*/
 function App() {
     return (
         <div className={styles.back}>
@@ -59,6 +56,12 @@ function App() {
                             exact
                             path='/admin-device-management'
                             render={() => <AdminDeviceManagementContainer />}
+                        />
+
+                        <Route
+                            exact
+                            path='/admin-user-management'
+                            render={() => <AdminUserManagementContainer />}
                         />
 
                         {/*Error*/}

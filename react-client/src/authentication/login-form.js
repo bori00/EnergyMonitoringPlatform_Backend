@@ -100,6 +100,7 @@ function LoginForm() {
                        touched={formControls.password.touched ? 1 : 0}
                        valid={formControls.password.valid}
                        required
+                       type="password"
                 />
                 {formControls.password.touched && !formControls.password.valid &&
                 <div className={"error-message"}> * Password must not be blank</div>}
