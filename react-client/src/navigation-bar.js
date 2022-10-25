@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment, useLayoutEffect} from 'react'
+import React, {useState,  Fragment, useLayoutEffect} from 'react'
 import { DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, NavbarBrand, NavLink, UncontrolledDropdown,  } from 'reactstrap';
 
 import logo from './commons/images/logo.png';
@@ -72,9 +72,9 @@ function NavigationBar() {
                                 </DropdownToggle>
                                 <DropdownMenu right>
 
-                                    {/*<DropdownItem>*/}
-                                    {/*    <NavLink href="/person">Persons</NavLink>*/}
-                                    {/*</DropdownItem>*/}
+                                    <DropdownItem>
+                                        <NavLink href="/client-devices-monitoring">My Devices</NavLink>
+                                    </DropdownItem>
 
 
                                 </DropdownMenu>

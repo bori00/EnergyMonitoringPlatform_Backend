@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import NavigationBar from './navigation-bar';
 import Home from './home/home';
-import PersonContainer from './person/person-container';
 import LoginContainer from "./authentication/login-container";
 import RegistrationContainer from "./registration/registration-container";
 import ErrorPage from './commons/errorhandling/error-page';
@@ -13,6 +12,8 @@ import AdminDeviceManagementContainer
     from "./admin-device-management/admin-device-management-container";
 import AdminUserManagementContainer
     from "./admin-user-management/admin-user-management-container";
+import ClientDeviceMonitoringContainer
+    from "./client-device-monitoring/client-device-monitoring-container";
 
 function App() {
     return (
@@ -26,12 +27,6 @@ function App() {
                             exact
                             path='/'
                             render={() => <Home />}
-                        />
-
-                        <Route
-                            exact
-                            path='/person'
-                            render={() => <PersonContainer />}
                         />
 
                         <Route
@@ -62,6 +57,12 @@ function App() {
                             exact
                             path='/admin-user-management'
                             render={() => <AdminUserManagementContainer />}
+                        />
+
+                        <Route
+                            exact
+                            path='/client-devices-monitoring'
+                            render={() => <ClientDeviceMonitoringContainer />}
                         />
 
                         {/*Error*/}

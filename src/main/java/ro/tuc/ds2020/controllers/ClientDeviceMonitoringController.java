@@ -9,7 +9,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ro.tuc.ds2020.dtos.DeviceDTO;
 import ro.tuc.ds2020.dtos.DeviceEnergyConsumptionPerDayDTO;
-import ro.tuc.ds2020.dtos.DeviceStatisticsRequestDTO;
 import ro.tuc.ds2020.dtos.NewDeviceDTO;
 import ro.tuc.ds2020.services.client_device_monitoring.ClientDeviceMonitoringService;
 
@@ -36,16 +35,21 @@ public class ClientDeviceMonitoringController {
 
     @GetMapping("/get-energy-consumption-for-day")
     @ResponseStatus(HttpStatus.OK)
-    DeviceEnergyConsumptionPerDayDTO updateDevice(@Valid @RequestBody DeviceStatisticsRequestDTO statisticsRequestDTO) {
-        LOGGER.info(String.format("REQUEST - /Please provide a valid day of the month, for %s",
-                statisticsRequestDTO.toString()));
+    DeviceEnergyConsumptionPerDayDTO updateDevice(@RequestParam Long deviceId,
+                                                  @RequestParam Integer year,
+                                                  @RequestParam Integer month,
+                                                  @RequestParam Integer day) {
 
-        LocalDate date = LocalDate.of(statisticsRequestDTO.getYear(),
-                statisticsRequestDTO.getMonth(),
-                statisticsRequestDTO.getDay());
+        LocalDate date = LocalDate.of(year,
+                month,
+                day);
+
+        LOGGER.info(String.format("REQUEST - /get-energy-consumption-for-day, for  device %d, " +
+                        "date = %s",
+                deviceId, date.toString()));
 
         return clientDeviceMonitoringService.getDeviceConsumptionStatisticsForDay(
-                statisticsRequestDTO.getDeviceId(),
+                deviceId,
                 date);
     }
 }

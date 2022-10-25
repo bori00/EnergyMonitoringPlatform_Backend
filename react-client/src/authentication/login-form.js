@@ -66,7 +66,7 @@ function LoginForm() {
                    window.location.reload();
                 })
             } else {
-                setError((error) => ({ status: status, errorMessage: err }));
+                setError({ status: err.status, errorMessage: err });
             }
         };
 
