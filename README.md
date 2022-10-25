@@ -1,2 +1,2 @@
-# spring-demo
+# Web App for Energy Utility Monitoring
 
