@@ -84,7 +84,7 @@ function DeviceChartModal(props) {
 
                         { measurementExists === 1 &&
                         <Chart
-                            chartType="LineChart"
+                            chartType="ColumnChart"
                             data={consumptionData}
                             options={options}
                             width="100%"
