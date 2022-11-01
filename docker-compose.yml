@@ -1,24 +1,27 @@
 version: '3.1'
 services:
-  app:
+  energy-utility-backend:
     container_name: energy-utility-backend
     image: energy-utility-backend
+    networks:
       - order-pgsql
     build: ./
     ports:
       - "8080:8080"
     depends_on:
-      - dbpostgresql
+      - db
       
-  dbpostgresql:
-    image: dbpostgresql
-    container_name: dbpostgresql
+  db:
+    image: postgres:11
+    container_name: db
     networks:
       - order-pgsql
     ports:
       - "5432:5432"
-    volumes: 
-      - postgres:/data/postgres
+    environment:
+      - POSTGRES_DB=energy-utility-db
+      - POSTGRES_USER=postgres-user
+      - POSTGRES_PASSWORD=postgres-password
 
 networks:
   order-pgsql:
