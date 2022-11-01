@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.ResourceNotFoundException;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.DuplicateUsernameException;
 import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.NoRightToModifyDataException;
+import ro.tuc.ds2020.controllers.handlers.exceptions.model.authentication.SelfDeletionException;
 import ro.tuc.ds2020.dtos.UserDTO;
 import ro.tuc.ds2020.dtos.builders.UserBuilder;
 import ro.tuc.ds2020.entities.User;
@@ -49,6 +50,10 @@ public class UserCrudService {
     public void deleteUser(Long userId) {
 
         User currentUser = authenticationService.getCurrentUser("DeleteClient");
+
+        if (currentUser.getId().equals(userId)) {
+            throw new SelfDeletionException("userId");
+        }
 
         // find the user whose data is to be deleted
         Optional<User> optUserToDelete = userRepository.findById(userId);
