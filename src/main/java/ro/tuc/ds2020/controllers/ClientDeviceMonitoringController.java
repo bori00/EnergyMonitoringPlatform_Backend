@@ -35,7 +35,8 @@ public class ClientDeviceMonitoringController {
 
     @GetMapping("/get-energy-consumption-for-day")
     @ResponseStatus(HttpStatus.OK)
-    DeviceEnergyConsumptionPerDayDTO updateDevice(@RequestParam Long deviceId,
+    DeviceEnergyConsumptionPerDayDTO getEnergyConsumptionForDay(
+                                                  @RequestParam Long deviceId,
                                                   @RequestParam Integer year,
                                                   @RequestParam Integer month,
                                                   @RequestParam Integer day) {
