@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row, UncontrolledAlert, Alert } from 'reactstrap';
 
 import styles from '../styles/project-style.css';
@@ -8,13 +8,18 @@ function APIResponseErrorMessage(props) {
     const [errorStatus, setErrorStatus] = useState(props.errorStatus);
     const [collapseForm, setCollapseForm] = useState(false);
 
+    useEffect(() => {
+        setError(props.error);
+        setErrorStatus(props.errorStatus);
+    }, [props.error, props.errorStatus]);
+
     function toggleForm() {
         setCollapseForm((collapseForm) => (!collapseForm));
     }
 
     return (
         <div>
-            <Alert color="danger">
+            <Alert color="danger" key={error.message}>
                 {error.message}
                 {errorStatus > 1 && <Button color="link" onClick={toggleForm}>Details...</Button>}
             </Alert>

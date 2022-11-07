@@ -69,7 +69,7 @@ function RegistrationForm() {
 
     useEffect(() => {
         setUserIsAdmin(API_AUTH.getCurrentUserRole() === 'ADMIN');
-    })
+    }, [error, success])
 
     function handleFormChange(name, value) {
         let updatedControls = { ...formControls };
@@ -111,8 +111,10 @@ function RegistrationForm() {
         const callback = (err) => {
             if (err === null) {
                 setSuccess(1);
+                setError({ status: 0, errorMessage: ""});
             } else {
-                setError({ status: err.status, errorMessage: err });
+                setSuccess(0);
+                setError({status: err.status, errorMessage: err});
             }
         }
 
@@ -125,6 +127,8 @@ function RegistrationForm() {
             formControls.emailAddress.value,
             formControls.userType.value);
     }
+
+    console.log(error)
 
     return (
         <div>
