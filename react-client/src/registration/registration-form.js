@@ -128,8 +128,6 @@ function RegistrationForm() {
             formControls.userType.value);
     }
 
-    console.log(error)
-
     return (
         <div>
             <FormGroup id='userName'>
