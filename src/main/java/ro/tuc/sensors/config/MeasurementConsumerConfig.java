@@ -33,12 +33,12 @@ public class MeasurementConsumerConfig {
     @Bean
     Gson setupGson() {
         return new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (jsonElement, type, context) ->
-                        LocalDateTime.parse(jsonElement.getAsJsonPrimitive().getAsString(), DateTimeFormatter.ISO_DATE_TIME)
-                )
-                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (value, type, context) ->
-                        new JsonPrimitive(value.format(DateTimeFormatter.ISO_DATE_TIME))
-                )
+//                .registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (jsonElement, type, context) ->
+//                        LocalDateTime.parse(jsonElement.getAsJsonPrimitive().getAsString(), DateTimeFormatter.ISO_DATE_TIME)
+//                )
+//                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (value, type, context) ->
+//                        new JsonPrimitive(value.format(DateTimeFormatter.ISO_DATE_TIME))
+//                )
                 .create();
     }
 }
