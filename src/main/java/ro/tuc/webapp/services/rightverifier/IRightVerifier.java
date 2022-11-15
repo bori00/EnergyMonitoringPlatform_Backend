@@ -1,0 +1,15 @@
+package ro.tuc.webapp.services.rightverifier;
+
+import ro.tuc.webapp.entities.Device;
+import ro.tuc.webapp.entities.User;
+
+public interface IRightVerifier {
+
+    boolean hasAccessToTheDataOf(User user, Device device);
+
+    boolean hasRightToModifyTheDataOf(User user, Device device);
+
+    boolean hasAccessToTheDataOf(User user, User userOfData);
+
+    boolean hasRightToModifyTheDataOf(User user, User userOfData);
+}
