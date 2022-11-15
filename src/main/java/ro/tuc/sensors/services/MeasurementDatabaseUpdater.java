@@ -1,10 +1,12 @@
 package ro.tuc.sensors.services;
 
+import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.rabbitmq.client.DeliverCallback;
 import ro.tuc.sensors.config.MeasurementConsumerConfig;
+import ro.tuc.sensors.dtos.MeasurementDTO;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -13,7 +15,7 @@ import java.util.concurrent.TimeoutException;
 public class MeasurementDatabaseUpdater {
 
     @Autowired
-    public MeasurementDatabaseUpdater(Channel measurementConsumerChannel) throws IOException,
+    public MeasurementDatabaseUpdater(Channel measurementConsumerChannel, Gson gson) throws IOException,
             TimeoutException {
         String queueName = measurementConsumerChannel.queueDeclare().getQueue();
         measurementConsumerChannel.queueBind(queueName, MeasurementConsumerConfig.EXCHANGE_NAME,
@@ -23,7 +25,9 @@ public class MeasurementDatabaseUpdater {
                 queueName);
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
-            System.out.println(" [x] Received '" + message + "', for database update");
+            MeasurementDTO measurementDTO = gson.fromJson(message, MeasurementDTO.class);
+            System.out.println(" [x] Received '" + measurementDTO.toString() + "' for database " +
+                    "update");
         };
         measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
     }
