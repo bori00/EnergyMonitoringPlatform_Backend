@@ -1,8 +1,8 @@
-package ro.tuc.webapp.repositories;
+package ro.tuc.common.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ro.tuc.webapp.entities.User;
+import ro.tuc.common.entities.User;
 
 import java.util.Optional;
 

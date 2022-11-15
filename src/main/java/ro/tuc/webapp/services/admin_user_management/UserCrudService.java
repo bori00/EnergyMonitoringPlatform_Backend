@@ -12,9 +12,9 @@ import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.NoRigh
 import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.SelfDeletionException;
 import ro.tuc.webapp.dtos.UserDTO;
 import ro.tuc.webapp.dtos.builders.UserBuilder;
-import ro.tuc.webapp.entities.User;
-import ro.tuc.webapp.repositories.ClientRepository;
-import ro.tuc.webapp.repositories.UserRepository;
+import ro.tuc.common.entities.User;
+import ro.tuc.common.repositories.ClientRepository;
+import ro.tuc.common.repositories.UserRepository;
 import ro.tuc.webapp.services.authentication.AuthenticationService;
 import ro.tuc.webapp.services.authentication.LoginRegistrationService;
 import ro.tuc.webapp.services.authentication.jwt.JwtUtils;

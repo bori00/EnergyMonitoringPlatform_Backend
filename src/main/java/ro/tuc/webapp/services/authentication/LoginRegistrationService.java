@@ -17,8 +17,8 @@ import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.Invali
 import ro.tuc.webapp.dtos.LoginJwtDTO;
 import ro.tuc.webapp.dtos.NewUserDTO;
 import ro.tuc.webapp.dtos.UserDTO;
-import ro.tuc.webapp.entities.User;
-import ro.tuc.webapp.repositories.UserRepository;
+import ro.tuc.common.entities.User;
+import ro.tuc.common.repositories.UserRepository;
 import ro.tuc.webapp.services.authentication.jwt.JwtUtils;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package ro.tuc.webapp.entities;
+package ro.tuc.common.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

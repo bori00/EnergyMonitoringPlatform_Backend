@@ -1,9 +1,9 @@
 package ro.tuc.webapp.dtos;
 
 import lombok.*;
-import ro.tuc.webapp.entities.Admin;
-import ro.tuc.webapp.entities.Client;
-import ro.tuc.webapp.entities.User;
+import ro.tuc.common.entities.Admin;
+import ro.tuc.common.entities.Client;
+import ro.tuc.common.entities.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -1,9 +1,9 @@
-package ro.tuc.webapp.repositories;
+package ro.tuc.common.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ro.tuc.webapp.entities.Device;
-import ro.tuc.webapp.entities.Measurement;
+import ro.tuc.common.entities.Device;
+import ro.tuc.common.entities.Measurement;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

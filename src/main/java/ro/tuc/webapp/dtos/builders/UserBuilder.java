@@ -2,7 +2,7 @@ package ro.tuc.webapp.dtos.builders;
 
 import ro.tuc.webapp.dtos.NewUserDTO;
 import ro.tuc.webapp.dtos.UserDTO;
-import ro.tuc.webapp.entities.User;
+import ro.tuc.common.entities.User;
 
 public class UserBuilder {
     public static User toEntity(NewUserDTO newUserDTO) {

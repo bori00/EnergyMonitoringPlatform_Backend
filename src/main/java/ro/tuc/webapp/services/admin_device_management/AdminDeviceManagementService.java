@@ -7,11 +7,11 @@ import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.NoAcce
 import ro.tuc.webapp.dtos.DeviceDTO;
 import ro.tuc.webapp.dtos.NewDeviceDTO;
 import ro.tuc.webapp.dtos.builders.DeviceBuilder;
-import ro.tuc.webapp.entities.Admin;
-import ro.tuc.webapp.entities.Client;
-import ro.tuc.webapp.entities.Device;
-import ro.tuc.webapp.repositories.ClientRepository;
-import ro.tuc.webapp.repositories.DeviceRepository;
+import ro.tuc.common.entities.Admin;
+import ro.tuc.common.entities.Client;
+import ro.tuc.common.entities.Device;
+import ro.tuc.common.repositories.ClientRepository;
+import ro.tuc.common.repositories.DeviceRepository;
 import ro.tuc.webapp.services.authentication.AuthenticationService;
 import ro.tuc.webapp.services.rightverifier.RightVerifierFactory;
 

@@ -1,8 +1,8 @@
 package ro.tuc.webapp.dtos.builders;
 
 import ro.tuc.webapp.dtos.DeviceEnergyConsumptionPerDayDTO;
-import ro.tuc.webapp.entities.Device;
-import ro.tuc.webapp.entities.Measurement;
+import ro.tuc.common.entities.Device;
+import ro.tuc.common.entities.Measurement;
 
 import java.time.LocalDate;
 import java.util.Arrays;

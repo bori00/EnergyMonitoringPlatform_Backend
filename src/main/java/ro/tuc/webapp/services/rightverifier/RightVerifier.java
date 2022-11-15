@@ -1,7 +1,7 @@
 package ro.tuc.webapp.services.rightverifier;
 
-import ro.tuc.webapp.entities.Device;
-import ro.tuc.webapp.entities.User;
+import ro.tuc.common.entities.Device;
+import ro.tuc.common.entities.User;
 
 /**
  * Class responsible for verifying whether a user has the right to access or modify certain data.

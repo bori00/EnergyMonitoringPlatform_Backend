@@ -2,8 +2,8 @@ package ro.tuc.webapp.dtos.builders;
 
 import ro.tuc.webapp.dtos.DeviceDTO;
 import ro.tuc.webapp.dtos.NewDeviceDTO;
-import ro.tuc.webapp.entities.Client;
-import ro.tuc.webapp.entities.Device;
+import ro.tuc.common.entities.Client;
+import ro.tuc.common.entities.Device;
 
 public class DeviceBuilder {
 

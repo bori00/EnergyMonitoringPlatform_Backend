@@ -7,11 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ro.tuc.webapp.entities.Admin;
-import ro.tuc.webapp.entities.Client;
-import ro.tuc.webapp.entities.User;
-import ro.tuc.webapp.repositories.AdminRepository;
-import ro.tuc.webapp.repositories.ClientRepository;
+import ro.tuc.common.entities.Admin;
+import ro.tuc.common.entities.Client;
+import ro.tuc.common.entities.User;
+import ro.tuc.common.repositories.AdminRepository;
+import ro.tuc.common.repositories.ClientRepository;
 
 import java.util.Collection;
 import java.util.List;

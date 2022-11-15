@@ -8,12 +8,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.AccessRoleRequiredException;
 import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.AuthenticationRequiredException;
-import ro.tuc.webapp.entities.Admin;
-import ro.tuc.webapp.entities.Client;
-import ro.tuc.webapp.entities.User;
-import ro.tuc.webapp.repositories.AdminRepository;
-import ro.tuc.webapp.repositories.ClientRepository;
-import ro.tuc.webapp.repositories.UserRepository;
+import ro.tuc.common.entities.Admin;
+import ro.tuc.common.entities.Client;
+import ro.tuc.common.entities.User;
+import ro.tuc.common.repositories.AdminRepository;
+import ro.tuc.common.repositories.ClientRepository;
+import ro.tuc.common.repositories.UserRepository;
 
 import java.util.Optional;
 

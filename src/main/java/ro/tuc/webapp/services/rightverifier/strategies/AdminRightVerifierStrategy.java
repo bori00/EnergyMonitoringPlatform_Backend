@@ -1,7 +1,7 @@
 package ro.tuc.webapp.services.rightverifier.strategies;
 
-import ro.tuc.webapp.entities.Device;
-import ro.tuc.webapp.entities.User;
+import ro.tuc.common.entities.Device;
+import ro.tuc.common.entities.User;
 import ro.tuc.webapp.services.rightverifier.IRightVerifier;
 
 public class AdminRightVerifierStrategy implements IRightVerifier {
