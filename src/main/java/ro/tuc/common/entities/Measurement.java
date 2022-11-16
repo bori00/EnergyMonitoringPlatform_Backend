@@ -33,4 +33,14 @@ public class Measurement {
     @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
+
+    public Measurement(LocalDateTime dateTime, Double energyConsumption, Device device) {
+        this.dateTime = dateTime;
+        this.energyConsumption = energyConsumption;
+        this.device = device;
+    }
+
+    public void increaseEnergyConsumption(Double value) {
+        energyConsumption += value;
+    }
 }

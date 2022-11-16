@@ -17,6 +17,10 @@ public interface MeasurementRepository extends JpaRepository<Measurement, UUID> 
                                                         LocalDateTime endDate,
                                                         Device device);
 
+    List<Measurement> findAllByDateTimeBetweenAndDevice(LocalDateTime startDate,
+                                                                       LocalDateTime endDate,
+                                                                       Device device);
+
     default List<Measurement> findAllByDateAndDeviceOrderByDateTime(LocalDate date, Device device) {
         return findAllByDateTimeBetweenAndDeviceOrderByDateTime(
                 date.atStartOfDay(),
