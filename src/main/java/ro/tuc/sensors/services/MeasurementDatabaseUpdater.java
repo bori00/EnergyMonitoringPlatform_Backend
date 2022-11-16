@@ -26,7 +26,7 @@ public class MeasurementDatabaseUpdater {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
             MeasurementDTO measurementDTO = gson.fromJson(message, MeasurementDTO.class);
-            System.out.println(" [x] Received '" + measurementDTO.toString() + "' for database " +
+            System.out.println(" [x] Received '" + message + "=" + measurementDTO + "' for database " +
                     "update");
         };
         measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });

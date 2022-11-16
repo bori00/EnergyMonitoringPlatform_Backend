@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class DeviceEnergyConsumptionPerDayDTO {
     @NotNull
-    private Long id;
+    private String id;
 
     @NotNull
     @NotEmpty

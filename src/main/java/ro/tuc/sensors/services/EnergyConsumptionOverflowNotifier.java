@@ -25,7 +25,7 @@ public class EnergyConsumptionOverflowNotifier {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
             MeasurementDTO measurementDTO = gson.fromJson(message, MeasurementDTO.class);
-            System.out.println(" [x] Received '" + measurementDTO.toString() + "' for threshold " +
+            System.out.println(" [x] Received '"+ message + "=" + measurementDTO + "' for threshold " +
                     "verification");
         };
         measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });

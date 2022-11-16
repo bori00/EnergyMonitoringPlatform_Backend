@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.*;
@@ -15,11 +17,10 @@ import java.util.*;
 @NoArgsConstructor
 public class Device {
     @Id
-    @GeneratedValue
-//    @GeneratedValue(generator = "uuid2")
-//    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-//    @Type(type = "uuid-binary")
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+//    @Type(type="uuid-binary")
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -38,7 +39,7 @@ public class Device {
         this.measurements = new ArrayList<>();
     }
 
-    public Device(Long id, String name, Client client) {
+    public Device(UUID id, String name, Client client) {
         this.id = id;
         this.name = name;
         this.client = client;

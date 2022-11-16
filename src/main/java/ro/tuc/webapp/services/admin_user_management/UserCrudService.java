@@ -22,6 +22,7 @@ import ro.tuc.webapp.services.rightverifier.RightVerifier;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,24 +48,24 @@ public class UserCrudService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginRegistrationService.class);
 
-    public void deleteUser(Long userId) {
+    public void deleteUser(String userId) {
 
         User currentUser = authenticationService.getCurrentUser("DeleteClient");
 
-        if (currentUser.getId().equals(userId)) {
+        if (currentUser.getId().equals(UUID.fromString(userId))) {
             throw new SelfDeletionException("userId");
         }
 
         // find the user whose data is to be deleted
-        Optional<User> optUserToDelete = userRepository.findById(userId);
+        Optional<User> optUserToDelete = userRepository.findById(UUID.fromString(userId));
         if (optUserToDelete.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("User with ID %d", userId));
+            throw new ResourceNotFoundException(String.format("User with ID %s", userId));
         }
         User userToDelete = optUserToDelete.get();
 
         // check that the current user has the right to modify the requested user's data
         if (!new RightVerifier().hasRightToModifyTheDataOf(currentUser, userToDelete)) {
-            throw new NoRightToModifyDataException(String.format("User with ID %d", userId));
+            throw new NoRightToModifyDataException(String.format("User with ID %s", userId));
         }
 
         userRepository.delete(userToDelete);
@@ -77,15 +78,15 @@ public class UserCrudService {
         User currentUser = authenticationService.getCurrentUser("DeleteClient");
 
         // find the user whose data is to be updated
-        Optional<User> optExistingUser = userRepository.findById(userDTO.getId());
+        Optional<User> optExistingUser = userRepository.findById(UUID.fromString(userDTO.getId()));
         if (optExistingUser.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("User with ID %d", userDTO.getId()));
+            throw new ResourceNotFoundException(String.format("User with ID %s", userDTO.getId()));
         }
         User userToUpdate = optExistingUser.get();
 
         // check that the current user has the right to modify the requested user's data
         if (!new RightVerifier().hasRightToModifyTheDataOf(currentUser, userToUpdate)) {
-            throw new NoRightToModifyDataException(String.format("User with ID %d",
+            throw new NoRightToModifyDataException(String.format("User with ID %s",
                     userToUpdate.getId()));
         }
 

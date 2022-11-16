@@ -13,7 +13,7 @@ public class MeasurementBuilder {
                                                          Device device,
                                                          LocalDate localDate) {
         return new DeviceEnergyConsumptionPerDayDTO(
-            device.getId(),
+            device.getId().toString(),
             device.getName(),
             localDate,
             getMeasurementsPerHour(measurements)

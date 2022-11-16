@@ -41,8 +41,8 @@ public class AdminDeviceManagementController {
 
     @DeleteMapping("/delete-device/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void deleteDevice(@PathVariable Long id) {
-        LOGGER.info(String.format("REQUEST - /delete-device, for device with id %d",
+    void deleteDevice(@PathVariable String id) {
+        LOGGER.info(String.format("REQUEST - /delete-device, for device with id %s",
                 id));
         adminDeviceManagementService.deleteDevice(id);
     }

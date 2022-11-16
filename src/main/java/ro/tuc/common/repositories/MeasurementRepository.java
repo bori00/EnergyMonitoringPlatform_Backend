@@ -8,9 +8,10 @@ import ro.tuc.common.entities.Measurement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface MeasurementRepository extends JpaRepository<Measurement, Long> {
+public interface MeasurementRepository extends JpaRepository<Measurement, UUID> {
 
     List<Measurement> findAllByDateTimeBetweenAndDeviceOrderByDateTime(LocalDateTime startDate,
                                                         LocalDateTime endDate,

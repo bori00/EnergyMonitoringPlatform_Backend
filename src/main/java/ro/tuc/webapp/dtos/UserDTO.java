@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 public class UserDTO {
 
     @NotNull(message = "The user id be blank.")
-    private Long id;
+    private String id;
 
     @NotBlank(message = "The username cannot be blank.")
     @Size(min = 3, max = 30, message = "The username should have a length between 3 and " +

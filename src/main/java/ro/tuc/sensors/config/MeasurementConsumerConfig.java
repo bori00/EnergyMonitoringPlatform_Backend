@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -33,12 +34,14 @@ public class MeasurementConsumerConfig {
     @Bean
     Gson setupGson() {
         return new GsonBuilder()
-//                .registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (jsonElement, type, context) ->
-//                        LocalDateTime.parse(jsonElement.getAsJsonPrimitive().getAsString(), DateTimeFormatter.ISO_DATE_TIME)
-//                )
-//                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (value, type, context) ->
-//                        new JsonPrimitive(value.format(DateTimeFormatter.ISO_DATE_TIME))
-//                )
+                .registerTypeAdapter(Timestamp.class, (JsonDeserializer<Timestamp>) (jsonElement,
+                                                                                     type, context) ->
+                    new Timestamp(jsonElement.getAsLong())
+                )
+                .registerTypeAdapter(Timestamp.class, (JsonSerializer<Timestamp>) (value, type,
+                                                                                   context) ->
+                    new JsonPrimitive(value.getTime())
+                )
                 .create();
     }
 }

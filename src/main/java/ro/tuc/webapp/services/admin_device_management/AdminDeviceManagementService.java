@@ -17,6 +17,7 @@ import ro.tuc.webapp.services.rightverifier.RightVerifierFactory;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,10 +55,11 @@ public class AdminDeviceManagementService {
     public DeviceDTO updateDevice(DeviceDTO deviceDTO) {
         Admin admin = authenticationService.getCurrentAdmin("CreateNewDevice");
 
-        Optional<Device> optPastDevice = deviceRepository.findById(deviceDTO.getId());
+        Optional<Device> optPastDevice =
+                deviceRepository.findById(UUID.fromString(deviceDTO.getId()));
 
         if (optPastDevice.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("Device with id %d",
+            throw new ResourceNotFoundException(String.format("Device with id %s",
                     deviceDTO.getId()));
         }
 
@@ -74,20 +76,20 @@ public class AdminDeviceManagementService {
         return DeviceBuilder.toDTO(savedDevice);
     }
 
-    public void deleteDevice(Long deviceId) {
+    public void deleteDevice(String deviceId) {
         Admin admin = authenticationService.getCurrentAdmin("CreateNewDevice");
 
-        Optional<Device> optDevice = deviceRepository.findById(deviceId);
+        Optional<Device> optDevice = deviceRepository.findById(UUID.fromString(deviceId));
 
         if (optDevice.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("Device with id %d",
+            throw new ResourceNotFoundException(String.format("Device with id %s",
                     deviceId));
         }
 
         Device device = optDevice.get();
 
         if (!RightVerifierFactory.getRightVerifier(admin).hasRightToModifyTheDataOf(admin, device)) {
-            throw new NoAccessToDataException(String.format("Device %d", deviceId));
+            throw new NoAccessToDataException(String.format("Device %s", deviceId));
         }
 
         deviceRepository.delete(device);

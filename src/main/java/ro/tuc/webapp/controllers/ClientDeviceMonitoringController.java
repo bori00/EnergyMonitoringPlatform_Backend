@@ -33,7 +33,7 @@ public class ClientDeviceMonitoringController {
     @GetMapping("/get-energy-consumption-for-day")
     @ResponseStatus(HttpStatus.OK)
     DeviceEnergyConsumptionPerDayDTO getEnergyConsumptionForDay(
-                                                  @RequestParam Long deviceId,
+                                                  @RequestParam String deviceId,
                                                   @RequestParam Integer year,
                                                   @RequestParam Integer month,
                                                   @RequestParam Integer day) {
@@ -42,7 +42,7 @@ public class ClientDeviceMonitoringController {
                 month,
                 day);
 
-        LOGGER.info(String.format("REQUEST - /get-energy-consumption-for-day, for  device %d, " +
+        LOGGER.info(String.format("REQUEST - /get-energy-consumption-for-day, for  device %s, " +
                         "date = %s",
                 deviceId, date.toString()));
 

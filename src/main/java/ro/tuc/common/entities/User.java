@@ -2,8 +2,11 @@ package ro.tuc.common.entities;
 
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name="users")
@@ -16,11 +19,10 @@ import javax.persistence.*;
 public abstract class User {
 
     @Id
-    @GeneratedValue
-//    @GeneratedValue(generator = "uuid2")
-//    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-//    @Type(type = "uuid-binary")
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+//    @Type(type="uuid-binary")
+    private UUID id;
 
     @Column(name = "user_name", nullable = false)
     private String userName;
@@ -31,7 +33,7 @@ public abstract class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 

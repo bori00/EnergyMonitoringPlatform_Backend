@@ -6,9 +6,10 @@ import ro.tuc.common.entities.Client;
 import ro.tuc.common.entities.Device;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Repository
-public interface DeviceRepository extends JpaRepository<Device, Long> {
+public interface DeviceRepository extends JpaRepository<Device, UUID> {
 
     ArrayList<Device> findAllByClient(Client client);
 }

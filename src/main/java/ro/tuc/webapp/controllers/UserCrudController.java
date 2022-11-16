@@ -23,8 +23,8 @@ public class UserCrudController {
 
     @DeleteMapping("/delete-user/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void deleteUser(@PathVariable Long id) {
-        LOGGER.info(String.format("REQUEST - /deleteClient, for id %d",
+    void deleteUser(@PathVariable String id) {
+        LOGGER.info(String.format("REQUEST - /deleteClient, for id %s",
                 id));
         userCrudService.deleteUser(id);
     }
@@ -32,7 +32,7 @@ public class UserCrudController {
     @PutMapping("/update-user")
     @ResponseStatus(HttpStatus.OK)
     void updateUser(@Valid @RequestBody UserDTO userDTO) {
-        LOGGER.info(String.format("REQUEST - /updateUser, for id %d",
+        LOGGER.info(String.format("REQUEST - /updateUser, for id %s",
                 userDTO.getId()));
         userCrudService.updateUser(userDTO);
     }

@@ -16,7 +16,7 @@ public class UserBuilder {
     }
 
     public static UserDTO toDTO(User user) {
-        return new UserDTO(user.getId(), user.getUserName(), user.getEmailAddress(),
+        return new UserDTO(user.getId().toString(), user.getUserName(), user.getEmailAddress(),
                 user.getPassword());
     }
 }

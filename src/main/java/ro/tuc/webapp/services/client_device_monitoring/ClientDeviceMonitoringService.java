@@ -22,6 +22,7 @@ import ro.tuc.webapp.services.rightverifier.RightVerifierFactory;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,14 +55,14 @@ public class ClientDeviceMonitoringService {
     }
 
     public DeviceEnergyConsumptionPerDayDTO
-        getDeviceConsumptionStatisticsForDay(Long deviceId, LocalDate date) {
+        getDeviceConsumptionStatisticsForDay(String deviceId, LocalDate date) {
 
         Client client = authenticationService.getCurrentClient("GetDeviceConsumptionStatistics");
 
-        Optional<Device> optDevice = deviceRepository.findById(deviceId);
+        Optional<Device> optDevice = deviceRepository.findById(UUID.fromString(deviceId));
 
         if (optDevice.isEmpty()) {
-            throw new ResourceNotFoundException(String.format("Device with id %d",
+            throw new ResourceNotFoundException(String.format("Device with id %s",
                     deviceId));
         }
 
