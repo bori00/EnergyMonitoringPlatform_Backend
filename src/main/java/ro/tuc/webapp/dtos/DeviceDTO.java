@@ -2,6 +2,7 @@ package ro.tuc.webapp.dtos;
 
 import lombok.*;
 
+import javax.validation.constraints.Negative;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,4 +25,14 @@ public class DeviceDTO {
     @NotBlank(message = "The device owner's userName cannot be blank. Please choose to which user" +
             " this device belongs")
     private String userName;
+
+    @NotNull(message = "The device must have an energy consumption limit.")
+    @Negative(message = "The energy consumption threshold must be >= 0")
+    private Double maxEnergyConsumption;
+
+    @Size(max = 1000, message = "The device description should have a length <= 1000")
+    private String description;
+
+    @Size(max = 200, message = "The device address should have a length <= 200")
+    private String address;
 }
