@@ -15,7 +15,7 @@ import java.util.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Device {
+public class Device implements Comparable<Device>{
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -60,5 +60,10 @@ public class Device {
 
     public List<Measurement> getMeasurements() {
         return Collections.unmodifiableList(measurements);
+    }
+
+    @Override
+    public int compareTo(Device o) {
+        return id.compareTo(o.id);
     }
 }

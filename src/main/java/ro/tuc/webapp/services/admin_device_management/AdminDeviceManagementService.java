@@ -97,6 +97,7 @@ public class AdminDeviceManagementService {
 
     public List<DeviceDTO> getAllDevices() {
         return deviceRepository.findAll().stream()
+                .sorted()
                 .map(DeviceBuilder::toDTO)
                 .collect(Collectors.toList());
     }
