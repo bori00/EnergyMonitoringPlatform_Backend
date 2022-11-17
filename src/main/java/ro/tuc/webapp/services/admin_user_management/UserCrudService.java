@@ -10,6 +10,7 @@ import ro.tuc.webapp.controllers.handlers.exceptions.model.ResourceNotFoundExcep
 import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.DuplicateUsernameException;
 import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.NoRightToModifyDataException;
 import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.SelfDeletionException;
+import ro.tuc.webapp.controllers.handlers.exceptions.model.authentication.UsernameUpdateException;
 import ro.tuc.webapp.dtos.UserDTO;
 import ro.tuc.webapp.dtos.builders.UserBuilder;
 import ro.tuc.common.entities.User;
@@ -50,7 +51,7 @@ public class UserCrudService {
 
     public void deleteUser(String userId) {
 
-        User currentUser = authenticationService.getCurrentUser("DeleteClient");
+        User currentUser = authenticationService.getCurrentUser("DeleteUser");
 
         if (currentUser.getId().equals(UUID.fromString(userId))) {
             throw new SelfDeletionException("userId");
@@ -75,7 +76,7 @@ public class UserCrudService {
 
     public void updateUser(UserDTO userDTO) {
 
-        User currentUser = authenticationService.getCurrentUser("DeleteClient");
+        User currentUser = authenticationService.getCurrentUser("UpdateUser");
 
         // find the user whose data is to be updated
         Optional<User> optExistingUser = userRepository.findById(UUID.fromString(userDTO.getId()));
@@ -83,6 +84,10 @@ public class UserCrudService {
             throw new ResourceNotFoundException(String.format("User with ID %s", userDTO.getId()));
         }
         User userToUpdate = optExistingUser.get();
+
+        if (!userToUpdate.getUserName().equals(userDTO.getUserName())) {
+            throw new UsernameUpdateException(userDTO.getUserName());
+        }
 
         // check that the current user has the right to modify the requested user's data
         if (!new RightVerifier().hasRightToModifyTheDataOf(currentUser, userToUpdate)) {
