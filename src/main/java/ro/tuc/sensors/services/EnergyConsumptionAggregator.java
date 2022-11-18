@@ -9,6 +9,7 @@ import ro.tuc.common.repositories.MeasurementRepository;
 import ro.tuc.sensors.dtos.MeasurementDTO;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,8 @@ public class EnergyConsumptionAggregator {
 
     public void addEnergyConsumption(MeasurementDTO measurementDTO, NotificationService notificationService) {
 
-        LocalDateTime dateTime = measurementDTO.getTimestamp().toLocalDateTime();
+        LocalDateTime dateTime =
+                measurementDTO.getTimestamp().toInstant().atZone(ZoneId.of("Europe/Bucharest")).toLocalDateTime();
         LocalDateTime hourStart = dateTime
                 .minusMinutes(dateTime.getMinute())
                 .minusSeconds(dateTime.getSecond())
