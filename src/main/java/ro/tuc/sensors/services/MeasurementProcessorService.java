@@ -21,8 +21,10 @@ public class MeasurementProcessorService {
 
 
     @Autowired
-    public MeasurementProcessorService(Channel measurementConsumerChannel, Gson gson,
-                                       EnergyConsumptionAggregator energyConsumptionAggregator) throws IOException,
+    public MeasurementProcessorService(Channel measurementConsumerChannel,
+                                       Gson gson,
+                                       EnergyConsumptionAggregator energyConsumptionAggregator,
+                                       NotificationService notificationService) throws IOException,
             TimeoutException {
         String queueName = measurementConsumerChannel.queueDeclare().getQueue();
         measurementConsumerChannel.queueBind(queueName, MeasurementConsumerConfig.EXCHANGE_NAME,
@@ -34,8 +36,7 @@ public class MeasurementProcessorService {
             LOGGER.info(" [x] Received '" + message + "=" + measurementDTO + "' for database " +
                     "update");
 
-            energyConsumptionAggregator.addEnergyConsumption(measurementDTO);
-
+            energyConsumptionAggregator.addEnergyConsumption(measurementDTO, notificationService);
         };
         measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
 

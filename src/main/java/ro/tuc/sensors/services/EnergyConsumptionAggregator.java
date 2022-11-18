@@ -10,6 +10,7 @@ import ro.tuc.sensors.dtos.MeasurementDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EnergyConsumptionAggregator {
@@ -25,7 +26,7 @@ public class EnergyConsumptionAggregator {
         this.deviceRepository = deviceRepository;
     }
 
-    public void addEnergyConsumption(MeasurementDTO measurementDTO) {
+    public void addEnergyConsumption(MeasurementDTO measurementDTO, NotificationService notificationService) {
 
         LocalDateTime dateTime = measurementDTO.getTimestamp().toLocalDateTime();
         LocalDateTime hourStart = dateTime
@@ -34,7 +35,13 @@ public class EnergyConsumptionAggregator {
                 .minusNanos(dateTime.getNano());
         LocalDateTime hourEnd = hourStart.plusMinutes(59).plusSeconds(59).plusNanos(999999999);
 
-        Device device = deviceRepository.getOne(measurementDTO.getDeviceId());
+        Optional<Device> optDevice = deviceRepository.findById(measurementDTO.getDeviceId());
+
+        if (optDevice.isEmpty()) {
+            throw new IllegalStateException("Illegal device ID");
+        }
+
+        Device device = optDevice.get();
         List<Measurement> existingMeasurement =
                 measurementRepository.findAllByDateTimeBetweenAndDevice(hourStart, hourEnd, device);
 
@@ -43,10 +50,18 @@ public class EnergyConsumptionAggregator {
                     measurementDTO.getMeasurementValue(), device);
 
             measurementRepository.save(newHourlyMeasurement);
+
+            notificationService.notifyUser(device.getClient(),
+                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST,
+                    new String("Hi"));
         } else if (existingMeasurement.size() == 1) {
             existingMeasurement.get(0).increaseEnergyConsumption(measurementDTO.getMeasurementValue());
 
             measurementRepository.save(existingMeasurement.get(0));
+
+            notificationService.notifyUser(device.getClient(),
+                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST,
+                    new String("Hi"));
         } else {
             throw new IllegalStateException(String.format("Multiple measurements saved for device" +
                             " %s, hour %s",
