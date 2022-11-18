@@ -52,16 +52,16 @@ public class EnergyConsumptionAggregator {
             measurementRepository.save(newHourlyMeasurement);
 
             notificationService.notifyUser(device.getClient(),
-                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST,
-                    new String("Hi"));
+                    new String("Hi"),
+                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST);
         } else if (existingMeasurement.size() == 1) {
             existingMeasurement.get(0).increaseEnergyConsumption(measurementDTO.getMeasurementValue());
 
             measurementRepository.save(existingMeasurement.get(0));
 
             notificationService.notifyUser(device.getClient(),
-                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST,
-                    new String("Hi"));
+                    new String("Hi"),
+                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST);
         } else {
             throw new IllegalStateException(String.format("Multiple measurements saved for device" +
                             " %s, hour %s",

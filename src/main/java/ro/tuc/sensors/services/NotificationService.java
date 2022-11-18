@@ -29,19 +29,8 @@ public class NotificationService {
             User user,
             Object message,
             String socketDest) {
-
-        System.out.printf("Notifying user: %s, on socket %s\n", user.getUserName(),
-                DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST);
-        simpMessagingTemplate.convertAndSendToUser(
-                user.getUserName(),
+        simpMessagingTemplate.convertAndSend(
                 socketDest,
                 message);
-
-        simpMessagingTemplate.convertAndSend(socketDest,
-                new MeasurementDTO(Timestamp.valueOf(LocalDateTime.now()), UUID.randomUUID(),
-                12.5));
-
-
-
     }
 }
