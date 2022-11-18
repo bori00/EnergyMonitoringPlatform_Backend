@@ -11,7 +11,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class SocketsConfig implements WebSocketMessageBrokerConfigurer {
 
-    public static final String MESSAGE_PREFIX = "/topic";
+    public static final String MESSAGE_PREFIX = "/queue";
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -23,7 +23,7 @@ public class SocketsConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker(MESSAGE_PREFIX);
+        registry.enableSimpleBroker(MESSAGE_PREFIX, "/user");
         registry.setApplicationDestinationPrefixes("/app");
     }
 }
