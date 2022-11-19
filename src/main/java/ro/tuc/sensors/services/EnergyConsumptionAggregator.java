@@ -6,6 +6,7 @@ import ro.tuc.common.entities.Device;
 import ro.tuc.common.entities.Measurement;
 import ro.tuc.common.repositories.DeviceRepository;
 import ro.tuc.common.repositories.MeasurementRepository;
+import ro.tuc.sensors.dtos.DeviceMeasurementUpdateDTO;
 import ro.tuc.sensors.dtos.MeasurementDTO;
 
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ public class EnergyConsumptionAggregator {
         this.deviceRepository = deviceRepository;
     }
 
-    public void addEnergyConsumption(MeasurementDTO measurementDTO, NotificationService notificationService) {
+    public DeviceMeasurementUpdateDTO addEnergyConsumption(MeasurementDTO measurementDTO) {
 
         LocalDateTime dateTime =
                 measurementDTO.getTimestamp().toInstant().atZone(ZoneId.of("Europe/Bucharest")).toLocalDateTime();
@@ -53,17 +54,17 @@ public class EnergyConsumptionAggregator {
 
             measurementRepository.save(newHourlyMeasurement);
 
-            notificationService.notifyUser(device.getClient(),
-                    new String("Hi"),
-                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST);
+            return new DeviceMeasurementUpdateDTO(device, 0.0,
+                    measurementDTO.getMeasurementValue());
         } else if (existingMeasurement.size() == 1) {
+            Double oldMeasurememtValue =
+                    existingMeasurement.get(0).getEnergyConsumption();
             existingMeasurement.get(0).increaseEnergyConsumption(measurementDTO.getMeasurementValue());
 
             measurementRepository.save(existingMeasurement.get(0));
 
-            notificationService.notifyUser(device.getClient(),
-                    new String("Hi"),
-                    NotificationService.DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST);
+            return new DeviceMeasurementUpdateDTO(device, oldMeasurememtValue,
+                    existingMeasurement.get(0).getEnergyConsumption());
         } else {
             throw new IllegalStateException(String.format("Multiple measurements saved for device" +
                             " %s, hour %s",

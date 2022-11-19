@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.rabbitmq.client.DeliverCallback;
 import ro.tuc.sensors.config.MeasurementConsumerConfig;
+import ro.tuc.sensors.dtos.DeviceMeasurementUpdateDTO;
 import ro.tuc.sensors.dtos.MeasurementDTO;
 import ro.tuc.webapp.controllers.AdminDeviceManagementController;
 
@@ -24,8 +25,7 @@ public class MeasurementProcessorService {
     public MeasurementProcessorService(Channel measurementConsumerChannel,
                                        Gson gson,
                                        EnergyConsumptionAggregator energyConsumptionAggregator,
-                                       NotificationService notificationService) throws IOException,
-            TimeoutException {
+                                       EnergyConsumptionAnomalyNotifier energyConsumptionAnomalyNotifier) throws IOException{
         String queueName = measurementConsumerChannel.queueDeclare().getQueue();
         measurementConsumerChannel.queueBind(queueName, MeasurementConsumerConfig.EXCHANGE_NAME,
                 "");
@@ -36,7 +36,10 @@ public class MeasurementProcessorService {
             LOGGER.info(" [x] Received '" + message + "=" + measurementDTO + "' for database " +
                     "update");
 
-            energyConsumptionAggregator.addEnergyConsumption(measurementDTO, notificationService);
+            DeviceMeasurementUpdateDTO deviceMeasurementUpdateDTO =
+                    energyConsumptionAggregator.addEnergyConsumption(measurementDTO);
+
+            energyConsumptionAnomalyNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
         };
         measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
 
