@@ -17,7 +17,7 @@ public class NotificationService {
     private final SimpMessagingTemplate simpMessagingTemplate;
 
     public static final String DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST =
-            SocketsConfig.MESSAGE_PREFIX + "/device";
+            SocketsConfig.MESSAGE_PREFIX + "/device-energy-consumption-threshold-passed";
 
     @Autowired
     public NotificationService(SimpMessagingTemplate simpMessagingTemplate) {
