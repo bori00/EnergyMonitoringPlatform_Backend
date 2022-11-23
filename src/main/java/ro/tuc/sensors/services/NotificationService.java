@@ -19,6 +19,9 @@ public class NotificationService {
     public static final String DEVICE_ENERGY_CONSUMPTION_OVER_LIMIT_SOCKET_DEST =
             SocketsConfig.MESSAGE_PREFIX + "/device-energy-consumption-threshold-passed";
 
+    public static final String DEVICE_ENERGY_CONSUMPTION_INCREASED_SOCKET_DEST =
+            SocketsConfig.MESSAGE_PREFIX + "/device-energy-consumption-update";
+
     @Autowired
     public NotificationService(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
@@ -29,6 +32,9 @@ public class NotificationService {
             Object message,
             String socketDest) {
 
+        System.out.printf("Sending to: client: %s, queue: %s, message %s\n", user.getUserName(),
+                socketDest,
+                message);
         simpMessagingTemplate.convertAndSendToUser(
                 user.getUserName(),
                 socketDest,

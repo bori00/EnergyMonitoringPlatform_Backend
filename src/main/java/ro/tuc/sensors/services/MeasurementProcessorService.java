@@ -27,6 +27,7 @@ public class MeasurementProcessorService {
                                        Gson gson,
                                        EnergyConsumptionAggregator energyConsumptionAggregator,
                                        EnergyConsumptionAnomalyNotifier energyConsumptionAnomalyNotifier,
+                                        EnergyConsumptionNotifier energyConsumptionNotifier,
                                         RabbitMQConfigProperties rabbitMQConfig) throws IOException{
         String queueName = measurementConsumerChannel.queueDeclare().getQueue();
         measurementConsumerChannel.queueBind(queueName, rabbitMQConfig.getExchangeName(),
@@ -42,6 +43,7 @@ public class MeasurementProcessorService {
                     energyConsumptionAggregator.addEnergyConsumption(measurementDTO);
 
             energyConsumptionAnomalyNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
+            energyConsumptionNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
         };
         measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
 
