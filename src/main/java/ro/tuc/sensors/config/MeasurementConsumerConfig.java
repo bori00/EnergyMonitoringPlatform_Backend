@@ -2,6 +2,7 @@ package ro.tuc.sensors.config;
 
 import com.google.gson.*;
 import com.rabbitmq.client.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,15 +19,23 @@ public class MeasurementConsumerConfig {
     public static final String EXCHANGE_NAME = "device-measurements";
     public static final String HOST_NAME = "localhost";
 
+    @Autowired
+    private RabbitMQConfigProperties rabbitMQConfigProperties;
+
     @Bean
     Channel measurementConsumerChannel() throws IOException,
             TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost(HOST_NAME);
+        factory.setHost(rabbitMQConfigProperties.getHostName());
+        factory.setPort(rabbitMQConfigProperties.getHostPort());
+        factory.setUsername(rabbitMQConfigProperties.getRabbitmqUsername());
+        factory.setPassword(rabbitMQConfigProperties.getRabbitmqPassword());
+        factory.setVirtualHost(rabbitMQConfigProperties.getRabbitmqUsername());
+        
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        channel.exchangeDeclare(rabbitMQConfigProperties.getExchangeName(), "fanout");
 
         return channel;
     }
