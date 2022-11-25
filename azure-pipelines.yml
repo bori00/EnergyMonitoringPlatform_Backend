@@ -8,6 +8,9 @@ trigger:
 resources:
 - repo: self
 
+pool:
+  name: borilocalpool
+
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'af434365-9988-421b-898d-b9dae2557e25'
@@ -26,6 +29,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
+      name: borilocalpool
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
