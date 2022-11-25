@@ -14,7 +14,7 @@ pool:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'af434365-9988-421b-898d-b9dae2557e25'
-  imageRepository: 'energyutilitybackend'
+  imageRepository: 'bori00_ds2022_30441_fazakas_borbala_assignment_2_backend'
   containerRegistry: 'containerregistryborifazakas30411.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
