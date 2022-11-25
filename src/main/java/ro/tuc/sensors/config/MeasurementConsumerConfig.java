@@ -16,9 +16,6 @@ import java.util.concurrent.TimeoutException;
 @Configuration
 public class MeasurementConsumerConfig {
 
-    public static final String EXCHANGE_NAME = "device-measurements";
-    public static final String HOST_NAME = "localhost";
-
     @Autowired
     private RabbitMQConfigProperties rabbitMQConfigProperties;
 

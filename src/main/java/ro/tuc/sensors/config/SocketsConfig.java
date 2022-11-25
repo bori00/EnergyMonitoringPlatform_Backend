@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import ro.tuc.common.config.ClientConfigProperties;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -14,11 +15,17 @@ public class SocketsConfig implements WebSocketMessageBrokerConfigurer {
 
     public static final String MESSAGE_PREFIX = "/queue";
 
+    private final ClientConfigProperties configProperties;
+
+    @Autowired
+    public SocketsConfig(ClientConfigProperties configProperties) {
+        this.configProperties = configProperties;
+    }
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // todo: frontend domain dependency
         registry.addEndpoint("/secured/energy-utility")
-                .setAllowedOrigins("http://localhost:3000")
+                .setAllowedOrigins(configProperties.getClientUrl())
                 .withSockJS();
     }
 

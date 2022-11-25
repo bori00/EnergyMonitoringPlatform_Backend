@@ -1,5 +1,6 @@
-package ro.tuc.sensors.config;
+package ro.tuc.common.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +16,13 @@ import java.util.List;
 public class CORSFilter implements Filter {
 
     // This is to be replaced with a list of domains allowed to access the server
-    //You can include more than one origin here
-    // TODO: client domain dependency
-    private final List<String> allowedOrigins = Collections.singletonList("http://localhost:3000");
+    // You can include more than one origin here
+    private final List<String> allowedOrigins;
+
+    @Autowired
+    public CORSFilter(ClientConfigProperties configProperties) {
+        allowedOrigins = Collections.singletonList(configProperties.getClientUrl());
+    }
 
     public void destroy() {
 

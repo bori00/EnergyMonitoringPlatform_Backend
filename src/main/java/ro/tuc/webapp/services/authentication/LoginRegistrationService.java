@@ -81,7 +81,7 @@ public class LoginRegistrationService {
             return ResponseEntity.ok(new LoginJwtDTO(
                     userDetails.getUsername(),
                     roles.get(0),
-                    jwt)); // todo: assumed just 1 role
+                    jwt));
         } catch (BadCredentialsException e) {
             throw new InvalidLoginException(userDTO.toString());
         }
