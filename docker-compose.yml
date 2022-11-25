@@ -11,9 +11,9 @@ services:
     depends_on:
       - db
       
-  db:
+  db-container:
     image: postgres:11
-    container_name: db
+    container_name: db-container
     networks:
       - order-pgsql
     ports:
