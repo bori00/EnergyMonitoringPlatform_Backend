@@ -26,25 +26,28 @@ stages:
 - stage: Build
   displayName: Build and push stage
   jobs:
-
   - job: Build
     displayName: Build
     pool:
       name: borilocalpool
       vmImage: $(vmImageName)
     steps:
+    - task: Maven@3
+      displayName: "Maven Test"
+      inputs:
+        mavenPomFile: "pom.xml"
+        goals: "test"
     - task: PublishTestResults@2
+      displayName: "Publish test results"
       inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: '**/TEST-*.xml'
-        failTaskOnFailedTests: true
-        testRunTitle: 'BackendTests'
+        testResultsFormat: "JUnit"
+        mergeTestResults: true # Optional
     - task: PublishCodeCoverageResults@1
+      displayName: "Publish publish code coverage"
       inputs:
-        codeCoverageTool: 'JaCoCo'
-        summaryFileLocation: '$(System.DefaultWorkingDirectory)/ DS2022_30441_Fazakas_Borbala_Assignment_2_Backend/code_coverage_summary.xml'
-        pathToSources: '$(System.DefaultWorkingDirectory)/ DS2022_30441_Fazakas_Borbala_Assignment_2_Backend/src/main/java'
-        reportDirectory: '$(System.DefaultWorkingDirectory)/ DS2022_30441_Fazakas_Borbala_Assignment_2_Backend/code_coverage_results'
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml
+        pathToSources: $(System.DefaultWorkingDirectory)/src/main/java/
+        reportDirectory: '$(System.DefaultWorkingDirectory)/code_coverage_results'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
