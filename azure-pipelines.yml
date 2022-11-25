@@ -47,7 +47,6 @@ stages:
       inputs:
         summaryFileLocation: $(System.DefaultWorkingDirectory)/target/site/jacoco/jacoco.xml
         pathToSources: $(System.DefaultWorkingDirectory)/src/main/java/
-        reportDirectory: '$(System.DefaultWorkingDirectory)/code_coverage_results'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
