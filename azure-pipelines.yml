@@ -26,6 +26,17 @@ stages:
 - stage: Build
   displayName: Build and push stage
   jobs:
+  - job: CodeCoverage
+    displayName: Code Coverage
+    pool:
+      name: borilocalpool
+    steps:
+    - task: Maven@3
+      inputs:
+       mavenPomFile: 'pom.xml'
+       publishJUnitResults: true
+       testResultsFiles: '**/surefire-reports/TEST-*.xml'
+       codeCoverageToolOption: 'JaCoCo'
   - job: Build
     displayName: Build
     pool:
