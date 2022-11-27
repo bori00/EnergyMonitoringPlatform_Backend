@@ -43,7 +43,6 @@ public class CORSFilter implements Filter {
             String origin = request.getHeader("Origin");
             response.setHeader("Access-Control-Allow-Origin", allowedOrigins.contains(origin) ? origin : "");
             response.setHeader("Vary", "Origin");
-            LOGGER.info("Returned header" + response.getHeader("Access-Control-Allow-Origin"));
 
             // Access-Control-Max-Age
             response.setHeader("Access-Control-Max-Age", "3600");
