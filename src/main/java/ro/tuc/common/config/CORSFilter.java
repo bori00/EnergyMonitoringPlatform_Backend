@@ -1,8 +1,11 @@
 package ro.tuc.common.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import ro.tuc.webapp.controllers.AdminDeviceManagementController;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +21,8 @@ public class CORSFilter implements Filter {
     // This is to be replaced with a list of domains allowed to access the server
     // You can include more than one origin here
     private final List<String> allowedOrigins;
+
+    private Logger LOGGER = LoggerFactory.getLogger(CORSFilter.class);
 
     @Autowired
     public CORSFilter(ClientConfigProperties configProperties) {
@@ -38,6 +43,7 @@ public class CORSFilter implements Filter {
             String origin = request.getHeader("Origin");
             response.setHeader("Access-Control-Allow-Origin", allowedOrigins.contains(origin) ? origin : "");
             response.setHeader("Vary", "Origin");
+            LOGGER.info("Returned header" + response.getHeader("Access-Control-Allow-Origin"));
 
             // Access-Control-Max-Age
             response.setHeader("Access-Control-Max-Age", "3600");
