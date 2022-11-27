@@ -3,6 +3,7 @@ services:
   backend:
     container_name: energy-utility-backend-container
     image: containerregistryborifazakas30411.azurecr.io/energy-utility-backend-image:latest
+    domainname: "energy-utility-backend-bori00"
     networks:
       - order-pgsql
     build: ./
