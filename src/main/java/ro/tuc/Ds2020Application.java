@@ -1,11 +1,14 @@
 package ro.tuc;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -21,7 +24,8 @@ public class Ds2020Application extends SpringBootServletInitializer {
         return application.sources(Ds2020Application.class);
     }
 
-    public static void main(String[] args) {
+    @Retryable(value = PSQLException.class, maxAttempts = 10, backoff = @Backoff(delay = 1000))
+    public static void main(String[] args) throws InterruptedException {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         SpringApplication.run(Ds2020Application.class, args);
     }
