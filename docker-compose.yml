@@ -1,8 +1,8 @@
 version: '3.1'
 services:
-  energy_utility_backend:
-    container_name: energy_utility_backend_container
-    image: energy_utility_backend
+  backend:
+    container_name: backend-container
+    image: backend-image
     networks:
       - order-pgsql
     build: ./
