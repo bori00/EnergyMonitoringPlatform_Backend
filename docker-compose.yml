@@ -24,13 +24,13 @@ services:
       - POSTGRES_USER=postgres-user
       - POSTGRES_PASSWORD=postgres-password
     volumes:
-      - mydata:/mount/testvolumes
+      - volpostgres:/var/lib/postgresql/data
 
 volumes:
-  mydata:
-    driver: local
+  volpostgres:
+    driver: azure_file
     driver_opts:
-      share: acishare
+      share_name: acishare
       storage_account_name: bori27866
 
 networks:
