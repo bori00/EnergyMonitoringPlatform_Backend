@@ -13,7 +13,7 @@ services:
       - db-container
       
   db-container:
-    image: postgres:11
+    image: containerregistryborifazakas30411.azurecr.io/db:latest
     container_name: db-container
     networks:
       - order-pgsql
