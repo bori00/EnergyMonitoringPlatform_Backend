@@ -30,7 +30,7 @@ volumes:
   mydata:
     driver: local
     driver_opts:
-      share_name: acishare
+      share: acishare
       storage_account_name: bori27866
 
 networks:
