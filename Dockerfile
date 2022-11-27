@@ -12,7 +12,7 @@ RUN ls -l /root
 FROM openjdk:11.0.6-jre
 
 
-ENV DB_IP=db-container
+ENV DB_IP=energy-utility-backend-bori00.germanywestcentral.azurecontainer.io
 ENV DB_PORT=5432
 ENV DB_USER=postgres-user
 ENV DB_PASSWORD=postgres-password
