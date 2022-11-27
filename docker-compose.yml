@@ -1,13 +1,14 @@
 version: '3.1'
 services:
   backend:
-    container_name: backend-container
-    image: containerregistryborifazakas30411.azurecr.io/backend-image:latest
+    container_name: energy-utility-backend-container
+    image: containerregistryborifazakas30411.azurecr.io/energy-utility-backend-image:latest
+    domainname: "energy-utility-bori00"
     networks:
       - order-pgsql
     build: ./
     ports:
-      - "8080:8080"
+      - "8081:8081"
     depends_on:
       - db-container
       
