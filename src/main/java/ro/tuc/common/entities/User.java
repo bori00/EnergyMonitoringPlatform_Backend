@@ -21,6 +21,8 @@ public abstract class User {
     @GeneratedValue(generator = "my-uid")
     @GenericGenerator(name = "my-uid", strategy = "guid")
     @Id
+    @Column(columnDefinition = "uniqueidentifier")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @Column(name = "user_name", nullable = false)
