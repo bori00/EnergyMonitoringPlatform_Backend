@@ -29,10 +29,11 @@ services:
 
 volumes:
   volpostgres:
-    driver: azure_file
+    driver: local
     driver_opts:
-      storage_account_name: bori27866
-      share_name: acishare
+      type: cifs
+      o: "mfsymlinks,vers=3.0,username=${bori27866},password=${jaFaWHPP0pO6tFCtCb2K5ddgu0PiUL+qW4gXpqfwey+Xy6daeN0vrUt/I9zPkHmSrbwkTvTo+YxM+ASt2tz71A==},addr=${bori27866}.file.core.windows.net"
+      device: "//${bori27866}.file.core.windows.net/${acishare}"
 
 networks:
   order-pgsql:
