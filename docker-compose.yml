@@ -28,11 +28,11 @@ services:
       - volpostgres:/var/lib/postgresql/data
 
 volumes:
-  volpostgres:
-    driver: azure_file
-    driver_opts:
-      share_name: acishare
-      storage_account_name: bori27866
+  - name: volpostgres
+    azureFile:
+      sharename: acishare
+      storageAccountName: bori27866
+      storageAccountKey: jaFaWHPP0pO6tFCtCb2K5ddgu0PiUL+qW4gXpqfwey+Xy6daeN0vrUt/I9zPkHmSrbwkTvTo+YxM+ASt2tz71A==
 
 networks:
   order-pgsql:
