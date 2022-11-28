@@ -29,10 +29,10 @@ services:
 
 volumes:
   volpostgres:
-    driver: cloudstor:azure
+    driver: local
     driver_opts:
-      share_name: acishare
       storage_account_name: bori27866
+      share_name: acishare
 
 networks:
   order-pgsql:
