@@ -30,9 +30,9 @@ services:
 volumes:
   volpostgres:
     driver: local
-    driver_opts:
-      storage_account_name: bori27866
-      share_name: acishare
+#    driver_opts:
+#      storage_account_name: bori27866
+#      share_name: acishare
 
 networks:
   order-pgsql:
