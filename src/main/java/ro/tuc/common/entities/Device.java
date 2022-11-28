@@ -18,8 +18,9 @@ import java.util.*;
 public class Device implements Comparable<Device>{
     @Id
     @Column(columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
-    private UUID id;
+    @GenericGenerator(name = "generator", strategy = "guid")
+    @GeneratedValue(generator = "generator")
+    private String id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -51,7 +52,7 @@ public class Device implements Comparable<Device>{
         this.measurements = new ArrayList<>();
     }
 
-    public Device(UUID id, String name, Client client, Double maxHourlyConsumption,
+    public Device(String id, String name, Client client, Double maxHourlyConsumption,
                   String description, String address) {
         this(name, client, maxHourlyConsumption, description, address);
         this.id = id;

@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 @ToString
 public class DeviceEnergyConsumptionAnomalyDTO {
-    private final UUID deviceId;
+    private final String deviceId;
 
     private final String deviceName;
 

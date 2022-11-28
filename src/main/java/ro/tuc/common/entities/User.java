@@ -20,8 +20,9 @@ public abstract class User {
 
     @Id
     @Column(columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
-    private UUID id;
+    @GenericGenerator(name = "generator", strategy = "guid")
+    @GeneratedValue(generator = "generator")
+    private String id;
 
     @Column(name = "user_name", nullable = false)
     private String userName;
@@ -32,7 +33,7 @@ public abstract class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 

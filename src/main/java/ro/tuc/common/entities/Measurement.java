@@ -20,8 +20,9 @@ public class Measurement {
 
     @Id
     @Column(columnDefinition = "uniqueidentifier")
-    @Type(type = "uuid-char")
-    private UUID id;
+    @GenericGenerator(name = "generator", strategy = "guid")
+    @GeneratedValue(generator = "generator")
+    private String id;
 
     @Column(name = "datetime", nullable = false)
     private LocalDateTime dateTime;

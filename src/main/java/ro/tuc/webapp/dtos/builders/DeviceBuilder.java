@@ -15,7 +15,7 @@ public class DeviceBuilder {
     }
 
     public static Device toEntity(DeviceDTO deviceDTO, Client client) {
-        return new Device(UUID.fromString(deviceDTO.getId()), deviceDTO.getName(), client,
+        return new Device(deviceDTO.getId(), deviceDTO.getName(), client,
                 deviceDTO.getMaxEnergyConsumption(), deviceDTO.getDescription(), deviceDTO.getAddress());
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface MeasurementRepository extends JpaRepository<Measurement, UUID> {
+public interface MeasurementRepository extends JpaRepository<Measurement, String> {
 
     List<Measurement> findAllByDateTimeBetweenAndDeviceOrderByDateTime(LocalDateTime startDate,
                                                         LocalDateTime endDate,

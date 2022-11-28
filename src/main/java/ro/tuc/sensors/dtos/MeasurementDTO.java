@@ -16,7 +16,7 @@ public class MeasurementDTO {
     private final Timestamp timestamp;
 
     @SerializedName(value = "device_id")
-    private final UUID deviceId;
+    private final String deviceId;
 
     @SerializedName(value = "measurement_value")
     private final Double measurementValue;

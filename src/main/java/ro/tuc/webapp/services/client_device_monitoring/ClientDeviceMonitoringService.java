@@ -59,7 +59,7 @@ public class ClientDeviceMonitoringService {
 
         Client client = authenticationService.getCurrentClient("GetDeviceConsumptionStatistics");
 
-        Optional<Device> optDevice = deviceRepository.findById(UUID.fromString(deviceId));
+        Optional<Device> optDevice = deviceRepository.findById(deviceId);
 
         if (optDevice.isEmpty()) {
             throw new ResourceNotFoundException(String.format("Device with id %s",

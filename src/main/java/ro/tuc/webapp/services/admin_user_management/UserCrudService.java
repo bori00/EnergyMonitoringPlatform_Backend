@@ -53,12 +53,12 @@ public class UserCrudService {
 
         User currentUser = authenticationService.getCurrentUser("DeleteUser");
 
-        if (currentUser.getId().equals(UUID.fromString(userId))) {
+        if (currentUser.getId().equals(userId)) {
             throw new SelfDeletionException("userId");
         }
 
         // find the user whose data is to be deleted
-        Optional<User> optUserToDelete = userRepository.findById(UUID.fromString(userId));
+        Optional<User> optUserToDelete = userRepository.findById(userId);
         if (optUserToDelete.isEmpty()) {
             throw new ResourceNotFoundException(String.format("User with ID %s", userId));
         }
@@ -79,7 +79,7 @@ public class UserCrudService {
         User currentUser = authenticationService.getCurrentUser("UpdateUser");
 
         // find the user whose data is to be updated
-        Optional<User> optExistingUser = userRepository.findById(UUID.fromString(userDTO.getId()));
+        Optional<User> optExistingUser = userRepository.findById(userDTO.getId());
         if (optExistingUser.isEmpty()) {
             throw new ResourceNotFoundException(String.format("User with ID %s", userDTO.getId()));
         }

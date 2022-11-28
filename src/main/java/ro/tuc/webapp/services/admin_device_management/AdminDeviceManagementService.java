@@ -56,7 +56,7 @@ public class AdminDeviceManagementService {
         Admin admin = authenticationService.getCurrentAdmin("CreateNewDevice");
 
         Optional<Device> optPastDevice =
-                deviceRepository.findById(UUID.fromString(deviceDTO.getId()));
+                deviceRepository.findById(deviceDTO.getId());
 
         if (optPastDevice.isEmpty()) {
             throw new ResourceNotFoundException(String.format("Device with id %s",
@@ -79,7 +79,7 @@ public class AdminDeviceManagementService {
     public void deleteDevice(String deviceId) {
         Admin admin = authenticationService.getCurrentAdmin("CreateNewDevice");
 
-        Optional<Device> optDevice = deviceRepository.findById(UUID.fromString(deviceId));
+        Optional<Device> optDevice = deviceRepository.findById(deviceId);
 
         if (optDevice.isEmpty()) {
             throw new ResourceNotFoundException(String.format("Device with id %s",

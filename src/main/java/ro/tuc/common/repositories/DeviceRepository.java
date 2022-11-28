@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Repository
-public interface DeviceRepository extends JpaRepository<Device, UUID> {
+public interface DeviceRepository extends JpaRepository<Device, String> {
 
     ArrayList<Device> findAllByClient(Client client);
 }
