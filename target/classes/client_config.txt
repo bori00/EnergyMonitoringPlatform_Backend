@@ -1,1 +1,0 @@
-CLIENT_URL = http://energy-utility-bori00.germanywestcentral.azurecontainer.io

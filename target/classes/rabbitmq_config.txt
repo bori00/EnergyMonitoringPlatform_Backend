@@ -1,5 +1,0 @@
-EXCHANGE_NAME = device-measurements
-HOST_NAME = goose-01.rmq2.cloudamqp.com
-HOST_PORT = 5672
-RABBITMQ_USERNAME = rcriosdr
-RABBITMQ_PASSWORD = vuXwJSPVJ6jj-e3RGlACVh0vS46E3u7-
