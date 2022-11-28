@@ -19,6 +19,7 @@ services:
       - order-pgsql
     ports:
       - "5432:5432"
+    user: root
     environment:
       - POSTGRES_DB=energy-utility-db
       - POSTGRES_USER=postgres-user
