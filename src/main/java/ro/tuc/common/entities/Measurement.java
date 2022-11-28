@@ -18,10 +18,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Measurement {
 
+    @GeneratedValue(generator = "my-uid")
+    @GenericGenerator(name = "my-uid", strategy = "guid")
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-//    @Type(type="uuid-binary")
     private UUID id;
 
     @Column(name = "datetime", nullable = false)
