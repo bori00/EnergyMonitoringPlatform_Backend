@@ -25,10 +25,10 @@ services:
       - POSTGRES_USER=postgres-user
       - POSTGRES_PASSWORD=postgres-password
     volumes:
-      - volpostgres:/var/lib/postgresql/data
+      - postgresvol:/var/lib/postgresql/data
 
 volumes:
-  volpostgres:
+  postgresvol:
     driver: local
     driver_opts:
       type: cifs
