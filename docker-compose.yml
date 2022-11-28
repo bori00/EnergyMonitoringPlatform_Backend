@@ -4,26 +4,6 @@ services:
     container_name: energy-utility-backend-container
     image: containerregistryborifazakas30411.azurecr.io/energy-utility-backend-image:latest
     domainname: "energy-utility-backend-bori00"
-    networks:
-      - order-pgsql
     build: ./
     ports:
       - "8080:8080"
-    depends_on:
-      - db-container
-      
-  db-container:
-    image: containerregistryborifazakas30411.azurecr.io/db:latest
-    container_name: db-container
-    networks:
-      - order-pgsql
-    ports:
-      - "5432:5432"
-    user: root
-    environment:
-      - POSTGRES_DB=energy-utility-db
-      - POSTGRES_USER=postgres-user
-      - POSTGRES_PASSWORD=postgres-password
-
-networks:
-  order-pgsql:
