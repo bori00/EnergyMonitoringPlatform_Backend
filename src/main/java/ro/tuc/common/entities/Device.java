@@ -16,8 +16,6 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Device implements Comparable<Device>{
-    @GeneratedValue(generator = "my-uid")
-    @GenericGenerator(name = "my-uid", strategy = "guid")
     @Id
     @Column(columnDefinition = "uniqueidentifier")
     @Type(type = "uuid-char")

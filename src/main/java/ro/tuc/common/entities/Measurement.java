@@ -18,8 +18,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Measurement {
 
-    @GeneratedValue(generator = "my-uid")
-    @GenericGenerator(name = "my-uid", strategy = "guid")
     @Id
     @Column(columnDefinition = "uniqueidentifier")
     @Type(type = "uuid-char")
