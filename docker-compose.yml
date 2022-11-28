@@ -4,36 +4,36 @@ services:
     container_name: energy-utility-backend-container
     image: containerregistryborifazakas30411.azurecr.io/energy-utility-backend-image:latest
     domainname: "energy-utility-backend-bori00"
-    networks:
-      - order-pgsql
+#    networks:
+#      - order-pgsql
     build: ./
     ports:
       - "8080:8080"
-    depends_on:
-      - db-container
+#    depends_on:
+#      - db-container
       
-  db-container:
-    image: containerregistryborifazakas30411.azurecr.io/db:latest
-    container_name: db-container
-    networks:
-      - order-pgsql
-    ports:
-      - "5432:5432"
-    user: root
-    environment:
-      - POSTGRES_DB=energy-utility-db
-      - POSTGRES_USER=postgres-user
-      - POSTGRES_PASSWORD=postgres-password
-    volumes:
-      - postgresvol:/var/lib/postgresql/data
+#  db-container:
+#    image: containerregistryborifazakas30411.azurecr.io/db:latest
+#    container_name: db-container
+#    networks:
+#      - order-pgsql
+#    ports:
+#      - "5432:5432"
+#    user: root
+#    environment:
+#      - POSTGRES_DB=energy-utility-db
+#      - POSTGRES_USER=postgres-user
+#      - POSTGRES_PASSWORD=postgres-password
+#    volumes:
+#      - postgresvol:/var/lib/postgresql/data
 
-volumes:
-  postgresvol:
-    driver: azure_file
-    driver_opts:
-      type: cifs
-      o: "mfsymlinks,vers=3.0,username=bori27866,password=jaFaWHPP0pO6tFCtCb2K5ddgu0PiUL+qW4gXpqfwey+Xy6daeN0vrUt/I9zPkHmSrbwkTvTo+YxM+ASt2tz71A==,addr=bori27866.file.core.windows.net"
-      device: "//bori27866.file.core.windows.net/acishare"
+#volumes:
+#  postgresvol:
+#    driver: azure_file
+#    driver_opts:
+#      type: cifs
+#      o: "mfsymlinks,vers=3.0,username=bori27866,password=jaFaWHPP0pO6tFCtCb2K5ddgu0PiUL+qW4gXpqfwey+Xy6daeN0vrUt/I9zPkHmSrbwkTvTo+YxM+ASt2tz71A==,addr=bori27866.file.core.windows.net"
+#      device: "//bori27866.file.core.windows.net/acishare"
 
-networks:
-  order-pgsql:
+#networks:
+#  order-pgsql:

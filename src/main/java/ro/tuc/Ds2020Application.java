@@ -1,6 +1,6 @@
 package ro.tuc;
 
-import org.postgresql.util.PSQLException;
+//import org.postgresql.util.PSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +30,7 @@ public class Ds2020Application extends SpringBootServletInitializer {
         return application.sources(Ds2020Application.class);
     }
 
-    @Retryable(value = PSQLException.class, maxAttempts = 10, backoff = @Backoff(delay = 1000))
+//    @Retryable(value = PSQLException.class, maxAttempts = 10, backoff = @Backoff(delay = 1000))
     public static void main(String[] args) {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		LOGGER.warn("______________________________ RESTARTING APP________________________________");
