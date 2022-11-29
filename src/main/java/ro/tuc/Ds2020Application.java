@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ro.tuc.webapp.controllers.AuthenticationController;
 
+import java.util.List;
 import java.util.TimeZone;
 
 @SpringBootApplication
@@ -42,6 +43,8 @@ public class Ds2020Application extends SpringBootServletInitializer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsCfg = new CorsConfiguration();
         corsCfg.applyPermitDefaultValues();
+        corsCfg.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        corsCfg.setAllowCredentials(true);
         corsCfg.addAllowedOrigin("*");
         corsCfg.addAllowedHeader("*");
         corsCfg.addAllowedMethod(HttpMethod.DELETE);
