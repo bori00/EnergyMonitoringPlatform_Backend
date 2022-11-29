@@ -29,9 +29,10 @@ public class MeasurementProcessorService {
                                        EnergyConsumptionAnomalyNotifier energyConsumptionAnomalyNotifier,
                                         EnergyConsumptionNotifier energyConsumptionNotifier,
                                         RabbitMQConfigProperties rabbitMQConfig) throws IOException{
-        String queueName = measurementConsumerChannel.queueDeclare().getQueue();
-        measurementConsumerChannel.queueBind(queueName, rabbitMQConfig.getExchangeName(),
-                "");
+        String queueName = "persistent_queue";
+        boolean durable = true;
+        measurementConsumerChannel.queueDeclare(queueName, durable, false, false, null);
+        measurementConsumerChannel.queueBind(queueName, rabbitMQConfig.getExchangeName(), "");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
@@ -39,13 +40,21 @@ public class MeasurementProcessorService {
             LOGGER.info(" [x] Received '" + message + "=" + measurementDTO + "' for database " +
                     "update");
 
-            DeviceMeasurementUpdateDTO deviceMeasurementUpdateDTO =
-                    energyConsumptionAggregator.addEnergyConsumption(measurementDTO);
+            try {
+                DeviceMeasurementUpdateDTO deviceMeasurementUpdateDTO =
+                        energyConsumptionAggregator.addEnergyConsumption(measurementDTO);
 
-            energyConsumptionAnomalyNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
-            energyConsumptionNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
+                energyConsumptionAnomalyNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
+
+                measurementConsumerChannel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+                energyConsumptionNotifier.handleMeasurementUpdate(deviceMeasurementUpdateDTO);
+            } catch (Exception exception){
+                measurementConsumerChannel.basicReject(delivery.getEnvelope().getDeliveryTag(), false);
+            }
         };
-        measurementConsumerChannel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
+        boolean autoAck = false;
+        measurementConsumerChannel.basicConsume(queueName, autoAck, deliverCallback,
+                consumerTag -> { });
 
         LOGGER.info(" [*] Waiting for messages on queue {}, for updating the database\n",
                 queueName);
