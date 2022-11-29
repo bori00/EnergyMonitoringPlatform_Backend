@@ -46,9 +46,9 @@ public class Ds2020Application extends SpringBootServletInitializer {
         corsCfg.setAllowedHeaders(List.of(CorsConfiguration.ALL));
         corsCfg.setAllowCredentials(true);
         corsCfg.addAllowedOrigin("*");
-        corsCfg.addAllowedHeader("*");
         corsCfg.addAllowedMethod(HttpMethod.DELETE);
         corsCfg.addAllowedMethod(HttpMethod.PUT);
+        corsCfg.addExposedHeader("Access-Control-Allow-Origin");
         source.registerCorsConfiguration("/**", corsCfg);
         return source;
     }
