@@ -33,7 +33,6 @@ public class MeasurementProcessorService {
         boolean durable = true;
         measurementConsumerChannel.queueDeclare(queueName, durable, false, false, null);
         measurementConsumerChannel.queueBind(queueName, rabbitMQConfig.getExchangeName(), "");
-        measurementConsumerChannel.basicQos(1, false); // Per consumer limit for unacked messages
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
