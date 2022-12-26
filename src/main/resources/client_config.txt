@@ -1,1 +1,1 @@
-CLIENT_URL = http://energy-utility-bori00.germanywestcentral.azurecontainer.io
+CLIENT_URL = http://localhost:3000
