@@ -1,7 +1,7 @@
 package ro.tuc.chat.grpc.service_impl;
 
 import io.grpc.stub.StreamObserver;
-import ro.tuc.chat.proto_impl.*;
+import ro.tuc.chat.proto_gen.*;
 
 public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
