@@ -1,5 +1,5 @@
 syntax="proto3";// syntax of the proto file (current version is 3)
-package ro.tuc.chat.proto_impl; // package where we will generate the file
+package ro.tuc.chat.proto_gen; // package where we will generate the file
 
 option java_multiple_files = true; // use multiple file for each object instead of one big file
 
@@ -39,6 +39,7 @@ message Empty {}
 service ChatService {
   rpc sendMessage(ChatMessage) returns (Status) {}
   rpc receiveMessage(Empty) returns (stream ChatMessage) {}
+  rpc sendOpenSessionRequest(OpenSessionRequest) returns (OpenSessionRequestResponse) {}
   rpc receiveOpenSessionRequest(Empty) returns (stream OpenSessionRequest) {}
   rpc acceptOpenSessionRequest(OpenSessionRequestResponse) returns (Status) {}
   rpc sendMessageReadingStatusUpdate(MessageReadingStatus) returns (Status) {}
