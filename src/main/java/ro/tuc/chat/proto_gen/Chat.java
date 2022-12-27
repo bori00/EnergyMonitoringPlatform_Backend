@@ -68,29 +68,32 @@ public final class Chat {
       "me\030\001 \001(\t\022\031\n\021readMessagesUntil\030\002 \001(\t\";\n\023M" +
       "essageTypingStatus\022\024\n\014fromUserName\030\001 \001(\t" +
       "\022\016\n\006typing\030\002 \001(\010\"2\n\006Status\022\022\n\nsuccessful" +
-      "\030\001 \001(\010\022\024\n\014errorMessage\030\002 \001(\t\"\007\n\005Empty2\330\006" +
+      "\030\001 \001(\010\022\024\n\014errorMessage\030\002 \001(\t\"\007\n\005Empty2\322\007" +
       "\n\013ChatService\022R\n\013sendMessage\022\".ro.tuc.ch" +
       "at.proto_gen.ChatMessage\032\035.ro.tuc.chat.p" +
       "roto_gen.Status\"\000\022V\n\016receiveMessage\022\034.ro" +
       ".tuc.chat.proto_gen.Empty\032\".ro.tuc.chat." +
-      "proto_gen.ChatMessage\"\0000\001\022h\n\031receiveOpen" +
-      "SessionRequest\022\034.ro.tuc.chat.proto_gen.E" +
-      "mpty\032).ro.tuc.chat.proto_gen.OpenSession" +
-      "Request\"\0000\001\022n\n\030acceptOpenSessionRequest\022" +
-      "1.ro.tuc.chat.proto_gen.OpenSessionReque" +
-      "stResponse\032\035.ro.tuc.chat.proto_gen.Statu" +
-      "s\"\000\022n\n\036sendMessageReadingStatusUpdate\022+." +
-      "ro.tuc.chat.proto_gen.MessageReadingStat" +
-      "us\032\035.ro.tuc.chat.proto_gen.Status\"\000\022s\n\"r" +
-      "eceiveMessageReadingStatusUpdates\022\034.ro.t" +
-      "uc.chat.proto_gen.Empty\032+.ro.tuc.chat.pr" +
-      "oto_gen.MessageReadingStatus\"\0000\001\022l\n\035send" +
-      "MessageTypingStatusUpdate\022*.ro.tuc.chat." +
-      "proto_gen.MessageTypingStatus\032\035.ro.tuc.c" +
-      "hat.proto_gen.Status\"\000\022p\n receiveMessage" +
-      "TypingStatusUpdate\022\034.ro.tuc.chat.proto_g" +
-      "en.Empty\032*.ro.tuc.chat.proto_gen.Message" +
-      "TypingStatus\"\0000\001B\002P\001b\006proto3"
+      "proto_gen.ChatMessage\"\0000\001\022x\n\026sendOpenSes" +
+      "sionRequest\022).ro.tuc.chat.proto_gen.Open" +
+      "SessionRequest\0321.ro.tuc.chat.proto_gen.O" +
+      "penSessionRequestResponse\"\000\022h\n\031receiveOp" +
+      "enSessionRequest\022\034.ro.tuc.chat.proto_gen" +
+      ".Empty\032).ro.tuc.chat.proto_gen.OpenSessi" +
+      "onRequest\"\0000\001\022n\n\030acceptOpenSessionReques" +
+      "t\0221.ro.tuc.chat.proto_gen.OpenSessionReq" +
+      "uestResponse\032\035.ro.tuc.chat.proto_gen.Sta" +
+      "tus\"\000\022n\n\036sendMessageReadingStatusUpdate\022" +
+      "+.ro.tuc.chat.proto_gen.MessageReadingSt" +
+      "atus\032\035.ro.tuc.chat.proto_gen.Status\"\000\022s\n" +
+      "\"receiveMessageReadingStatusUpdates\022\034.ro" +
+      ".tuc.chat.proto_gen.Empty\032+.ro.tuc.chat." +
+      "proto_gen.MessageReadingStatus\"\0000\001\022l\n\035se" +
+      "ndMessageTypingStatusUpdate\022*.ro.tuc.cha" +
+      "t.proto_gen.MessageTypingStatus\032\035.ro.tuc" +
+      ".chat.proto_gen.Status\"\000\022p\n receiveMessa" +
+      "geTypingStatusUpdate\022\034.ro.tuc.chat.proto" +
+      "_gen.Empty\032*.ro.tuc.chat.proto_gen.Messa" +
+      "geTypingStatus\"\0000\001B\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

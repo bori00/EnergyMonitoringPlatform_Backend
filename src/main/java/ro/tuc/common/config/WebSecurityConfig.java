@@ -63,11 +63,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/auth/**")
-                .permitAll()
-                .antMatchers("/auth/**")
-                .permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/secured/**").permitAll() //socket
+                .antMatchers("/ro.tuc.chat.proto_gen.ChatService/**").permitAll() //grpc
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable();

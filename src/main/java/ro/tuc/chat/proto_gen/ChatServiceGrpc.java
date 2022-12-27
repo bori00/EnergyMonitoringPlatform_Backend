@@ -77,6 +77,37 @@ public final class ChatServiceGrpc {
     return getReceiveMessageMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.OpenSessionRequest,
+      ro.tuc.chat.proto_gen.OpenSessionRequestResponse> getSendOpenSessionRequestMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "sendOpenSessionRequest",
+      requestType = ro.tuc.chat.proto_gen.OpenSessionRequest.class,
+      responseType = ro.tuc.chat.proto_gen.OpenSessionRequestResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.OpenSessionRequest,
+      ro.tuc.chat.proto_gen.OpenSessionRequestResponse> getSendOpenSessionRequestMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.OpenSessionRequest, ro.tuc.chat.proto_gen.OpenSessionRequestResponse> getSendOpenSessionRequestMethod;
+    if ((getSendOpenSessionRequestMethod = ChatServiceGrpc.getSendOpenSessionRequestMethod) == null) {
+      synchronized (ChatServiceGrpc.class) {
+        if ((getSendOpenSessionRequestMethod = ChatServiceGrpc.getSendOpenSessionRequestMethod) == null) {
+          ChatServiceGrpc.getSendOpenSessionRequestMethod = getSendOpenSessionRequestMethod =
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.OpenSessionRequest, ro.tuc.chat.proto_gen.OpenSessionRequestResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "sendOpenSessionRequest"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ro.tuc.chat.proto_gen.OpenSessionRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ro.tuc.chat.proto_gen.OpenSessionRequestResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("sendOpenSessionRequest"))
+              .build();
+        }
+      }
+    }
+    return getSendOpenSessionRequestMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
       ro.tuc.chat.proto_gen.OpenSessionRequest> getReceiveOpenSessionRequestMethod;
 
@@ -327,6 +358,13 @@ public final class ChatServiceGrpc {
 
     /**
      */
+    public void sendOpenSessionRequest(ro.tuc.chat.proto_gen.OpenSessionRequest request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequestResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendOpenSessionRequestMethod(), responseObserver);
+    }
+
+    /**
+     */
     public void receiveOpenSessionRequest(ro.tuc.chat.proto_gen.Empty request,
         io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequest> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReceiveOpenSessionRequestMethod(), responseObserver);
@@ -383,6 +421,13 @@ public final class ChatServiceGrpc {
                 ro.tuc.chat.proto_gen.Empty,
                 ro.tuc.chat.proto_gen.ChatMessage>(
                   this, METHODID_RECEIVE_MESSAGE)))
+          .addMethod(
+            getSendOpenSessionRequestMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                ro.tuc.chat.proto_gen.OpenSessionRequest,
+                ro.tuc.chat.proto_gen.OpenSessionRequestResponse>(
+                  this, METHODID_SEND_OPEN_SESSION_REQUEST)))
           .addMethod(
             getReceiveOpenSessionRequestMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
@@ -457,6 +502,14 @@ public final class ChatServiceGrpc {
         io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.ChatMessage> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getReceiveMessageMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void sendOpenSessionRequest(ro.tuc.chat.proto_gen.OpenSessionRequest request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequestResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSendOpenSessionRequestMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -539,6 +592,13 @@ public final class ChatServiceGrpc {
 
     /**
      */
+    public ro.tuc.chat.proto_gen.OpenSessionRequestResponse sendOpenSessionRequest(ro.tuc.chat.proto_gen.OpenSessionRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSendOpenSessionRequestMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public java.util.Iterator<ro.tuc.chat.proto_gen.OpenSessionRequest> receiveOpenSessionRequest(
         ro.tuc.chat.proto_gen.Empty request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
@@ -607,6 +667,14 @@ public final class ChatServiceGrpc {
 
     /**
      */
+    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_gen.OpenSessionRequestResponse> sendOpenSessionRequest(
+        ro.tuc.chat.proto_gen.OpenSessionRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSendOpenSessionRequestMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
     public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_gen.Status> acceptOpenSessionRequest(
         ro.tuc.chat.proto_gen.OpenSessionRequestResponse request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
@@ -632,12 +700,13 @@ public final class ChatServiceGrpc {
 
   private static final int METHODID_SEND_MESSAGE = 0;
   private static final int METHODID_RECEIVE_MESSAGE = 1;
-  private static final int METHODID_RECEIVE_OPEN_SESSION_REQUEST = 2;
-  private static final int METHODID_ACCEPT_OPEN_SESSION_REQUEST = 3;
-  private static final int METHODID_SEND_MESSAGE_READING_STATUS_UPDATE = 4;
-  private static final int METHODID_RECEIVE_MESSAGE_READING_STATUS_UPDATES = 5;
-  private static final int METHODID_SEND_MESSAGE_TYPING_STATUS_UPDATE = 6;
-  private static final int METHODID_RECEIVE_MESSAGE_TYPING_STATUS_UPDATE = 7;
+  private static final int METHODID_SEND_OPEN_SESSION_REQUEST = 2;
+  private static final int METHODID_RECEIVE_OPEN_SESSION_REQUEST = 3;
+  private static final int METHODID_ACCEPT_OPEN_SESSION_REQUEST = 4;
+  private static final int METHODID_SEND_MESSAGE_READING_STATUS_UPDATE = 5;
+  private static final int METHODID_RECEIVE_MESSAGE_READING_STATUS_UPDATES = 6;
+  private static final int METHODID_SEND_MESSAGE_TYPING_STATUS_UPDATE = 7;
+  private static final int METHODID_RECEIVE_MESSAGE_TYPING_STATUS_UPDATE = 8;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -663,6 +732,10 @@ public final class ChatServiceGrpc {
         case METHODID_RECEIVE_MESSAGE:
           serviceImpl.receiveMessage((ro.tuc.chat.proto_gen.Empty) request,
               (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.ChatMessage>) responseObserver);
+          break;
+        case METHODID_SEND_OPEN_SESSION_REQUEST:
+          serviceImpl.sendOpenSessionRequest((ro.tuc.chat.proto_gen.OpenSessionRequest) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequestResponse>) responseObserver);
           break;
         case METHODID_RECEIVE_OPEN_SESSION_REQUEST:
           serviceImpl.receiveOpenSessionRequest((ro.tuc.chat.proto_gen.Empty) request,
@@ -751,6 +824,7 @@ public final class ChatServiceGrpc {
               .setSchemaDescriptor(new ChatServiceFileDescriptorSupplier())
               .addMethod(getSendMessageMethod())
               .addMethod(getReceiveMessageMethod())
+              .addMethod(getSendOpenSessionRequestMethod())
               .addMethod(getReceiveOpenSessionRequestMethod())
               .addMethod(getAcceptOpenSessionRequestMethod())
               .addMethod(getSendMessageReadingStatusUpdateMethod())

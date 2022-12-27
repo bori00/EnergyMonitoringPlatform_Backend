@@ -18,8 +18,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("auth")
 public class AuthenticationController {
-    @Autowired
-    private LoginRegistrationService loginRegistrationService;
+    private final LoginRegistrationService loginRegistrationService;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -28,6 +27,12 @@ public class AuthenticationController {
     JwtUtils jwtUtils;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
+
+    @Autowired
+    public AuthenticationController(LoginRegistrationService loginRegistrationService) {
+        this.loginRegistrationService = loginRegistrationService;
+        LOGGER.info("WebApp Started...");
+    }
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.OK)
