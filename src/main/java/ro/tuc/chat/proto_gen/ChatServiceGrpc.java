@@ -1,4 +1,4 @@
-package ro.tuc.chat.proto_impl;
+package ro.tuc.chat.proto_gen;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -12,32 +12,32 @@ public final class ChatServiceGrpc {
 
   private ChatServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "ro.tuc.chat.proto_impl.ChatService";
+  public static final String SERVICE_NAME = "ro.tuc.chat.proto_gen.ChatService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.ChatMessage,
-      ro.tuc.chat.proto_impl.Status> getSendMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.ChatMessage,
+      ro.tuc.chat.proto_gen.Status> getSendMessageMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "sendMessage",
-      requestType = ro.tuc.chat.proto_impl.ChatMessage.class,
-      responseType = ro.tuc.chat.proto_impl.Status.class,
+      requestType = ro.tuc.chat.proto_gen.ChatMessage.class,
+      responseType = ro.tuc.chat.proto_gen.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.ChatMessage,
-      ro.tuc.chat.proto_impl.Status> getSendMessageMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.ChatMessage, ro.tuc.chat.proto_impl.Status> getSendMessageMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.ChatMessage,
+      ro.tuc.chat.proto_gen.Status> getSendMessageMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.ChatMessage, ro.tuc.chat.proto_gen.Status> getSendMessageMethod;
     if ((getSendMessageMethod = ChatServiceGrpc.getSendMessageMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getSendMessageMethod = ChatServiceGrpc.getSendMessageMethod) == null) {
           ChatServiceGrpc.getSendMessageMethod = getSendMessageMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.ChatMessage, ro.tuc.chat.proto_impl.Status>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.ChatMessage, ro.tuc.chat.proto_gen.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "sendMessage"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.ChatMessage.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.ChatMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Status.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Status.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("sendMessage"))
               .build();
         }
@@ -46,29 +46,29 @@ public final class ChatServiceGrpc {
     return getSendMessageMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.ChatMessage> getReceiveMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.ChatMessage> getReceiveMessageMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "receiveMessage",
-      requestType = ro.tuc.chat.proto_impl.Empty.class,
-      responseType = ro.tuc.chat.proto_impl.ChatMessage.class,
+      requestType = ro.tuc.chat.proto_gen.Empty.class,
+      responseType = ro.tuc.chat.proto_gen.ChatMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.ChatMessage> getReceiveMessageMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.ChatMessage> getReceiveMessageMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.ChatMessage> getReceiveMessageMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.ChatMessage> getReceiveMessageMethod;
     if ((getReceiveMessageMethod = ChatServiceGrpc.getReceiveMessageMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getReceiveMessageMethod = ChatServiceGrpc.getReceiveMessageMethod) == null) {
           ChatServiceGrpc.getReceiveMessageMethod = getReceiveMessageMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.ChatMessage>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.ChatMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "receiveMessage"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Empty.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.ChatMessage.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.ChatMessage.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("receiveMessage"))
               .build();
         }
@@ -77,29 +77,29 @@ public final class ChatServiceGrpc {
     return getReceiveMessageMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.OpenSessionRequest> getReceiveOpenSessionRequestMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.OpenSessionRequest> getReceiveOpenSessionRequestMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "receiveOpenSessionRequest",
-      requestType = ro.tuc.chat.proto_impl.Empty.class,
-      responseType = ro.tuc.chat.proto_impl.OpenSessionRequest.class,
+      requestType = ro.tuc.chat.proto_gen.Empty.class,
+      responseType = ro.tuc.chat.proto_gen.OpenSessionRequest.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.OpenSessionRequest> getReceiveOpenSessionRequestMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.OpenSessionRequest> getReceiveOpenSessionRequestMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.OpenSessionRequest> getReceiveOpenSessionRequestMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.OpenSessionRequest> getReceiveOpenSessionRequestMethod;
     if ((getReceiveOpenSessionRequestMethod = ChatServiceGrpc.getReceiveOpenSessionRequestMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getReceiveOpenSessionRequestMethod = ChatServiceGrpc.getReceiveOpenSessionRequestMethod) == null) {
           ChatServiceGrpc.getReceiveOpenSessionRequestMethod = getReceiveOpenSessionRequestMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.OpenSessionRequest>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.OpenSessionRequest>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "receiveOpenSessionRequest"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Empty.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.OpenSessionRequest.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.OpenSessionRequest.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("receiveOpenSessionRequest"))
               .build();
         }
@@ -108,29 +108,29 @@ public final class ChatServiceGrpc {
     return getReceiveOpenSessionRequestMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.OpenSessionRequestResponse,
-      ro.tuc.chat.proto_impl.Status> getAcceptOpenSessionRequestMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.OpenSessionRequestResponse,
+      ro.tuc.chat.proto_gen.Status> getAcceptOpenSessionRequestMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "acceptOpenSessionRequest",
-      requestType = ro.tuc.chat.proto_impl.OpenSessionRequestResponse.class,
-      responseType = ro.tuc.chat.proto_impl.Status.class,
+      requestType = ro.tuc.chat.proto_gen.OpenSessionRequestResponse.class,
+      responseType = ro.tuc.chat.proto_gen.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.OpenSessionRequestResponse,
-      ro.tuc.chat.proto_impl.Status> getAcceptOpenSessionRequestMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.OpenSessionRequestResponse, ro.tuc.chat.proto_impl.Status> getAcceptOpenSessionRequestMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.OpenSessionRequestResponse,
+      ro.tuc.chat.proto_gen.Status> getAcceptOpenSessionRequestMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.OpenSessionRequestResponse, ro.tuc.chat.proto_gen.Status> getAcceptOpenSessionRequestMethod;
     if ((getAcceptOpenSessionRequestMethod = ChatServiceGrpc.getAcceptOpenSessionRequestMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getAcceptOpenSessionRequestMethod = ChatServiceGrpc.getAcceptOpenSessionRequestMethod) == null) {
           ChatServiceGrpc.getAcceptOpenSessionRequestMethod = getAcceptOpenSessionRequestMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.OpenSessionRequestResponse, ro.tuc.chat.proto_impl.Status>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.OpenSessionRequestResponse, ro.tuc.chat.proto_gen.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "acceptOpenSessionRequest"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.OpenSessionRequestResponse.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.OpenSessionRequestResponse.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Status.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Status.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("acceptOpenSessionRequest"))
               .build();
         }
@@ -139,29 +139,29 @@ public final class ChatServiceGrpc {
     return getAcceptOpenSessionRequestMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.MessageReadingStatus,
-      ro.tuc.chat.proto_impl.Status> getSendMessageReadingStatusUpdateMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.MessageReadingStatus,
+      ro.tuc.chat.proto_gen.Status> getSendMessageReadingStatusUpdateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "sendMessageReadingStatusUpdate",
-      requestType = ro.tuc.chat.proto_impl.MessageReadingStatus.class,
-      responseType = ro.tuc.chat.proto_impl.Status.class,
+      requestType = ro.tuc.chat.proto_gen.MessageReadingStatus.class,
+      responseType = ro.tuc.chat.proto_gen.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.MessageReadingStatus,
-      ro.tuc.chat.proto_impl.Status> getSendMessageReadingStatusUpdateMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.MessageReadingStatus, ro.tuc.chat.proto_impl.Status> getSendMessageReadingStatusUpdateMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.MessageReadingStatus,
+      ro.tuc.chat.proto_gen.Status> getSendMessageReadingStatusUpdateMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.MessageReadingStatus, ro.tuc.chat.proto_gen.Status> getSendMessageReadingStatusUpdateMethod;
     if ((getSendMessageReadingStatusUpdateMethod = ChatServiceGrpc.getSendMessageReadingStatusUpdateMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getSendMessageReadingStatusUpdateMethod = ChatServiceGrpc.getSendMessageReadingStatusUpdateMethod) == null) {
           ChatServiceGrpc.getSendMessageReadingStatusUpdateMethod = getSendMessageReadingStatusUpdateMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.MessageReadingStatus, ro.tuc.chat.proto_impl.Status>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.MessageReadingStatus, ro.tuc.chat.proto_gen.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "sendMessageReadingStatusUpdate"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.MessageReadingStatus.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.MessageReadingStatus.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Status.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Status.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("sendMessageReadingStatusUpdate"))
               .build();
         }
@@ -170,29 +170,29 @@ public final class ChatServiceGrpc {
     return getSendMessageReadingStatusUpdateMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.MessageReadingStatus> getReceiveMessageReadingStatusUpdatesMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.MessageReadingStatus> getReceiveMessageReadingStatusUpdatesMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "receiveMessageReadingStatusUpdates",
-      requestType = ro.tuc.chat.proto_impl.Empty.class,
-      responseType = ro.tuc.chat.proto_impl.MessageReadingStatus.class,
+      requestType = ro.tuc.chat.proto_gen.Empty.class,
+      responseType = ro.tuc.chat.proto_gen.MessageReadingStatus.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.MessageReadingStatus> getReceiveMessageReadingStatusUpdatesMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.MessageReadingStatus> getReceiveMessageReadingStatusUpdatesMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.MessageReadingStatus> getReceiveMessageReadingStatusUpdatesMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.MessageReadingStatus> getReceiveMessageReadingStatusUpdatesMethod;
     if ((getReceiveMessageReadingStatusUpdatesMethod = ChatServiceGrpc.getReceiveMessageReadingStatusUpdatesMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getReceiveMessageReadingStatusUpdatesMethod = ChatServiceGrpc.getReceiveMessageReadingStatusUpdatesMethod) == null) {
           ChatServiceGrpc.getReceiveMessageReadingStatusUpdatesMethod = getReceiveMessageReadingStatusUpdatesMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.MessageReadingStatus>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.MessageReadingStatus>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "receiveMessageReadingStatusUpdates"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Empty.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.MessageReadingStatus.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.MessageReadingStatus.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("receiveMessageReadingStatusUpdates"))
               .build();
         }
@@ -201,29 +201,29 @@ public final class ChatServiceGrpc {
     return getReceiveMessageReadingStatusUpdatesMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.MessageTypingStatus,
-      ro.tuc.chat.proto_impl.Status> getSendMessageTypingStatusUpdateMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.MessageTypingStatus,
+      ro.tuc.chat.proto_gen.Status> getSendMessageTypingStatusUpdateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "sendMessageTypingStatusUpdate",
-      requestType = ro.tuc.chat.proto_impl.MessageTypingStatus.class,
-      responseType = ro.tuc.chat.proto_impl.Status.class,
+      requestType = ro.tuc.chat.proto_gen.MessageTypingStatus.class,
+      responseType = ro.tuc.chat.proto_gen.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.MessageTypingStatus,
-      ro.tuc.chat.proto_impl.Status> getSendMessageTypingStatusUpdateMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.MessageTypingStatus, ro.tuc.chat.proto_impl.Status> getSendMessageTypingStatusUpdateMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.MessageTypingStatus,
+      ro.tuc.chat.proto_gen.Status> getSendMessageTypingStatusUpdateMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.MessageTypingStatus, ro.tuc.chat.proto_gen.Status> getSendMessageTypingStatusUpdateMethod;
     if ((getSendMessageTypingStatusUpdateMethod = ChatServiceGrpc.getSendMessageTypingStatusUpdateMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getSendMessageTypingStatusUpdateMethod = ChatServiceGrpc.getSendMessageTypingStatusUpdateMethod) == null) {
           ChatServiceGrpc.getSendMessageTypingStatusUpdateMethod = getSendMessageTypingStatusUpdateMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.MessageTypingStatus, ro.tuc.chat.proto_impl.Status>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.MessageTypingStatus, ro.tuc.chat.proto_gen.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "sendMessageTypingStatusUpdate"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.MessageTypingStatus.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.MessageTypingStatus.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Status.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Status.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("sendMessageTypingStatusUpdate"))
               .build();
         }
@@ -232,29 +232,29 @@ public final class ChatServiceGrpc {
     return getSendMessageTypingStatusUpdateMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.MessageTypingStatus> getReceiveMessageTypingStatusUpdateMethod;
+  private static volatile io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.MessageTypingStatus> getReceiveMessageTypingStatusUpdateMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "receiveMessageTypingStatusUpdate",
-      requestType = ro.tuc.chat.proto_impl.Empty.class,
-      responseType = ro.tuc.chat.proto_impl.MessageTypingStatus.class,
+      requestType = ro.tuc.chat.proto_gen.Empty.class,
+      responseType = ro.tuc.chat.proto_gen.MessageTypingStatus.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty,
-      ro.tuc.chat.proto_impl.MessageTypingStatus> getReceiveMessageTypingStatusUpdateMethod() {
-    io.grpc.MethodDescriptor<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.MessageTypingStatus> getReceiveMessageTypingStatusUpdateMethod;
+  public static io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty,
+      ro.tuc.chat.proto_gen.MessageTypingStatus> getReceiveMessageTypingStatusUpdateMethod() {
+    io.grpc.MethodDescriptor<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.MessageTypingStatus> getReceiveMessageTypingStatusUpdateMethod;
     if ((getReceiveMessageTypingStatusUpdateMethod = ChatServiceGrpc.getReceiveMessageTypingStatusUpdateMethod) == null) {
       synchronized (ChatServiceGrpc.class) {
         if ((getReceiveMessageTypingStatusUpdateMethod = ChatServiceGrpc.getReceiveMessageTypingStatusUpdateMethod) == null) {
           ChatServiceGrpc.getReceiveMessageTypingStatusUpdateMethod = getReceiveMessageTypingStatusUpdateMethod =
-              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_impl.Empty, ro.tuc.chat.proto_impl.MessageTypingStatus>newBuilder()
+              io.grpc.MethodDescriptor.<ro.tuc.chat.proto_gen.Empty, ro.tuc.chat.proto_gen.MessageTypingStatus>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "receiveMessageTypingStatusUpdate"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.Empty.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ro.tuc.chat.proto_impl.MessageTypingStatus.getDefaultInstance()))
+                  ro.tuc.chat.proto_gen.MessageTypingStatus.getDefaultInstance()))
               .setSchemaDescriptor(new ChatServiceMethodDescriptorSupplier("receiveMessageTypingStatusUpdate"))
               .build();
         }
@@ -313,57 +313,57 @@ public final class ChatServiceGrpc {
 
     /**
      */
-    public void sendMessage(ro.tuc.chat.proto_impl.ChatMessage request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void sendMessage(ro.tuc.chat.proto_gen.ChatMessage request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
     }
 
     /**
      */
-    public void receiveMessage(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.ChatMessage> responseObserver) {
+    public void receiveMessage(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.ChatMessage> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReceiveMessageMethod(), responseObserver);
     }
 
     /**
      */
-    public void receiveOpenSessionRequest(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.OpenSessionRequest> responseObserver) {
+    public void receiveOpenSessionRequest(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequest> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReceiveOpenSessionRequestMethod(), responseObserver);
     }
 
     /**
      */
-    public void acceptOpenSessionRequest(ro.tuc.chat.proto_impl.OpenSessionRequestResponse request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void acceptOpenSessionRequest(ro.tuc.chat.proto_gen.OpenSessionRequestResponse request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAcceptOpenSessionRequestMethod(), responseObserver);
     }
 
     /**
      */
-    public void sendMessageReadingStatusUpdate(ro.tuc.chat.proto_impl.MessageReadingStatus request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void sendMessageReadingStatusUpdate(ro.tuc.chat.proto_gen.MessageReadingStatus request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendMessageReadingStatusUpdateMethod(), responseObserver);
     }
 
     /**
      */
-    public void receiveMessageReadingStatusUpdates(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.MessageReadingStatus> responseObserver) {
+    public void receiveMessageReadingStatusUpdates(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.MessageReadingStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReceiveMessageReadingStatusUpdatesMethod(), responseObserver);
     }
 
     /**
      */
-    public void sendMessageTypingStatusUpdate(ro.tuc.chat.proto_impl.MessageTypingStatus request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void sendMessageTypingStatusUpdate(ro.tuc.chat.proto_gen.MessageTypingStatus request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendMessageTypingStatusUpdateMethod(), responseObserver);
     }
 
     /**
      */
-    public void receiveMessageTypingStatusUpdate(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.MessageTypingStatus> responseObserver) {
+    public void receiveMessageTypingStatusUpdate(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.MessageTypingStatus> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReceiveMessageTypingStatusUpdateMethod(), responseObserver);
     }
 
@@ -373,57 +373,57 @@ public final class ChatServiceGrpc {
             getSendMessageMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.ChatMessage,
-                ro.tuc.chat.proto_impl.Status>(
+                ro.tuc.chat.proto_gen.ChatMessage,
+                ro.tuc.chat.proto_gen.Status>(
                   this, METHODID_SEND_MESSAGE)))
           .addMethod(
             getReceiveMessageMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.Empty,
-                ro.tuc.chat.proto_impl.ChatMessage>(
+                ro.tuc.chat.proto_gen.Empty,
+                ro.tuc.chat.proto_gen.ChatMessage>(
                   this, METHODID_RECEIVE_MESSAGE)))
           .addMethod(
             getReceiveOpenSessionRequestMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.Empty,
-                ro.tuc.chat.proto_impl.OpenSessionRequest>(
+                ro.tuc.chat.proto_gen.Empty,
+                ro.tuc.chat.proto_gen.OpenSessionRequest>(
                   this, METHODID_RECEIVE_OPEN_SESSION_REQUEST)))
           .addMethod(
             getAcceptOpenSessionRequestMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.OpenSessionRequestResponse,
-                ro.tuc.chat.proto_impl.Status>(
+                ro.tuc.chat.proto_gen.OpenSessionRequestResponse,
+                ro.tuc.chat.proto_gen.Status>(
                   this, METHODID_ACCEPT_OPEN_SESSION_REQUEST)))
           .addMethod(
             getSendMessageReadingStatusUpdateMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.MessageReadingStatus,
-                ro.tuc.chat.proto_impl.Status>(
+                ro.tuc.chat.proto_gen.MessageReadingStatus,
+                ro.tuc.chat.proto_gen.Status>(
                   this, METHODID_SEND_MESSAGE_READING_STATUS_UPDATE)))
           .addMethod(
             getReceiveMessageReadingStatusUpdatesMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.Empty,
-                ro.tuc.chat.proto_impl.MessageReadingStatus>(
+                ro.tuc.chat.proto_gen.Empty,
+                ro.tuc.chat.proto_gen.MessageReadingStatus>(
                   this, METHODID_RECEIVE_MESSAGE_READING_STATUS_UPDATES)))
           .addMethod(
             getSendMessageTypingStatusUpdateMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.MessageTypingStatus,
-                ro.tuc.chat.proto_impl.Status>(
+                ro.tuc.chat.proto_gen.MessageTypingStatus,
+                ro.tuc.chat.proto_gen.Status>(
                   this, METHODID_SEND_MESSAGE_TYPING_STATUS_UPDATE)))
           .addMethod(
             getReceiveMessageTypingStatusUpdateMethod(),
             io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
-                ro.tuc.chat.proto_impl.Empty,
-                ro.tuc.chat.proto_impl.MessageTypingStatus>(
+                ro.tuc.chat.proto_gen.Empty,
+                ro.tuc.chat.proto_gen.MessageTypingStatus>(
                   this, METHODID_RECEIVE_MESSAGE_TYPING_STATUS_UPDATE)))
           .build();
     }
@@ -445,64 +445,64 @@ public final class ChatServiceGrpc {
 
     /**
      */
-    public void sendMessage(ro.tuc.chat.proto_impl.ChatMessage request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void sendMessage(ro.tuc.chat.proto_gen.ChatMessage request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void receiveMessage(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.ChatMessage> responseObserver) {
+    public void receiveMessage(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.ChatMessage> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getReceiveMessageMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void receiveOpenSessionRequest(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.OpenSessionRequest> responseObserver) {
+    public void receiveOpenSessionRequest(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequest> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getReceiveOpenSessionRequestMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void acceptOpenSessionRequest(ro.tuc.chat.proto_impl.OpenSessionRequestResponse request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void acceptOpenSessionRequest(ro.tuc.chat.proto_gen.OpenSessionRequestResponse request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAcceptOpenSessionRequestMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void sendMessageReadingStatusUpdate(ro.tuc.chat.proto_impl.MessageReadingStatus request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void sendMessageReadingStatusUpdate(ro.tuc.chat.proto_gen.MessageReadingStatus request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSendMessageReadingStatusUpdateMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void receiveMessageReadingStatusUpdates(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.MessageReadingStatus> responseObserver) {
+    public void receiveMessageReadingStatusUpdates(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.MessageReadingStatus> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getReceiveMessageReadingStatusUpdatesMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void sendMessageTypingStatusUpdate(ro.tuc.chat.proto_impl.MessageTypingStatus request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status> responseObserver) {
+    public void sendMessageTypingStatusUpdate(ro.tuc.chat.proto_gen.MessageTypingStatus request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSendMessageTypingStatusUpdateMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void receiveMessageTypingStatusUpdate(ro.tuc.chat.proto_impl.Empty request,
-        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.MessageTypingStatus> responseObserver) {
+    public void receiveMessageTypingStatusUpdate(ro.tuc.chat.proto_gen.Empty request,
+        io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.MessageTypingStatus> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getReceiveMessageTypingStatusUpdateMethod(), getCallOptions()), request, responseObserver);
     }
@@ -524,60 +524,60 @@ public final class ChatServiceGrpc {
 
     /**
      */
-    public ro.tuc.chat.proto_impl.Status sendMessage(ro.tuc.chat.proto_impl.ChatMessage request) {
+    public ro.tuc.chat.proto_gen.Status sendMessage(ro.tuc.chat.proto_gen.ChatMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSendMessageMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<ro.tuc.chat.proto_impl.ChatMessage> receiveMessage(
-        ro.tuc.chat.proto_impl.Empty request) {
+    public java.util.Iterator<ro.tuc.chat.proto_gen.ChatMessage> receiveMessage(
+        ro.tuc.chat.proto_gen.Empty request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getReceiveMessageMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<ro.tuc.chat.proto_impl.OpenSessionRequest> receiveOpenSessionRequest(
-        ro.tuc.chat.proto_impl.Empty request) {
+    public java.util.Iterator<ro.tuc.chat.proto_gen.OpenSessionRequest> receiveOpenSessionRequest(
+        ro.tuc.chat.proto_gen.Empty request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getReceiveOpenSessionRequestMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public ro.tuc.chat.proto_impl.Status acceptOpenSessionRequest(ro.tuc.chat.proto_impl.OpenSessionRequestResponse request) {
+    public ro.tuc.chat.proto_gen.Status acceptOpenSessionRequest(ro.tuc.chat.proto_gen.OpenSessionRequestResponse request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAcceptOpenSessionRequestMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public ro.tuc.chat.proto_impl.Status sendMessageReadingStatusUpdate(ro.tuc.chat.proto_impl.MessageReadingStatus request) {
+    public ro.tuc.chat.proto_gen.Status sendMessageReadingStatusUpdate(ro.tuc.chat.proto_gen.MessageReadingStatus request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSendMessageReadingStatusUpdateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<ro.tuc.chat.proto_impl.MessageReadingStatus> receiveMessageReadingStatusUpdates(
-        ro.tuc.chat.proto_impl.Empty request) {
+    public java.util.Iterator<ro.tuc.chat.proto_gen.MessageReadingStatus> receiveMessageReadingStatusUpdates(
+        ro.tuc.chat.proto_gen.Empty request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getReceiveMessageReadingStatusUpdatesMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public ro.tuc.chat.proto_impl.Status sendMessageTypingStatusUpdate(ro.tuc.chat.proto_impl.MessageTypingStatus request) {
+    public ro.tuc.chat.proto_gen.Status sendMessageTypingStatusUpdate(ro.tuc.chat.proto_gen.MessageTypingStatus request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSendMessageTypingStatusUpdateMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<ro.tuc.chat.proto_impl.MessageTypingStatus> receiveMessageTypingStatusUpdate(
-        ro.tuc.chat.proto_impl.Empty request) {
+    public java.util.Iterator<ro.tuc.chat.proto_gen.MessageTypingStatus> receiveMessageTypingStatusUpdate(
+        ro.tuc.chat.proto_gen.Empty request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getReceiveMessageTypingStatusUpdateMethod(), getCallOptions(), request);
     }
@@ -599,32 +599,32 @@ public final class ChatServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_impl.Status> sendMessage(
-        ro.tuc.chat.proto_impl.ChatMessage request) {
+    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_gen.Status> sendMessage(
+        ro.tuc.chat.proto_gen.ChatMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSendMessageMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_impl.Status> acceptOpenSessionRequest(
-        ro.tuc.chat.proto_impl.OpenSessionRequestResponse request) {
+    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_gen.Status> acceptOpenSessionRequest(
+        ro.tuc.chat.proto_gen.OpenSessionRequestResponse request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAcceptOpenSessionRequestMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_impl.Status> sendMessageReadingStatusUpdate(
-        ro.tuc.chat.proto_impl.MessageReadingStatus request) {
+    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_gen.Status> sendMessageReadingStatusUpdate(
+        ro.tuc.chat.proto_gen.MessageReadingStatus request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSendMessageReadingStatusUpdateMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_impl.Status> sendMessageTypingStatusUpdate(
-        ro.tuc.chat.proto_impl.MessageTypingStatus request) {
+    public com.google.common.util.concurrent.ListenableFuture<ro.tuc.chat.proto_gen.Status> sendMessageTypingStatusUpdate(
+        ro.tuc.chat.proto_gen.MessageTypingStatus request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSendMessageTypingStatusUpdateMethod(), getCallOptions()), request);
     }
@@ -657,36 +657,36 @@ public final class ChatServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SEND_MESSAGE:
-          serviceImpl.sendMessage((ro.tuc.chat.proto_impl.ChatMessage) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status>) responseObserver);
+          serviceImpl.sendMessage((ro.tuc.chat.proto_gen.ChatMessage) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status>) responseObserver);
           break;
         case METHODID_RECEIVE_MESSAGE:
-          serviceImpl.receiveMessage((ro.tuc.chat.proto_impl.Empty) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.ChatMessage>) responseObserver);
+          serviceImpl.receiveMessage((ro.tuc.chat.proto_gen.Empty) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.ChatMessage>) responseObserver);
           break;
         case METHODID_RECEIVE_OPEN_SESSION_REQUEST:
-          serviceImpl.receiveOpenSessionRequest((ro.tuc.chat.proto_impl.Empty) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.OpenSessionRequest>) responseObserver);
+          serviceImpl.receiveOpenSessionRequest((ro.tuc.chat.proto_gen.Empty) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.OpenSessionRequest>) responseObserver);
           break;
         case METHODID_ACCEPT_OPEN_SESSION_REQUEST:
-          serviceImpl.acceptOpenSessionRequest((ro.tuc.chat.proto_impl.OpenSessionRequestResponse) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status>) responseObserver);
+          serviceImpl.acceptOpenSessionRequest((ro.tuc.chat.proto_gen.OpenSessionRequestResponse) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status>) responseObserver);
           break;
         case METHODID_SEND_MESSAGE_READING_STATUS_UPDATE:
-          serviceImpl.sendMessageReadingStatusUpdate((ro.tuc.chat.proto_impl.MessageReadingStatus) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status>) responseObserver);
+          serviceImpl.sendMessageReadingStatusUpdate((ro.tuc.chat.proto_gen.MessageReadingStatus) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status>) responseObserver);
           break;
         case METHODID_RECEIVE_MESSAGE_READING_STATUS_UPDATES:
-          serviceImpl.receiveMessageReadingStatusUpdates((ro.tuc.chat.proto_impl.Empty) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.MessageReadingStatus>) responseObserver);
+          serviceImpl.receiveMessageReadingStatusUpdates((ro.tuc.chat.proto_gen.Empty) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.MessageReadingStatus>) responseObserver);
           break;
         case METHODID_SEND_MESSAGE_TYPING_STATUS_UPDATE:
-          serviceImpl.sendMessageTypingStatusUpdate((ro.tuc.chat.proto_impl.MessageTypingStatus) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.Status>) responseObserver);
+          serviceImpl.sendMessageTypingStatusUpdate((ro.tuc.chat.proto_gen.MessageTypingStatus) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.Status>) responseObserver);
           break;
         case METHODID_RECEIVE_MESSAGE_TYPING_STATUS_UPDATE:
-          serviceImpl.receiveMessageTypingStatusUpdate((ro.tuc.chat.proto_impl.Empty) request,
-              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_impl.MessageTypingStatus>) responseObserver);
+          serviceImpl.receiveMessageTypingStatusUpdate((ro.tuc.chat.proto_gen.Empty) request,
+              (io.grpc.stub.StreamObserver<ro.tuc.chat.proto_gen.MessageTypingStatus>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -710,7 +710,7 @@ public final class ChatServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return ro.tuc.chat.proto_impl.Chat.getDescriptor();
+      return ro.tuc.chat.proto_gen.Chat.getDescriptor();
     }
 
     @java.lang.Override
