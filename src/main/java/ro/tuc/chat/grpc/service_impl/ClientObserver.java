@@ -39,4 +39,10 @@ public class ClientObserver {
     public int hashCode() {
         return userName != null ? userName.hashCode() : 0;
     }
+
+    public void sendOpenSessionRequestResponse(OpenSessionRequestResponse response) {
+        getOpenSessionRequestResponseStreamObserver().onNext(response);
+        getOpenSessionRequestResponseStreamObserver().onCompleted();
+        setOpenSessionRequestResponseStreamObserver(null);
+    }
 }

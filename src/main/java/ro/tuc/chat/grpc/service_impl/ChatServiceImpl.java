@@ -67,14 +67,14 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
         String requestSenderUserName = request.getFromUserName();
 
-        if (clientObservers.containsKey(requestSenderUserName) && clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver() != null) {
+        if (clientObservers.containsKey(requestSenderUserName) &&
+            clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver() != null) {
             OpenSessionRequestResponse response = OpenSessionRequestResponse.newBuilder()
                     .setAccepted(true)
                     .setFromUserName(requestSenderUserName)
                     .build();
 
-            clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver().onNext(response);
-            clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver().onCompleted();
+            clientObservers.get(requestSenderUserName).sendOpenSessionRequestResponse(response);
 
             LOGGER.info("Server responded to Accept OpenSessionRequest: " + request.toString());
 
@@ -83,7 +83,6 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
             responseObserver.onCompleted();
         } else {
             responseObserver.onError(new IllegalStateException());
-            responseObserver.onCompleted();
         }
     }
 
