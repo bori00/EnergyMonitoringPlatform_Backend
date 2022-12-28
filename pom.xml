@@ -73,12 +73,12 @@
             <version>3.0.0</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.postgresql</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
-<!--            <version>42.5.1</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.postgresql/postgresql &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.postgresql</groupId>-->
+        <!--            <artifactId>postgresql</artifactId>-->
+        <!--            <version>42.5.1</version>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
@@ -98,7 +98,7 @@
             <artifactId>junit</artifactId>
         </dependency>
 
-<!--        SECURITY-->
+        <!--        SECURITY-->
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -164,7 +164,7 @@
             <version>2.10</version>
         </dependency>
 
-<!--        sockets-->
+        <!--        sockets-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
@@ -187,7 +187,7 @@
             <version>2.3.3</version>
         </dependency>
 
-<!--        retry-->
+        <!--        retry-->
 
         <dependency>
             <groupId>org.springframework.retry</groupId>
@@ -201,7 +201,7 @@
             <version>5.2.8.RELEASE</version>
         </dependency>
 
-<!--        grpc-->
+        <!--        grpc-->
 
         <!-- https://mvnrepository.com/artifact/net.devh/grpc-server-spring-boot-starter -->
         <dependency>
@@ -214,21 +214,21 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
-            <version>1.51.1</version>
+            <version>1.51.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.grpc/grpc-netty -->
-<!--        <dependency>-->
-<!--            <groupId>io.grpc</groupId>-->
-<!--            <artifactId>grpc-netty</artifactId>-->
-<!--            <version>1.51.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.grpc</groupId>-->
+        <!--            <artifactId>grpc-netty</artifactId>-->
+        <!--            <version>1.51.1</version>-->
+        <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.grpc/grpc-stub -->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
-            <version>1.51.1</version>
+            <version>1.51.0</version>
         </dependency>
 
         <dependency> <!-- necessary for Java 9+ -->
@@ -242,21 +242,21 @@
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
-            <version>1.51.1</version>
+            <version>1.51.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.google.api.grpc/proto-google-common-protos -->
-        <dependency>
-            <groupId>com.google.api.grpc</groupId>
-            <artifactId>proto-google-common-protos</artifactId>
-            <version>2.11.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.google.api.grpc</groupId>-->
+<!--            <artifactId>proto-google-common-protos</artifactId>-->
+<!--            <version>2.11.0</version>-->
+<!--        </dependency>-->
 
 
     </dependencies>
 
     <build>
-    	<finalName>energy-utility-backend</finalName>
+        <finalName>energy-utility-backend</finalName>
 
         <extensions>
             <extension>
@@ -271,9 +271,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-			<layers>
-				<enabled>true</enabled>
-			</layers>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
                 </configuration>
             </plugin>
             <plugin>
