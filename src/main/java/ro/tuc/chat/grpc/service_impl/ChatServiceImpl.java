@@ -7,6 +7,7 @@ import ro.tuc.chat.proto_gen.*;
 import ro.tuc.webapp.controllers.AuthenticationController;
 import net.devh.boot.grpc.server.service.GrpcService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +17,11 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatServiceImpl.class);
 
-    private static Map<String, ClientObserver> clientObservers = new HashMap<>();
+    private static final Map<String, ClientObserver> clientObservers = new HashMap<>();
 
-    private static AdminObserver adminObserver = new AdminObserver();
+    private static final AdminObserver adminObserver = new AdminObserver();
+
+    private static final List<OpenSessionRequest> unhandledOpenSessionRequests = new ArrayList<>();
 
     @Override
     public void sendMessage(ChatMessage request, StreamObserver<Status> responseObserver) {
@@ -46,11 +49,14 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
             clientObservers.put(fromUserName, observer);
         }
 
-        // send notification to admin
+        // send notification to admin, if available. Otherwise, save request for later, when an
+        // admin joins
         if (adminObserver.getOpenSessionRequestStreamObserver() != null) {
             adminObserver.getOpenSessionRequestStreamObserver().onNext(request);
 
             LOGGER.info("Server responded to Send OpenSessionRequest: " + request.toString());
+        } else {
+            unhandledOpenSessionRequests.add(request);
         }
     }
 
@@ -59,6 +65,11 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
     public void receiveOpenSessionRequest(Empty request, StreamObserver<OpenSessionRequest> responseObserver) {
         LOGGER.info("Server received Receive OpenSessionRequest");
         adminObserver.setOpenSessionRequestStreamObserver(responseObserver);
+
+        // handle previous requests
+        while (!unhandledOpenSessionRequests.isEmpty()) {
+            adminObserver.getOpenSessionRequestStreamObserver().onNext(unhandledOpenSessionRequests.remove(0));
+        }
     }
 
     @Override
@@ -82,7 +93,13 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
             responseObserver.onNext(status);
             responseObserver.onCompleted();
         } else {
-            responseObserver.onError(new IllegalStateException());
+            Status status =
+                    Status.newBuilder()
+                            .setSuccessful(false)
+                            .setErrorMessage("The client is not available anymore.")
+                            .build();
+            responseObserver.onNext(status);
+            responseObserver.onCompleted();
         }
     }
 

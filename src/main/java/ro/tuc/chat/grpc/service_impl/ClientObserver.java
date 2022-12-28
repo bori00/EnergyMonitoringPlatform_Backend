@@ -1,20 +1,23 @@
 package ro.tuc.chat.grpc.service_impl;
 
+import io.grpc.stub.ServerCallStreamObserver;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ro.tuc.chat.proto_gen.ChatMessage;
-import ro.tuc.chat.proto_gen.MessageReadingStatus;
-import ro.tuc.chat.proto_gen.MessageTypingStatus;
-import ro.tuc.chat.proto_gen.OpenSessionRequestResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ro.tuc.chat.proto_gen.*;
+
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class ClientObserver {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClientObserver.class);
+
     private String userName;
 
     private StreamObserver<OpenSessionRequestResponse> openSessionRequestResponseStreamObserver;
@@ -43,6 +46,24 @@ public class ClientObserver {
     public void sendOpenSessionRequestResponse(OpenSessionRequestResponse response) {
         getOpenSessionRequestResponseStreamObserver().onNext(response);
         getOpenSessionRequestResponseStreamObserver().onCompleted();
-        setOpenSessionRequestResponseStreamObserver(null);
+        openSessionRequestResponseStreamObserver = null;
+    }
+
+    public void setOpenSessionRequestResponseStreamObserver(@NotNull StreamObserver<OpenSessionRequestResponse> openSessionRequestResponseStreamObserver) {
+        this.openSessionRequestResponseStreamObserver = openSessionRequestResponseStreamObserver;
+
+        ServerCallStreamObserver<OpenSessionRequestResponse> handledObserver =
+                ((ServerCallStreamObserver<OpenSessionRequestResponse>) openSessionRequestResponseStreamObserver);
+        handledObserver.setOnCancelHandler(this::removeOpenSessionRequestResponseStreamObserver);
+        handledObserver.setOnCloseHandler(this::removeOpenSessionRequestResponseStreamObserver);
+    }
+
+    public void removeOpenSessionRequestResponseStreamObserver() {
+        openSessionRequestResponseStreamObserver = null;
+        LOGGER.info("Server received CANCEL/CLOSE Receive OpenSessionRequestResponse");
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
