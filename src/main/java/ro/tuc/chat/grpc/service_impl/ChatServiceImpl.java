@@ -7,10 +7,18 @@ import ro.tuc.chat.proto_gen.*;
 import ro.tuc.webapp.controllers.AuthenticationController;
 import net.devh.boot.grpc.server.service.GrpcService;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @GrpcService
 public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatServiceImpl.class);
+
+    private static Map<String, ClientObserver> clientObservers = new HashMap<>();
+
+    private static AdminObserver adminObserver = new AdminObserver();
 
     @Override
     public void sendMessage(ChatMessage request, StreamObserver<Status> responseObserver) {
@@ -24,28 +32,59 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     @Override
     public void sendOpenSessionRequest(OpenSessionRequest request, StreamObserver<OpenSessionRequestResponse> responseObserver) {
-        LOGGER.info("Server received OpenSessionRequest: " + request.toString());
+        LOGGER.info("Server received Send OpenSessionRequest: " + request.toString());
 
         String fromUserName = request.getFromUserName();
 
-        OpenSessionRequestResponse response = OpenSessionRequestResponse.newBuilder()
-                .setAccepted(true)
-                .setFromUserName(fromUserName)
-                .build();
+        // save client observer
+        if (clientObservers.containsKey(fromUserName)) {
+            clientObservers.get(fromUserName).setOpenSessionRequestResponseStreamObserver(responseObserver);
+        } else {
+            ClientObserver observer = new ClientObserver();
+            observer.setUserName(fromUserName);
+            observer.setOpenSessionRequestResponseStreamObserver(responseObserver);
+            clientObservers.put(fromUserName, observer);
+        }
 
-        responseObserver.onNext(response);
-        responseObserver.onCompleted();
+        // send notification to admin
+        if (adminObserver.getOpenSessionRequestStreamObserver() != null) {
+            adminObserver.getOpenSessionRequestStreamObserver().onNext(request);
+
+            LOGGER.info("Server responded to Send OpenSessionRequest: " + request.toString());
+        }
     }
 
 
     @Override
     public void receiveOpenSessionRequest(Empty request, StreamObserver<OpenSessionRequest> responseObserver) {
-        super.receiveOpenSessionRequest(request, responseObserver);
+        LOGGER.info("Server received Receive OpenSessionRequest");
+        adminObserver.setOpenSessionRequestStreamObserver(responseObserver);
     }
 
     @Override
     public void acceptOpenSessionRequest(OpenSessionRequestResponse request, StreamObserver<Status> responseObserver) {
-        super.acceptOpenSessionRequest(request, responseObserver);
+        LOGGER.info("Server received Accept OpenSessionRequest: " + request.toString());
+
+        String requestSenderUserName = request.getFromUserName();
+
+        if (clientObservers.containsKey(requestSenderUserName) && clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver() != null) {
+            OpenSessionRequestResponse response = OpenSessionRequestResponse.newBuilder()
+                    .setAccepted(true)
+                    .setFromUserName(requestSenderUserName)
+                    .build();
+
+            clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver().onNext(response);
+            clientObservers.get(requestSenderUserName).getOpenSessionRequestResponseStreamObserver().onCompleted();
+
+            LOGGER.info("Server responded to Accept OpenSessionRequest: " + request.toString());
+
+            Status status = Status.newBuilder().setSuccessful(true).build();
+            responseObserver.onNext(status);
+            responseObserver.onCompleted();
+        } else {
+            responseObserver.onError(new IllegalStateException());
+            responseObserver.onCompleted();
+        }
     }
 
     @Override
