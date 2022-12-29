@@ -10,6 +10,11 @@ message ChatMessage {
   string timeStamp = 4;
 }
 
+message ChatMessageRequest {
+  string recipientName = 1;
+  string senderName = 2;
+}
+
 message OpenSessionRequest {
   string fromUserName = 1;
 }
@@ -34,11 +39,18 @@ message Status {
   string errorMessage = 2;
 }
 
+message SendMessageStatus {
+  oneof result {
+    Status status = 1;
+    ChatMessage sentMessage = 2;
+  }
+}
+
 message Empty {}
 
 service ChatService {
-  rpc sendMessage(ChatMessage) returns (Status) {}
-  rpc receiveMessage(Empty) returns (stream ChatMessage) {}
+  rpc sendMessage(ChatMessage) returns (SendMessageStatus) {}
+  rpc receiveMessage(ChatMessageRequest) returns (stream ChatMessage) {}
   rpc sendOpenSessionRequest(OpenSessionRequest) returns (OpenSessionRequestResponse) {}
   rpc receiveOpenSessionRequest(Empty) returns (stream OpenSessionRequest) {}
   rpc acceptOpenSessionRequest(OpenSessionRequestResponse) returns (Status) {}
