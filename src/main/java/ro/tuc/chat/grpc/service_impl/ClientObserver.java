@@ -22,12 +22,6 @@ public class ClientObserver {
 
     private StreamObserver<OpenSessionRequestResponse> openSessionRequestResponseStreamObserver;
 
-    private StreamObserver<ChatMessage> incomingMessageStreamObserver;
-
-    private StreamObserver<MessageReadingStatus> messageReadingStatusStreamObserver;
-
-    private StreamObserver<MessageTypingStatus> messageTypingStatusStreamObserver;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

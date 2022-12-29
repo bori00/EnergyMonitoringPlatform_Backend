@@ -7,6 +7,7 @@ import ro.tuc.chat.proto_gen.*;
 import ro.tuc.webapp.controllers.AuthenticationController;
 import net.devh.boot.grpc.server.service.GrpcService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,14 +24,64 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     private static final List<OpenSessionRequest> unhandledOpenSessionRequests = new ArrayList<>();
 
-    @Override
-    public void sendMessage(ChatMessage request, StreamObserver<Status> responseObserver) {
-        super.sendMessage(request, responseObserver);
+    private static final Map<ChatMessageRequest, ChatReaderObserver> chatReaderObservers =
+            new HashMap<>();
+
+    public void notifyAboutClosure(String recipientName, String senderName) {
+        ChatMessageRequest partnerRequest =
+                ChatMessageRequest.newBuilder()
+                        .setRecipientName(senderName)
+                        .setSenderName(recipientName)
+                        .build();
+
+        if (chatReaderObservers.containsKey(partnerRequest)) {
+            chatReaderObservers.get(partnerRequest).closeObservers();
+        }
     }
 
     @Override
-    public void receiveMessage(Empty request, StreamObserver<ChatMessage> responseObserver) {
-        super.receiveMessage(request, responseObserver);
+    public void sendMessage(ChatMessage request, StreamObserver<SendMessageStatus> responseObserver) {
+        ChatMessageRequest recipientRequest =
+                ChatMessageRequest.newBuilder()
+                        .setRecipientName(request.getToUserName())
+                        .setSenderName(request.getFromUserName())
+                        .build();
+        if (chatReaderObservers.containsKey(recipientRequest) &&
+            chatReaderObservers.get(recipientRequest).getIncomingMessageStreamObserver() != null) {
+            ChatMessage newMessage =
+                    ChatMessage.newBuilder()
+                            .setFromUserName(request.getFromUserName())
+                            .setToUserName(request.getToUserName())
+                            .setMessage(request.getMessage())
+                            .setTimeStamp(LocalDateTime.now().toString())
+                            .build();
+            chatReaderObservers.get(recipientRequest).getIncomingMessageStreamObserver().onNext(newMessage);
+
+            responseObserver.onNext(SendMessageStatus.newBuilder().setSentMessage(newMessage).build());
+            responseObserver.onCompleted();
+        } else {
+            Status status =
+                    Status.newBuilder()
+                            .setSuccessful(false)
+                            .setErrorMessage("The recipient is not available anymore.")
+                            .build();
+            responseObserver.onNext(SendMessageStatus.newBuilder().setStatus(status).build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void receiveMessage(ChatMessageRequest request, StreamObserver<ChatMessage> responseObserver) {
+        if (chatReaderObservers.containsKey(request)) {
+            chatReaderObservers.get(request).setIncomingMessageStreamObserver(responseObserver);
+        } else {
+            ChatReaderObserver observer = new ChatReaderObserver();
+            observer.setIncomingMessageStreamObserver(responseObserver);
+            observer.setOnClosureCallback(this::notifyAboutClosure);
+            observer.setReaderUserName(request.getRecipientName());
+            observer.setSenderUserName(request.getSenderName());
+            chatReaderObservers.put(request, observer);
+        }
     }
 
     @Override
