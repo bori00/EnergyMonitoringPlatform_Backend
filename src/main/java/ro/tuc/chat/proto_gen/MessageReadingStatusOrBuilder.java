@@ -8,24 +8,36 @@ public interface MessageReadingStatusOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The fromUserName.
+   * <code>string readerUserName = 1;</code>
+   * @return The readerUserName.
    */
-  java.lang.String getFromUserName();
+  java.lang.String getReaderUserName();
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The bytes for fromUserName.
+   * <code>string readerUserName = 1;</code>
+   * @return The bytes for readerUserName.
    */
   com.google.protobuf.ByteString
-      getFromUserNameBytes();
+      getReaderUserNameBytes();
 
   /**
-   * <code>string readMessagesUntil = 2;</code>
+   * <code>string senderUserName = 2;</code>
+   * @return The senderUserName.
+   */
+  java.lang.String getSenderUserName();
+  /**
+   * <code>string senderUserName = 2;</code>
+   * @return The bytes for senderUserName.
+   */
+  com.google.protobuf.ByteString
+      getSenderUserNameBytes();
+
+  /**
+   * <code>string readMessagesUntil = 3;</code>
    * @return The readMessagesUntil.
    */
   java.lang.String getReadMessagesUntil();
   /**
-   * <code>string readMessagesUntil = 2;</code>
+   * <code>string readMessagesUntil = 3;</code>
    * @return The bytes for readMessagesUntil.
    */
   com.google.protobuf.ByteString

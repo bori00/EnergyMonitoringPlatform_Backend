@@ -8,19 +8,31 @@ public interface MessageTypingStatusOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The fromUserName.
+   * <code>string typerUserName = 1;</code>
+   * @return The typerUserName.
    */
-  java.lang.String getFromUserName();
+  java.lang.String getTyperUserName();
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The bytes for fromUserName.
+   * <code>string typerUserName = 1;</code>
+   * @return The bytes for typerUserName.
    */
   com.google.protobuf.ByteString
-      getFromUserNameBytes();
+      getTyperUserNameBytes();
 
   /**
-   * <code>bool typing = 2;</code>
+   * <code>string recipientUserName = 2;</code>
+   * @return The recipientUserName.
+   */
+  java.lang.String getRecipientUserName();
+  /**
+   * <code>string recipientUserName = 2;</code>
+   * @return The bytes for recipientUserName.
+   */
+  com.google.protobuf.ByteString
+      getRecipientUserNameBytes();
+
+  /**
+   * <code>bool typing = 3;</code>
    * @return The typing.
    */
   boolean getTyping();

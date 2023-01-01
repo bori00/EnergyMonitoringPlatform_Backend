@@ -16,7 +16,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private MessageTypingStatus() {
-    fromUserName_ = "";
+    typerUserName_ = "";
+    recipientUserName_ = "";
   }
 
   @java.lang.Override
@@ -44,48 +45,86 @@ private static final long serialVersionUID = 0L;
             ro.tuc.chat.proto_gen.MessageTypingStatus.class, ro.tuc.chat.proto_gen.MessageTypingStatus.Builder.class);
   }
 
-  public static final int FROMUSERNAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object fromUserName_;
+  public static final int TYPERUSERNAME_FIELD_NUMBER = 1;
+  private volatile java.lang.Object typerUserName_;
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The fromUserName.
+   * <code>string typerUserName = 1;</code>
+   * @return The typerUserName.
    */
   @java.lang.Override
-  public java.lang.String getFromUserName() {
-    java.lang.Object ref = fromUserName_;
+  public java.lang.String getTyperUserName() {
+    java.lang.Object ref = typerUserName_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      fromUserName_ = s;
+      typerUserName_ = s;
       return s;
     }
   }
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The bytes for fromUserName.
+   * <code>string typerUserName = 1;</code>
+   * @return The bytes for typerUserName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getFromUserNameBytes() {
-    java.lang.Object ref = fromUserName_;
+      getTyperUserNameBytes() {
+    java.lang.Object ref = typerUserName_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      fromUserName_ = b;
+      typerUserName_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int TYPING_FIELD_NUMBER = 2;
+  public static final int RECIPIENTUSERNAME_FIELD_NUMBER = 2;
+  private volatile java.lang.Object recipientUserName_;
+  /**
+   * <code>string recipientUserName = 2;</code>
+   * @return The recipientUserName.
+   */
+  @java.lang.Override
+  public java.lang.String getRecipientUserName() {
+    java.lang.Object ref = recipientUserName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      recipientUserName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string recipientUserName = 2;</code>
+   * @return The bytes for recipientUserName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getRecipientUserNameBytes() {
+    java.lang.Object ref = recipientUserName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      recipientUserName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int TYPING_FIELD_NUMBER = 3;
   private boolean typing_;
   /**
-   * <code>bool typing = 2;</code>
+   * <code>bool typing = 3;</code>
    * @return The typing.
    */
   @java.lang.Override
@@ -107,11 +146,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromUserName_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fromUserName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(typerUserName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, typerUserName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipientUserName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, recipientUserName_);
     }
     if (typing_ != false) {
-      output.writeBool(2, typing_);
+      output.writeBool(3, typing_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -122,12 +164,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromUserName_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fromUserName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(typerUserName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, typerUserName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipientUserName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, recipientUserName_);
     }
     if (typing_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(2, typing_);
+        .computeBoolSize(3, typing_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -144,8 +189,10 @@ private static final long serialVersionUID = 0L;
     }
     ro.tuc.chat.proto_gen.MessageTypingStatus other = (ro.tuc.chat.proto_gen.MessageTypingStatus) obj;
 
-    if (!getFromUserName()
-        .equals(other.getFromUserName())) return false;
+    if (!getTyperUserName()
+        .equals(other.getTyperUserName())) return false;
+    if (!getRecipientUserName()
+        .equals(other.getRecipientUserName())) return false;
     if (getTyping()
         != other.getTyping()) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -159,8 +206,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + FROMUSERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getFromUserName().hashCode();
+    hash = (37 * hash) + TYPERUSERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getTyperUserName().hashCode();
+    hash = (37 * hash) + RECIPIENTUSERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getRecipientUserName().hashCode();
     hash = (37 * hash) + TYPING_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getTyping());
@@ -292,7 +341,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      fromUserName_ = "";
+      typerUserName_ = "";
+
+      recipientUserName_ = "";
 
       typing_ = false;
 
@@ -322,7 +373,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ro.tuc.chat.proto_gen.MessageTypingStatus buildPartial() {
       ro.tuc.chat.proto_gen.MessageTypingStatus result = new ro.tuc.chat.proto_gen.MessageTypingStatus(this);
-      result.fromUserName_ = fromUserName_;
+      result.typerUserName_ = typerUserName_;
+      result.recipientUserName_ = recipientUserName_;
       result.typing_ = typing_;
       onBuilt();
       return result;
@@ -372,8 +424,12 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(ro.tuc.chat.proto_gen.MessageTypingStatus other) {
       if (other == ro.tuc.chat.proto_gen.MessageTypingStatus.getDefaultInstance()) return this;
-      if (!other.getFromUserName().isEmpty()) {
-        fromUserName_ = other.fromUserName_;
+      if (!other.getTyperUserName().isEmpty()) {
+        typerUserName_ = other.typerUserName_;
+        onChanged();
+      }
+      if (!other.getRecipientUserName().isEmpty()) {
+        recipientUserName_ = other.recipientUserName_;
         onChanged();
       }
       if (other.getTyping() != false) {
@@ -406,15 +462,20 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              fromUserName_ = input.readStringRequireUtf8();
+              typerUserName_ = input.readStringRequireUtf8();
 
               break;
             } // case 10
-            case 16: {
+            case 18: {
+              recipientUserName_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 18
+            case 24: {
               typing_ = input.readBool();
 
               break;
-            } // case 16
+            } // case 24
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -431,85 +492,161 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object fromUserName_ = "";
+    private java.lang.Object typerUserName_ = "";
     /**
-     * <code>string fromUserName = 1;</code>
-     * @return The fromUserName.
+     * <code>string typerUserName = 1;</code>
+     * @return The typerUserName.
      */
-    public java.lang.String getFromUserName() {
-      java.lang.Object ref = fromUserName_;
+    public java.lang.String getTyperUserName() {
+      java.lang.Object ref = typerUserName_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        fromUserName_ = s;
+        typerUserName_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string fromUserName = 1;</code>
-     * @return The bytes for fromUserName.
+     * <code>string typerUserName = 1;</code>
+     * @return The bytes for typerUserName.
      */
     public com.google.protobuf.ByteString
-        getFromUserNameBytes() {
-      java.lang.Object ref = fromUserName_;
+        getTyperUserNameBytes() {
+      java.lang.Object ref = typerUserName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        fromUserName_ = b;
+        typerUserName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string fromUserName = 1;</code>
-     * @param value The fromUserName to set.
+     * <code>string typerUserName = 1;</code>
+     * @param value The typerUserName to set.
      * @return This builder for chaining.
      */
-    public Builder setFromUserName(
+    public Builder setTyperUserName(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      fromUserName_ = value;
+      typerUserName_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string fromUserName = 1;</code>
+     * <code>string typerUserName = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearFromUserName() {
+    public Builder clearTyperUserName() {
       
-      fromUserName_ = getDefaultInstance().getFromUserName();
+      typerUserName_ = getDefaultInstance().getTyperUserName();
       onChanged();
       return this;
     }
     /**
-     * <code>string fromUserName = 1;</code>
-     * @param value The bytes for fromUserName to set.
+     * <code>string typerUserName = 1;</code>
+     * @param value The bytes for typerUserName to set.
      * @return This builder for chaining.
      */
-    public Builder setFromUserNameBytes(
+    public Builder setTyperUserNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      fromUserName_ = value;
+      typerUserName_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object recipientUserName_ = "";
+    /**
+     * <code>string recipientUserName = 2;</code>
+     * @return The recipientUserName.
+     */
+    public java.lang.String getRecipientUserName() {
+      java.lang.Object ref = recipientUserName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        recipientUserName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string recipientUserName = 2;</code>
+     * @return The bytes for recipientUserName.
+     */
+    public com.google.protobuf.ByteString
+        getRecipientUserNameBytes() {
+      java.lang.Object ref = recipientUserName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        recipientUserName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string recipientUserName = 2;</code>
+     * @param value The recipientUserName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setRecipientUserName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      recipientUserName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string recipientUserName = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearRecipientUserName() {
+      
+      recipientUserName_ = getDefaultInstance().getRecipientUserName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string recipientUserName = 2;</code>
+     * @param value The bytes for recipientUserName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setRecipientUserNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      recipientUserName_ = value;
       onChanged();
       return this;
     }
 
     private boolean typing_ ;
     /**
-     * <code>bool typing = 2;</code>
+     * <code>bool typing = 3;</code>
      * @return The typing.
      */
     @java.lang.Override
@@ -517,7 +654,7 @@ private static final long serialVersionUID = 0L;
       return typing_;
     }
     /**
-     * <code>bool typing = 2;</code>
+     * <code>bool typing = 3;</code>
      * @param value The typing to set.
      * @return This builder for chaining.
      */
@@ -528,7 +665,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>bool typing = 2;</code>
+     * <code>bool typing = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearTyping() {

@@ -1,6 +1,7 @@
 package ro.tuc.chat.grpc.service_impl;
 
 import io.grpc.stub.StreamObserver;
+import lombok.Synchronized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ro.tuc.chat.proto_gen.*;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 @GrpcService
 public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
@@ -24,14 +27,16 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     private static final List<OpenSessionRequest> unhandledOpenSessionRequests = new ArrayList<>();
 
-    private static final Map<ChatMessageRequest, ChatReaderObserver> chatReaderObservers =
+    private static final Map<UpdateRequest, ChatReaderObserver> chatReaderObservers =
             new HashMap<>();
 
+//    Lock chatReaderObserversLock = new ReentrantLock();
+
     public void notifyAboutClosure(String recipientName, String senderName) {
-        ChatMessageRequest partnerRequest =
-                ChatMessageRequest.newBuilder()
-                        .setRecipientName(senderName)
-                        .setSenderName(recipientName)
+        UpdateRequest partnerRequest =
+                UpdateRequest.newBuilder()
+                        .setRequestSenderName(senderName)
+                        .setPartnerName(recipientName)
                         .build();
 
         if (chatReaderObservers.containsKey(partnerRequest)) {
@@ -39,12 +44,21 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
         }
     }
 
+    private void printChatReaderObservers() {
+        StringBuilder status = new StringBuilder("Available Readers: ");
+        for (UpdateRequest request : chatReaderObservers.keySet()) {
+            status.append("Available Reader: ").append(chatReaderObservers.get(request)).append("\n");
+        }
+        LOGGER.info(status.toString());
+    }
+
     @Override
     public void sendMessage(ChatMessage request, StreamObserver<SendMessageStatus> responseObserver) {
-        ChatMessageRequest recipientRequest =
-                ChatMessageRequest.newBuilder()
-                        .setRecipientName(request.getToUserName())
-                        .setSenderName(request.getFromUserName())
+        LOGGER.info("Server received NEW MESSAGE: " + request);
+        UpdateRequest recipientRequest =
+                UpdateRequest.newBuilder()
+                        .setRequestSenderName(request.getToUserName())
+                        .setPartnerName(request.getFromUserName())
                         .build();
         if (chatReaderObservers.containsKey(recipientRequest) &&
             chatReaderObservers.get(recipientRequest).getIncomingMessageStreamObserver() != null) {
@@ -59,7 +73,9 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
             responseObserver.onNext(SendMessageStatus.newBuilder().setSentMessage(newMessage).build());
             responseObserver.onCompleted();
+            LOGGER.info("Server forwarded NEW MESSAGE: " + request);
         } else {
+            LOGGER.info("Server couldn't forward NEW MESSAGE: " + request);
             Status status =
                     Status.newBuilder()
                             .setSuccessful(false)
@@ -68,20 +84,23 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
             responseObserver.onNext(SendMessageStatus.newBuilder().setStatus(status).build());
             responseObserver.onCompleted();
         }
+        printChatReaderObservers();
     }
 
     @Override
-    public void receiveMessage(ChatMessageRequest request, StreamObserver<ChatMessage> responseObserver) {
+    public void receiveMessage(UpdateRequest request, StreamObserver<ChatMessage> responseObserver) {
         if (chatReaderObservers.containsKey(request)) {
             chatReaderObservers.get(request).setIncomingMessageStreamObserver(responseObserver);
         } else {
+            LOGGER.info("Added new ChatReaderObserver for key: " + request);
             ChatReaderObserver observer = new ChatReaderObserver();
             observer.setIncomingMessageStreamObserver(responseObserver);
             observer.setOnClosureCallback(this::notifyAboutClosure);
-            observer.setReaderUserName(request.getRecipientName());
-            observer.setSenderUserName(request.getSenderName());
+            observer.setReaderUserName(request.getRequestSenderName());
+            observer.setSenderUserName(request.getPartnerName());
             chatReaderObservers.put(request, observer);
         }
+        printChatReaderObservers();
     }
 
     @Override
@@ -109,6 +128,7 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
         } else {
             unhandledOpenSessionRequests.add(request);
         }
+        printChatReaderObservers();
     }
 
 
@@ -121,6 +141,7 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
         while (!unhandledOpenSessionRequests.isEmpty()) {
             adminObserver.getOpenSessionRequestStreamObserver().onNext(unhandledOpenSessionRequests.remove(0));
         }
+        printChatReaderObservers();
     }
 
     @Override
@@ -152,25 +173,97 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
             responseObserver.onNext(status);
             responseObserver.onCompleted();
         }
+        printChatReaderObservers();
     }
 
     @Override
     public void sendMessageReadingStatusUpdate(MessageReadingStatus request, StreamObserver<Status> responseObserver) {
-        super.sendMessageReadingStatusUpdate(request, responseObserver);
+        UpdateRequest recipientRequest =
+                UpdateRequest.newBuilder()
+                        .setRequestSenderName(request.getSenderUserName())
+                        .setPartnerName(request.getReaderUserName())
+                        .build();
+
+        LOGGER.info("Server received ReadingStatusUpdate " + request);
+
+        if (chatReaderObservers.containsKey(recipientRequest) &&
+                chatReaderObservers.get(recipientRequest).getMessageReadingStatusStreamObserver() != null) {
+            chatReaderObservers.get(recipientRequest).getMessageReadingStatusStreamObserver().onNext(request);
+
+            responseObserver.onNext(Status.newBuilder().setSuccessful(true).build());
+            responseObserver.onCompleted();
+        } else {
+            Status status =
+                    Status.newBuilder()
+                            .setSuccessful(false)
+                            .setErrorMessage("The recipient is not available anymore.")
+                            .build();
+            responseObserver.onNext(status);
+            responseObserver.onCompleted();
+        }
+        printChatReaderObservers();
     }
 
     @Override
-    public void receiveMessageReadingStatusUpdates(Empty request, StreamObserver<MessageReadingStatus> responseObserver) {
-        super.receiveMessageReadingStatusUpdates(request, responseObserver);
+    public void receiveMessageReadingStatusUpdates(UpdateRequest request,
+                                                   StreamObserver<MessageReadingStatus> responseObserver) {
+//        chatReaderObserversLock.lock();
+        if (chatReaderObservers.containsKey(request)) {
+            chatReaderObservers.get(request).setMessageReadingStatusStreamObserver(responseObserver);
+        } else {
+            LOGGER.info("Added new ChatReaderObserver for key: " + request);
+            ChatReaderObserver observer = new ChatReaderObserver();
+            observer.setMessageReadingStatusStreamObserver(responseObserver);
+            observer.setOnClosureCallback(this::notifyAboutClosure);
+            observer.setReaderUserName(request.getRequestSenderName());
+            observer.setSenderUserName(request.getPartnerName());
+            chatReaderObservers.put(request, observer);
+        }
+//        chatReaderObserversLock.unlock();
+//        printChatReaderObservers();
     }
 
     @Override
     public void sendMessageTypingStatusUpdate(MessageTypingStatus request, StreamObserver<Status> responseObserver) {
-        super.sendMessageTypingStatusUpdate(request, responseObserver);
+        UpdateRequest recipientRequest =
+                UpdateRequest.newBuilder()
+                        .setRequestSenderName(request.getRecipientUserName())
+                        .setPartnerName(request.getTyperUserName())
+                        .build();
+
+        LOGGER.info("Server received TypingStatusUpdate " + request);
+
+        if (chatReaderObservers.containsKey(recipientRequest) &&
+                chatReaderObservers.get(recipientRequest).getMessageTypingStatusStreamObserver() != null) {
+            chatReaderObservers.get(recipientRequest).getMessageTypingStatusStreamObserver().onNext(request);
+
+            responseObserver.onNext(Status.newBuilder().setSuccessful(true).build());
+            responseObserver.onCompleted();
+        } else {
+            Status status =
+                    Status.newBuilder()
+                            .setSuccessful(false)
+                            .setErrorMessage("The recipient is not available anymore.")
+                            .build();
+            responseObserver.onNext(status);
+            responseObserver.onCompleted();
+        }
+//        printChatReaderObservers();
     }
 
     @Override
-    public void receiveMessageTypingStatusUpdate(Empty request, StreamObserver<MessageTypingStatus> responseObserver) {
-        super.receiveMessageTypingStatusUpdate(request, responseObserver);
+    public void receiveMessageTypingStatusUpdate(UpdateRequest request,
+                                                 StreamObserver<MessageTypingStatus> responseObserver) {
+        if (chatReaderObservers.containsKey(request)) {
+            chatReaderObservers.get(request).setMessageTypingStatusStreamObserver(responseObserver);
+        } else {
+            LOGGER.info("Added new ChatReaderObserver for key: " + request);
+            ChatReaderObserver observer = new ChatReaderObserver();
+            observer.setMessageTypingStatusStreamObserver(responseObserver);
+            observer.setOnClosureCallback(this::notifyAboutClosure);
+            observer.setReaderUserName(request.getRequestSenderName());
+            observer.setSenderUserName(request.getPartnerName());
+            chatReaderObservers.put(request, observer);
+        }
     }
 }

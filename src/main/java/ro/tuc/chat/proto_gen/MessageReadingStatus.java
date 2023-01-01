@@ -16,7 +16,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private MessageReadingStatus() {
-    fromUserName_ = "";
+    readerUserName_ = "";
+    senderUserName_ = "";
     readMessagesUntil_ = "";
   }
 
@@ -45,48 +46,86 @@ private static final long serialVersionUID = 0L;
             ro.tuc.chat.proto_gen.MessageReadingStatus.class, ro.tuc.chat.proto_gen.MessageReadingStatus.Builder.class);
   }
 
-  public static final int FROMUSERNAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object fromUserName_;
+  public static final int READERUSERNAME_FIELD_NUMBER = 1;
+  private volatile java.lang.Object readerUserName_;
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The fromUserName.
+   * <code>string readerUserName = 1;</code>
+   * @return The readerUserName.
    */
   @java.lang.Override
-  public java.lang.String getFromUserName() {
-    java.lang.Object ref = fromUserName_;
+  public java.lang.String getReaderUserName() {
+    java.lang.Object ref = readerUserName_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      fromUserName_ = s;
+      readerUserName_ = s;
       return s;
     }
   }
   /**
-   * <code>string fromUserName = 1;</code>
-   * @return The bytes for fromUserName.
+   * <code>string readerUserName = 1;</code>
+   * @return The bytes for readerUserName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getFromUserNameBytes() {
-    java.lang.Object ref = fromUserName_;
+      getReaderUserNameBytes() {
+    java.lang.Object ref = readerUserName_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      fromUserName_ = b;
+      readerUserName_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int READMESSAGESUNTIL_FIELD_NUMBER = 2;
+  public static final int SENDERUSERNAME_FIELD_NUMBER = 2;
+  private volatile java.lang.Object senderUserName_;
+  /**
+   * <code>string senderUserName = 2;</code>
+   * @return The senderUserName.
+   */
+  @java.lang.Override
+  public java.lang.String getSenderUserName() {
+    java.lang.Object ref = senderUserName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      senderUserName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string senderUserName = 2;</code>
+   * @return The bytes for senderUserName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getSenderUserNameBytes() {
+    java.lang.Object ref = senderUserName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      senderUserName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int READMESSAGESUNTIL_FIELD_NUMBER = 3;
   private volatile java.lang.Object readMessagesUntil_;
   /**
-   * <code>string readMessagesUntil = 2;</code>
+   * <code>string readMessagesUntil = 3;</code>
    * @return The readMessagesUntil.
    */
   @java.lang.Override
@@ -103,7 +142,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string readMessagesUntil = 2;</code>
+   * <code>string readMessagesUntil = 3;</code>
    * @return The bytes for readMessagesUntil.
    */
   @java.lang.Override
@@ -135,11 +174,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromUserName_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fromUserName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(readerUserName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, readerUserName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(senderUserName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, senderUserName_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(readMessagesUntil_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, readMessagesUntil_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, readMessagesUntil_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -150,11 +192,14 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fromUserName_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, fromUserName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(readerUserName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, readerUserName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(senderUserName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, senderUserName_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(readMessagesUntil_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, readMessagesUntil_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, readMessagesUntil_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -171,8 +216,10 @@ private static final long serialVersionUID = 0L;
     }
     ro.tuc.chat.proto_gen.MessageReadingStatus other = (ro.tuc.chat.proto_gen.MessageReadingStatus) obj;
 
-    if (!getFromUserName()
-        .equals(other.getFromUserName())) return false;
+    if (!getReaderUserName()
+        .equals(other.getReaderUserName())) return false;
+    if (!getSenderUserName()
+        .equals(other.getSenderUserName())) return false;
     if (!getReadMessagesUntil()
         .equals(other.getReadMessagesUntil())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -186,8 +233,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + FROMUSERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getFromUserName().hashCode();
+    hash = (37 * hash) + READERUSERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getReaderUserName().hashCode();
+    hash = (37 * hash) + SENDERUSERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getSenderUserName().hashCode();
     hash = (37 * hash) + READMESSAGESUNTIL_FIELD_NUMBER;
     hash = (53 * hash) + getReadMessagesUntil().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -318,7 +367,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      fromUserName_ = "";
+      readerUserName_ = "";
+
+      senderUserName_ = "";
 
       readMessagesUntil_ = "";
 
@@ -348,7 +399,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public ro.tuc.chat.proto_gen.MessageReadingStatus buildPartial() {
       ro.tuc.chat.proto_gen.MessageReadingStatus result = new ro.tuc.chat.proto_gen.MessageReadingStatus(this);
-      result.fromUserName_ = fromUserName_;
+      result.readerUserName_ = readerUserName_;
+      result.senderUserName_ = senderUserName_;
       result.readMessagesUntil_ = readMessagesUntil_;
       onBuilt();
       return result;
@@ -398,8 +450,12 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(ro.tuc.chat.proto_gen.MessageReadingStatus other) {
       if (other == ro.tuc.chat.proto_gen.MessageReadingStatus.getDefaultInstance()) return this;
-      if (!other.getFromUserName().isEmpty()) {
-        fromUserName_ = other.fromUserName_;
+      if (!other.getReaderUserName().isEmpty()) {
+        readerUserName_ = other.readerUserName_;
+        onChanged();
+      }
+      if (!other.getSenderUserName().isEmpty()) {
+        senderUserName_ = other.senderUserName_;
         onChanged();
       }
       if (!other.getReadMessagesUntil().isEmpty()) {
@@ -433,15 +489,20 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              fromUserName_ = input.readStringRequireUtf8();
+              readerUserName_ = input.readStringRequireUtf8();
 
               break;
             } // case 10
             case 18: {
-              readMessagesUntil_ = input.readStringRequireUtf8();
+              senderUserName_ = input.readStringRequireUtf8();
 
               break;
             } // case 18
+            case 26: {
+              readMessagesUntil_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -458,85 +519,161 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object fromUserName_ = "";
+    private java.lang.Object readerUserName_ = "";
     /**
-     * <code>string fromUserName = 1;</code>
-     * @return The fromUserName.
+     * <code>string readerUserName = 1;</code>
+     * @return The readerUserName.
      */
-    public java.lang.String getFromUserName() {
-      java.lang.Object ref = fromUserName_;
+    public java.lang.String getReaderUserName() {
+      java.lang.Object ref = readerUserName_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        fromUserName_ = s;
+        readerUserName_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string fromUserName = 1;</code>
-     * @return The bytes for fromUserName.
+     * <code>string readerUserName = 1;</code>
+     * @return The bytes for readerUserName.
      */
     public com.google.protobuf.ByteString
-        getFromUserNameBytes() {
-      java.lang.Object ref = fromUserName_;
+        getReaderUserNameBytes() {
+      java.lang.Object ref = readerUserName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        fromUserName_ = b;
+        readerUserName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string fromUserName = 1;</code>
-     * @param value The fromUserName to set.
+     * <code>string readerUserName = 1;</code>
+     * @param value The readerUserName to set.
      * @return This builder for chaining.
      */
-    public Builder setFromUserName(
+    public Builder setReaderUserName(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      fromUserName_ = value;
+      readerUserName_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string fromUserName = 1;</code>
+     * <code>string readerUserName = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearFromUserName() {
+    public Builder clearReaderUserName() {
       
-      fromUserName_ = getDefaultInstance().getFromUserName();
+      readerUserName_ = getDefaultInstance().getReaderUserName();
       onChanged();
       return this;
     }
     /**
-     * <code>string fromUserName = 1;</code>
-     * @param value The bytes for fromUserName to set.
+     * <code>string readerUserName = 1;</code>
+     * @param value The bytes for readerUserName to set.
      * @return This builder for chaining.
      */
-    public Builder setFromUserNameBytes(
+    public Builder setReaderUserNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      fromUserName_ = value;
+      readerUserName_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object senderUserName_ = "";
+    /**
+     * <code>string senderUserName = 2;</code>
+     * @return The senderUserName.
+     */
+    public java.lang.String getSenderUserName() {
+      java.lang.Object ref = senderUserName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        senderUserName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string senderUserName = 2;</code>
+     * @return The bytes for senderUserName.
+     */
+    public com.google.protobuf.ByteString
+        getSenderUserNameBytes() {
+      java.lang.Object ref = senderUserName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        senderUserName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string senderUserName = 2;</code>
+     * @param value The senderUserName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSenderUserName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      senderUserName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string senderUserName = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSenderUserName() {
+      
+      senderUserName_ = getDefaultInstance().getSenderUserName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string senderUserName = 2;</code>
+     * @param value The bytes for senderUserName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSenderUserNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      senderUserName_ = value;
       onChanged();
       return this;
     }
 
     private java.lang.Object readMessagesUntil_ = "";
     /**
-     * <code>string readMessagesUntil = 2;</code>
+     * <code>string readMessagesUntil = 3;</code>
      * @return The readMessagesUntil.
      */
     public java.lang.String getReadMessagesUntil() {
@@ -552,7 +689,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string readMessagesUntil = 2;</code>
+     * <code>string readMessagesUntil = 3;</code>
      * @return The bytes for readMessagesUntil.
      */
     public com.google.protobuf.ByteString
@@ -569,7 +706,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string readMessagesUntil = 2;</code>
+     * <code>string readMessagesUntil = 3;</code>
      * @param value The readMessagesUntil to set.
      * @return This builder for chaining.
      */
@@ -584,7 +721,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string readMessagesUntil = 2;</code>
+     * <code>string readMessagesUntil = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearReadMessagesUntil() {
@@ -594,7 +731,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string readMessagesUntil = 2;</code>
+     * <code>string readMessagesUntil = 3;</code>
      * @param value The bytes for readMessagesUntil to set.
      * @return This builder for chaining.
      */

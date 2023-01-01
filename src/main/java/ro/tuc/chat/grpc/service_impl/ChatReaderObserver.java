@@ -42,6 +42,24 @@ public class ChatReaderObserver {
         handledObserver.setOnCloseHandler(this::removeObservers);
     }
 
+    public void setMessageReadingStatusStreamObserver(@NotNull StreamObserver<MessageReadingStatus> messageReadingStatusStreamObserver) {
+        this.messageReadingStatusStreamObserver = messageReadingStatusStreamObserver;
+
+        ServerCallStreamObserver<MessageReadingStatus> handledObserver =
+                ((ServerCallStreamObserver<MessageReadingStatus>) messageReadingStatusStreamObserver);
+        handledObserver.setOnCancelHandler(this::removeObservers);
+        handledObserver.setOnCloseHandler(this::removeObservers);
+    }
+
+    public void setMessageTypingStatusStreamObserver(@NotNull StreamObserver<MessageTypingStatus> messageTypingStatusStreamObserver) {
+        this.messageTypingStatusStreamObserver = messageTypingStatusStreamObserver;
+
+        ServerCallStreamObserver<MessageTypingStatus> handledObserver =
+                ((ServerCallStreamObserver<MessageTypingStatus>) messageTypingStatusStreamObserver);
+        handledObserver.setOnCancelHandler(this::removeObservers);
+        handledObserver.setOnCloseHandler(this::removeObservers);
+    }
+
     public void removeObservers() {
         incomingMessageStreamObserver = null;
         messageReadingStatusStreamObserver = null;
@@ -51,9 +69,18 @@ public class ChatReaderObserver {
     }
 
     public void closeObservers() {
-        if (incomingMessageStreamObserver != null) incomingMessageStreamObserver.onCompleted();
-        if (messageTypingStatusStreamObserver != null) messageTypingStatusStreamObserver.onCompleted();
-        if (messageReadingStatusStreamObserver != null) messageReadingStatusStreamObserver.onCompleted();
+        if (incomingMessageStreamObserver != null) {
+            incomingMessageStreamObserver.onCompleted();
+            incomingMessageStreamObserver = null;
+        }
+        if (messageTypingStatusStreamObserver != null) {
+            messageTypingStatusStreamObserver.onCompleted();
+            messageTypingStatusStreamObserver = null;
+        }
+        if (messageReadingStatusStreamObserver != null) {
+            messageReadingStatusStreamObserver.onCompleted();
+            messageReadingStatusStreamObserver = null;
+        }
     }
 
     public void setOnClosureCallback(BiConsumer<String, String> onClosureCallback) {
@@ -70,5 +97,16 @@ public class ChatReaderObserver {
 
     private void notifyServiceAboutClosure() {
         onClosureCallback.accept(readerUserName, senderUserName);
+    }
+
+    @Override
+    public String toString() {
+        return "ChatReaderObserver{" +
+                "readerUserName='" + readerUserName + '\'' +
+                ", senderUserName='" + senderUserName + '\'' +
+                ", incomingMessageStreamObserver=" + incomingMessageStreamObserver +
+                ", messageReadingStatusStreamObserver=" + messageReadingStatusStreamObserver +
+                ", messageTypingStatusStreamObserver=" + messageTypingStatusStreamObserver +
+                '}';
     }
 }

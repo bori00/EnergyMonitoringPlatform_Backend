@@ -20,10 +20,10 @@ public final class Chat {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_ro_tuc_chat_proto_gen_ChatMessage_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_descriptor;
+    internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_fieldAccessorTable;
+      internal_static_ro_tuc_chat_proto_gen_UpdateRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_ro_tuc_chat_proto_gen_OpenSessionRequest_descriptor;
   static final 
@@ -71,45 +71,47 @@ public final class Chat {
       "\n\nchat.proto\022\025ro.tuc.chat.proto_gen\"[\n\013C" +
       "hatMessage\022\024\n\014fromUserName\030\001 \001(\t\022\022\n\ntoUs" +
       "erName\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\022\021\n\ttimeSta" +
-      "mp\030\004 \001(\t\"?\n\022ChatMessageRequest\022\025\n\rrecipi" +
-      "entName\030\001 \001(\t\022\022\n\nsenderName\030\002 \001(\t\"*\n\022Ope" +
+      "mp\030\004 \001(\t\"?\n\rUpdateRequest\022\031\n\021requestSend" +
+      "erName\030\001 \001(\t\022\023\n\013partnerName\030\002 \001(\t\"*\n\022Ope" +
       "nSessionRequest\022\024\n\014fromUserName\030\001 \001(\t\"D\n" +
       "\032OpenSessionRequestResponse\022\024\n\014fromUserN" +
-      "ame\030\001 \001(\t\022\020\n\010accepted\030\002 \001(\010\"G\n\024MessageRe" +
-      "adingStatus\022\024\n\014fromUserName\030\001 \001(\t\022\031\n\021rea" +
-      "dMessagesUntil\030\002 \001(\t\";\n\023MessageTypingSta" +
-      "tus\022\024\n\014fromUserName\030\001 \001(\t\022\016\n\006typing\030\002 \001(" +
-      "\010\"2\n\006Status\022\022\n\nsuccessful\030\001 \001(\010\022\024\n\014error" +
-      "Message\030\002 \001(\t\"\211\001\n\021SendMessageStatus\022/\n\006s" +
-      "tatus\030\001 \001(\0132\035.ro.tuc.chat.proto_gen.Stat" +
-      "usH\000\0229\n\013sentMessage\030\002 \001(\0132\".ro.tuc.chat." +
-      "proto_gen.ChatMessageH\000B\010\n\006result\"\007\n\005Emp" +
-      "ty2\352\007\n\013ChatService\022]\n\013sendMessage\022\".ro.t" +
-      "uc.chat.proto_gen.ChatMessage\032(.ro.tuc.c" +
-      "hat.proto_gen.SendMessageStatus\"\000\022c\n\016rec" +
-      "eiveMessage\022).ro.tuc.chat.proto_gen.Chat" +
-      "MessageRequest\032\".ro.tuc.chat.proto_gen.C" +
-      "hatMessage\"\0000\001\022x\n\026sendOpenSessionRequest" +
-      "\022).ro.tuc.chat.proto_gen.OpenSessionRequ" +
-      "est\0321.ro.tuc.chat.proto_gen.OpenSessionR" +
-      "equestResponse\"\000\022h\n\031receiveOpenSessionRe" +
-      "quest\022\034.ro.tuc.chat.proto_gen.Empty\032).ro" +
-      ".tuc.chat.proto_gen.OpenSessionRequest\"\000" +
-      "0\001\022n\n\030acceptOpenSessionRequest\0221.ro.tuc." +
-      "chat.proto_gen.OpenSessionRequestRespons" +
-      "e\032\035.ro.tuc.chat.proto_gen.Status\"\000\022n\n\036se" +
-      "ndMessageReadingStatusUpdate\022+.ro.tuc.ch" +
-      "at.proto_gen.MessageReadingStatus\032\035.ro.t" +
-      "uc.chat.proto_gen.Status\"\000\022s\n\"receiveMes" +
-      "sageReadingStatusUpdates\022\034.ro.tuc.chat.p" +
-      "roto_gen.Empty\032+.ro.tuc.chat.proto_gen.M" +
-      "essageReadingStatus\"\0000\001\022l\n\035sendMessageTy" +
-      "pingStatusUpdate\022*.ro.tuc.chat.proto_gen" +
-      ".MessageTypingStatus\032\035.ro.tuc.chat.proto" +
-      "_gen.Status\"\000\022p\n receiveMessageTypingSta" +
-      "tusUpdate\022\034.ro.tuc.chat.proto_gen.Empty\032" +
-      "*.ro.tuc.chat.proto_gen.MessageTypingSta" +
-      "tus\"\0000\001B\002P\001b\006proto3"
+      "ame\030\001 \001(\t\022\020\n\010accepted\030\002 \001(\010\"a\n\024MessageRe" +
+      "adingStatus\022\026\n\016readerUserName\030\001 \001(\t\022\026\n\016s" +
+      "enderUserName\030\002 \001(\t\022\031\n\021readMessagesUntil" +
+      "\030\003 \001(\t\"W\n\023MessageTypingStatus\022\025\n\rtyperUs" +
+      "erName\030\001 \001(\t\022\031\n\021recipientUserName\030\002 \001(\t\022" +
+      "\016\n\006typing\030\003 \001(\010\"2\n\006Status\022\022\n\nsuccessful\030" +
+      "\001 \001(\010\022\024\n\014errorMessage\030\002 \001(\t\"\211\001\n\021SendMess" +
+      "ageStatus\022/\n\006status\030\001 \001(\0132\035.ro.tuc.chat." +
+      "proto_gen.StatusH\000\0229\n\013sentMessage\030\002 \001(\0132" +
+      "\".ro.tuc.chat.proto_gen.ChatMessageH\000B\010\n" +
+      "\006result\"\007\n\005Empty2\365\007\n\013ChatService\022]\n\013send" +
+      "Message\022\".ro.tuc.chat.proto_gen.ChatMess" +
+      "age\032(.ro.tuc.chat.proto_gen.SendMessageS" +
+      "tatus\"\000\022^\n\016receiveMessage\022$.ro.tuc.chat." +
+      "proto_gen.UpdateRequest\032\".ro.tuc.chat.pr" +
+      "oto_gen.ChatMessage\"\0000\001\022x\n\026sendOpenSessi" +
+      "onRequest\022).ro.tuc.chat.proto_gen.OpenSe" +
+      "ssionRequest\0321.ro.tuc.chat.proto_gen.Ope" +
+      "nSessionRequestResponse\"\000\022h\n\031receiveOpen" +
+      "SessionRequest\022\034.ro.tuc.chat.proto_gen.E" +
+      "mpty\032).ro.tuc.chat.proto_gen.OpenSession" +
+      "Request\"\0000\001\022n\n\030acceptOpenSessionRequest\022" +
+      "1.ro.tuc.chat.proto_gen.OpenSessionReque" +
+      "stResponse\032\035.ro.tuc.chat.proto_gen.Statu" +
+      "s\"\000\022n\n\036sendMessageReadingStatusUpdate\022+." +
+      "ro.tuc.chat.proto_gen.MessageReadingStat" +
+      "us\032\035.ro.tuc.chat.proto_gen.Status\"\000\022{\n\"r" +
+      "eceiveMessageReadingStatusUpdates\022$.ro.t" +
+      "uc.chat.proto_gen.UpdateRequest\032+.ro.tuc" +
+      ".chat.proto_gen.MessageReadingStatus\"\0000\001" +
+      "\022l\n\035sendMessageTypingStatusUpdate\022*.ro.t" +
+      "uc.chat.proto_gen.MessageTypingStatus\032\035." +
+      "ro.tuc.chat.proto_gen.Status\"\000\022x\n receiv" +
+      "eMessageTypingStatusUpdate\022$.ro.tuc.chat" +
+      ".proto_gen.UpdateRequest\032*.ro.tuc.chat.p" +
+      "roto_gen.MessageTypingStatus\"\0000\001B\002P\001b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -121,12 +123,12 @@ public final class Chat {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ro_tuc_chat_proto_gen_ChatMessage_descriptor,
         new java.lang.String[] { "FromUserName", "ToUserName", "Message", "TimeStamp", });
-    internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_descriptor =
+    internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_fieldAccessorTable = new
+    internal_static_ro_tuc_chat_proto_gen_UpdateRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_descriptor,
-        new java.lang.String[] { "RecipientName", "SenderName", });
+        internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor,
+        new java.lang.String[] { "RequestSenderName", "PartnerName", });
     internal_static_ro_tuc_chat_proto_gen_OpenSessionRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_ro_tuc_chat_proto_gen_OpenSessionRequest_fieldAccessorTable = new
@@ -144,13 +146,13 @@ public final class Chat {
     internal_static_ro_tuc_chat_proto_gen_MessageReadingStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ro_tuc_chat_proto_gen_MessageReadingStatus_descriptor,
-        new java.lang.String[] { "FromUserName", "ReadMessagesUntil", });
+        new java.lang.String[] { "ReaderUserName", "SenderUserName", "ReadMessagesUntil", });
     internal_static_ro_tuc_chat_proto_gen_MessageTypingStatus_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_ro_tuc_chat_proto_gen_MessageTypingStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ro_tuc_chat_proto_gen_MessageTypingStatus_descriptor,
-        new java.lang.String[] { "FromUserName", "Typing", });
+        new java.lang.String[] { "TyperUserName", "RecipientUserName", "Typing", });
     internal_static_ro_tuc_chat_proto_gen_Status_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_ro_tuc_chat_proto_gen_Status_fieldAccessorTable = new

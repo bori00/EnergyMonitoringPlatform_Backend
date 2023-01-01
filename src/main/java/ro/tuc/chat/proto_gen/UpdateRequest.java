@@ -4,27 +4,27 @@
 package ro.tuc.chat.proto_gen;
 
 /**
- * Protobuf type {@code ro.tuc.chat.proto_gen.ChatMessageRequest}
+ * Protobuf type {@code ro.tuc.chat.proto_gen.UpdateRequest}
  */
-public final class ChatMessageRequest extends
+public final class UpdateRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ro.tuc.chat.proto_gen.ChatMessageRequest)
-    ChatMessageRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:ro.tuc.chat.proto_gen.UpdateRequest)
+    UpdateRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ChatMessageRequest.newBuilder() to construct.
-  private ChatMessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use UpdateRequest.newBuilder() to construct.
+  private UpdateRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ChatMessageRequest() {
-    recipientName_ = "";
-    senderName_ = "";
+  private UpdateRequest() {
+    requestSenderName_ = "";
+    partnerName_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ChatMessageRequest();
+    return new UpdateRequest();
   }
 
   @java.lang.Override
@@ -34,87 +34,87 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_descriptor;
+    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_fieldAccessorTable
+    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            ro.tuc.chat.proto_gen.ChatMessageRequest.class, ro.tuc.chat.proto_gen.ChatMessageRequest.Builder.class);
+            ro.tuc.chat.proto_gen.UpdateRequest.class, ro.tuc.chat.proto_gen.UpdateRequest.Builder.class);
   }
 
-  public static final int RECIPIENTNAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object recipientName_;
+  public static final int REQUESTSENDERNAME_FIELD_NUMBER = 1;
+  private volatile java.lang.Object requestSenderName_;
   /**
-   * <code>string recipientName = 1;</code>
-   * @return The recipientName.
+   * <code>string requestSenderName = 1;</code>
+   * @return The requestSenderName.
    */
   @java.lang.Override
-  public java.lang.String getRecipientName() {
-    java.lang.Object ref = recipientName_;
+  public java.lang.String getRequestSenderName() {
+    java.lang.Object ref = requestSenderName_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      recipientName_ = s;
+      requestSenderName_ = s;
       return s;
     }
   }
   /**
-   * <code>string recipientName = 1;</code>
-   * @return The bytes for recipientName.
+   * <code>string requestSenderName = 1;</code>
+   * @return The bytes for requestSenderName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getRecipientNameBytes() {
-    java.lang.Object ref = recipientName_;
+      getRequestSenderNameBytes() {
+    java.lang.Object ref = requestSenderName_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      recipientName_ = b;
+      requestSenderName_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int SENDERNAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object senderName_;
+  public static final int PARTNERNAME_FIELD_NUMBER = 2;
+  private volatile java.lang.Object partnerName_;
   /**
-   * <code>string senderName = 2;</code>
-   * @return The senderName.
+   * <code>string partnerName = 2;</code>
+   * @return The partnerName.
    */
   @java.lang.Override
-  public java.lang.String getSenderName() {
-    java.lang.Object ref = senderName_;
+  public java.lang.String getPartnerName() {
+    java.lang.Object ref = partnerName_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      senderName_ = s;
+      partnerName_ = s;
       return s;
     }
   }
   /**
-   * <code>string senderName = 2;</code>
-   * @return The bytes for senderName.
+   * <code>string partnerName = 2;</code>
+   * @return The bytes for partnerName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getSenderNameBytes() {
-    java.lang.Object ref = senderName_;
+      getPartnerNameBytes() {
+    java.lang.Object ref = partnerName_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      senderName_ = b;
+      partnerName_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -135,11 +135,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipientName_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, recipientName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestSenderName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, requestSenderName_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(senderName_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, senderName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(partnerName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, partnerName_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -150,11 +150,11 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(recipientName_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, recipientName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestSenderName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, requestSenderName_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(senderName_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, senderName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(partnerName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, partnerName_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -166,15 +166,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof ro.tuc.chat.proto_gen.ChatMessageRequest)) {
+    if (!(obj instanceof ro.tuc.chat.proto_gen.UpdateRequest)) {
       return super.equals(obj);
     }
-    ro.tuc.chat.proto_gen.ChatMessageRequest other = (ro.tuc.chat.proto_gen.ChatMessageRequest) obj;
+    ro.tuc.chat.proto_gen.UpdateRequest other = (ro.tuc.chat.proto_gen.UpdateRequest) obj;
 
-    if (!getRecipientName()
-        .equals(other.getRecipientName())) return false;
-    if (!getSenderName()
-        .equals(other.getSenderName())) return false;
+    if (!getRequestSenderName()
+        .equals(other.getRequestSenderName())) return false;
+    if (!getPartnerName()
+        .equals(other.getPartnerName())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -186,78 +186,78 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + RECIPIENTNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getRecipientName().hashCode();
-    hash = (37 * hash) + SENDERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getSenderName().hashCode();
+    hash = (37 * hash) + REQUESTSENDERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getRequestSenderName().hashCode();
+    hash = (37 * hash) + PARTNERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getPartnerName().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(byte[] data)
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(java.io.InputStream input)
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseDelimitedFrom(java.io.InputStream input)
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseDelimitedFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -270,7 +270,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(ro.tuc.chat.proto_gen.ChatMessageRequest prototype) {
+  public static Builder newBuilder(ro.tuc.chat.proto_gen.UpdateRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -286,26 +286,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ro.tuc.chat.proto_gen.ChatMessageRequest}
+   * Protobuf type {@code ro.tuc.chat.proto_gen.UpdateRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ro.tuc.chat.proto_gen.ChatMessageRequest)
-      ro.tuc.chat.proto_gen.ChatMessageRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:ro.tuc.chat.proto_gen.UpdateRequest)
+      ro.tuc.chat.proto_gen.UpdateRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_descriptor;
+      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_fieldAccessorTable
+      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ro.tuc.chat.proto_gen.ChatMessageRequest.class, ro.tuc.chat.proto_gen.ChatMessageRequest.Builder.class);
+              ro.tuc.chat.proto_gen.UpdateRequest.class, ro.tuc.chat.proto_gen.UpdateRequest.Builder.class);
     }
 
-    // Construct using ro.tuc.chat.proto_gen.ChatMessageRequest.newBuilder()
+    // Construct using ro.tuc.chat.proto_gen.UpdateRequest.newBuilder()
     private Builder() {
 
     }
@@ -318,9 +318,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      recipientName_ = "";
+      requestSenderName_ = "";
 
-      senderName_ = "";
+      partnerName_ = "";
 
       return this;
     }
@@ -328,17 +328,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_ChatMessageRequest_descriptor;
+      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
     }
 
     @java.lang.Override
-    public ro.tuc.chat.proto_gen.ChatMessageRequest getDefaultInstanceForType() {
-      return ro.tuc.chat.proto_gen.ChatMessageRequest.getDefaultInstance();
+    public ro.tuc.chat.proto_gen.UpdateRequest getDefaultInstanceForType() {
+      return ro.tuc.chat.proto_gen.UpdateRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public ro.tuc.chat.proto_gen.ChatMessageRequest build() {
-      ro.tuc.chat.proto_gen.ChatMessageRequest result = buildPartial();
+    public ro.tuc.chat.proto_gen.UpdateRequest build() {
+      ro.tuc.chat.proto_gen.UpdateRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -346,10 +346,10 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public ro.tuc.chat.proto_gen.ChatMessageRequest buildPartial() {
-      ro.tuc.chat.proto_gen.ChatMessageRequest result = new ro.tuc.chat.proto_gen.ChatMessageRequest(this);
-      result.recipientName_ = recipientName_;
-      result.senderName_ = senderName_;
+    public ro.tuc.chat.proto_gen.UpdateRequest buildPartial() {
+      ro.tuc.chat.proto_gen.UpdateRequest result = new ro.tuc.chat.proto_gen.UpdateRequest(this);
+      result.requestSenderName_ = requestSenderName_;
+      result.partnerName_ = partnerName_;
       onBuilt();
       return result;
     }
@@ -388,22 +388,22 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof ro.tuc.chat.proto_gen.ChatMessageRequest) {
-        return mergeFrom((ro.tuc.chat.proto_gen.ChatMessageRequest)other);
+      if (other instanceof ro.tuc.chat.proto_gen.UpdateRequest) {
+        return mergeFrom((ro.tuc.chat.proto_gen.UpdateRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(ro.tuc.chat.proto_gen.ChatMessageRequest other) {
-      if (other == ro.tuc.chat.proto_gen.ChatMessageRequest.getDefaultInstance()) return this;
-      if (!other.getRecipientName().isEmpty()) {
-        recipientName_ = other.recipientName_;
+    public Builder mergeFrom(ro.tuc.chat.proto_gen.UpdateRequest other) {
+      if (other == ro.tuc.chat.proto_gen.UpdateRequest.getDefaultInstance()) return this;
+      if (!other.getRequestSenderName().isEmpty()) {
+        requestSenderName_ = other.requestSenderName_;
         onChanged();
       }
-      if (!other.getSenderName().isEmpty()) {
-        senderName_ = other.senderName_;
+      if (!other.getPartnerName().isEmpty()) {
+        partnerName_ = other.partnerName_;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -433,12 +433,12 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              recipientName_ = input.readStringRequireUtf8();
+              requestSenderName_ = input.readStringRequireUtf8();
 
               break;
             } // case 10
             case 18: {
-              senderName_ = input.readStringRequireUtf8();
+              partnerName_ = input.readStringRequireUtf8();
 
               break;
             } // case 18
@@ -458,154 +458,154 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object recipientName_ = "";
+    private java.lang.Object requestSenderName_ = "";
     /**
-     * <code>string recipientName = 1;</code>
-     * @return The recipientName.
+     * <code>string requestSenderName = 1;</code>
+     * @return The requestSenderName.
      */
-    public java.lang.String getRecipientName() {
-      java.lang.Object ref = recipientName_;
+    public java.lang.String getRequestSenderName() {
+      java.lang.Object ref = requestSenderName_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        recipientName_ = s;
+        requestSenderName_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string recipientName = 1;</code>
-     * @return The bytes for recipientName.
+     * <code>string requestSenderName = 1;</code>
+     * @return The bytes for requestSenderName.
      */
     public com.google.protobuf.ByteString
-        getRecipientNameBytes() {
-      java.lang.Object ref = recipientName_;
+        getRequestSenderNameBytes() {
+      java.lang.Object ref = requestSenderName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        recipientName_ = b;
+        requestSenderName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string recipientName = 1;</code>
-     * @param value The recipientName to set.
+     * <code>string requestSenderName = 1;</code>
+     * @param value The requestSenderName to set.
      * @return This builder for chaining.
      */
-    public Builder setRecipientName(
+    public Builder setRequestSenderName(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      recipientName_ = value;
+      requestSenderName_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string recipientName = 1;</code>
+     * <code>string requestSenderName = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearRecipientName() {
+    public Builder clearRequestSenderName() {
       
-      recipientName_ = getDefaultInstance().getRecipientName();
+      requestSenderName_ = getDefaultInstance().getRequestSenderName();
       onChanged();
       return this;
     }
     /**
-     * <code>string recipientName = 1;</code>
-     * @param value The bytes for recipientName to set.
+     * <code>string requestSenderName = 1;</code>
+     * @param value The bytes for requestSenderName to set.
      * @return This builder for chaining.
      */
-    public Builder setRecipientNameBytes(
+    public Builder setRequestSenderNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      recipientName_ = value;
+      requestSenderName_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object senderName_ = "";
+    private java.lang.Object partnerName_ = "";
     /**
-     * <code>string senderName = 2;</code>
-     * @return The senderName.
+     * <code>string partnerName = 2;</code>
+     * @return The partnerName.
      */
-    public java.lang.String getSenderName() {
-      java.lang.Object ref = senderName_;
+    public java.lang.String getPartnerName() {
+      java.lang.Object ref = partnerName_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        senderName_ = s;
+        partnerName_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string senderName = 2;</code>
-     * @return The bytes for senderName.
+     * <code>string partnerName = 2;</code>
+     * @return The bytes for partnerName.
      */
     public com.google.protobuf.ByteString
-        getSenderNameBytes() {
-      java.lang.Object ref = senderName_;
+        getPartnerNameBytes() {
+      java.lang.Object ref = partnerName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        senderName_ = b;
+        partnerName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string senderName = 2;</code>
-     * @param value The senderName to set.
+     * <code>string partnerName = 2;</code>
+     * @param value The partnerName to set.
      * @return This builder for chaining.
      */
-    public Builder setSenderName(
+    public Builder setPartnerName(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      senderName_ = value;
+      partnerName_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string senderName = 2;</code>
+     * <code>string partnerName = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearSenderName() {
+    public Builder clearPartnerName() {
       
-      senderName_ = getDefaultInstance().getSenderName();
+      partnerName_ = getDefaultInstance().getPartnerName();
       onChanged();
       return this;
     }
     /**
-     * <code>string senderName = 2;</code>
-     * @param value The bytes for senderName to set.
+     * <code>string partnerName = 2;</code>
+     * @param value The bytes for partnerName to set.
      * @return This builder for chaining.
      */
-    public Builder setSenderNameBytes(
+    public Builder setPartnerNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      senderName_ = value;
+      partnerName_ = value;
       onChanged();
       return this;
     }
@@ -622,23 +622,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ro.tuc.chat.proto_gen.ChatMessageRequest)
+    // @@protoc_insertion_point(builder_scope:ro.tuc.chat.proto_gen.UpdateRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:ro.tuc.chat.proto_gen.ChatMessageRequest)
-  private static final ro.tuc.chat.proto_gen.ChatMessageRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:ro.tuc.chat.proto_gen.UpdateRequest)
+  private static final ro.tuc.chat.proto_gen.UpdateRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new ro.tuc.chat.proto_gen.ChatMessageRequest();
+    DEFAULT_INSTANCE = new ro.tuc.chat.proto_gen.UpdateRequest();
   }
 
-  public static ro.tuc.chat.proto_gen.ChatMessageRequest getDefaultInstance() {
+  public static ro.tuc.chat.proto_gen.UpdateRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ChatMessageRequest>
-      PARSER = new com.google.protobuf.AbstractParser<ChatMessageRequest>() {
+  private static final com.google.protobuf.Parser<UpdateRequest>
+      PARSER = new com.google.protobuf.AbstractParser<UpdateRequest>() {
     @java.lang.Override
-    public ChatMessageRequest parsePartialFrom(
+    public UpdateRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -657,17 +657,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<ChatMessageRequest> parser() {
+  public static com.google.protobuf.Parser<UpdateRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ChatMessageRequest> getParserForType() {
+  public com.google.protobuf.Parser<UpdateRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public ro.tuc.chat.proto_gen.ChatMessageRequest getDefaultInstanceForType() {
+  public ro.tuc.chat.proto_gen.UpdateRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
