@@ -18,16 +18,4 @@ public interface UpdateRequestOrBuilder extends
    */
   com.google.protobuf.ByteString
       getRequestSenderNameBytes();
-
-  /**
-   * <code>string partnerName = 2;</code>
-   * @return The partnerName.
-   */
-  java.lang.String getPartnerName();
-  /**
-   * <code>string partnerName = 2;</code>
-   * @return The bytes for partnerName.
-   */
-  com.google.protobuf.ByteString
-      getPartnerNameBytes();
 }

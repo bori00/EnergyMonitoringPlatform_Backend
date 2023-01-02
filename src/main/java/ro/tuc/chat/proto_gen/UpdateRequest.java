@@ -17,7 +17,6 @@ private static final long serialVersionUID = 0L;
   }
   private UpdateRequest() {
     requestSenderName_ = "";
-    partnerName_ = "";
   }
 
   @java.lang.Override
@@ -83,44 +82,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int PARTNERNAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object partnerName_;
-  /**
-   * <code>string partnerName = 2;</code>
-   * @return The partnerName.
-   */
-  @java.lang.Override
-  public java.lang.String getPartnerName() {
-    java.lang.Object ref = partnerName_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      partnerName_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string partnerName = 2;</code>
-   * @return The bytes for partnerName.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getPartnerNameBytes() {
-    java.lang.Object ref = partnerName_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      partnerName_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -138,9 +99,6 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestSenderName_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, requestSenderName_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(partnerName_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, partnerName_);
-    }
     getUnknownFields().writeTo(output);
   }
 
@@ -152,9 +110,6 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestSenderName_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, requestSenderName_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(partnerName_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, partnerName_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -173,8 +128,6 @@ private static final long serialVersionUID = 0L;
 
     if (!getRequestSenderName()
         .equals(other.getRequestSenderName())) return false;
-    if (!getPartnerName()
-        .equals(other.getPartnerName())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -188,8 +141,6 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + REQUESTSENDERNAME_FIELD_NUMBER;
     hash = (53 * hash) + getRequestSenderName().hashCode();
-    hash = (37 * hash) + PARTNERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getPartnerName().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -320,8 +271,6 @@ private static final long serialVersionUID = 0L;
       super.clear();
       requestSenderName_ = "";
 
-      partnerName_ = "";
-
       return this;
     }
 
@@ -349,7 +298,6 @@ private static final long serialVersionUID = 0L;
     public ro.tuc.chat.proto_gen.UpdateRequest buildPartial() {
       ro.tuc.chat.proto_gen.UpdateRequest result = new ro.tuc.chat.proto_gen.UpdateRequest(this);
       result.requestSenderName_ = requestSenderName_;
-      result.partnerName_ = partnerName_;
       onBuilt();
       return result;
     }
@@ -402,10 +350,6 @@ private static final long serialVersionUID = 0L;
         requestSenderName_ = other.requestSenderName_;
         onChanged();
       }
-      if (!other.getPartnerName().isEmpty()) {
-        partnerName_ = other.partnerName_;
-        onChanged();
-      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -437,11 +381,6 @@ private static final long serialVersionUID = 0L;
 
               break;
             } // case 10
-            case 18: {
-              partnerName_ = input.readStringRequireUtf8();
-
-              break;
-            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -530,82 +469,6 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       requestSenderName_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object partnerName_ = "";
-    /**
-     * <code>string partnerName = 2;</code>
-     * @return The partnerName.
-     */
-    public java.lang.String getPartnerName() {
-      java.lang.Object ref = partnerName_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        partnerName_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string partnerName = 2;</code>
-     * @return The bytes for partnerName.
-     */
-    public com.google.protobuf.ByteString
-        getPartnerNameBytes() {
-      java.lang.Object ref = partnerName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        partnerName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string partnerName = 2;</code>
-     * @param value The partnerName to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPartnerName(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      partnerName_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string partnerName = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearPartnerName() {
-      
-      partnerName_ = getDefaultInstance().getPartnerName();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string partnerName = 2;</code>
-     * @param value The bytes for partnerName to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPartnerNameBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      partnerName_ = value;
       onChanged();
       return this;
     }

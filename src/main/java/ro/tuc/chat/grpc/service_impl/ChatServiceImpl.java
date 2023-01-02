@@ -27,27 +27,27 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     private static final List<OpenSessionRequest> unhandledOpenSessionRequests = new ArrayList<>();
 
-    private static final Map<UpdateRequest, ChatReaderObserver> chatReaderObservers =
-            new HashMap<>();
+    private static final Map<String, ChatReaderObserver> chatReaderObservers =
+            new HashMap<>(); //chat reader name to observers
 
 //    Lock chatReaderObserversLock = new ReentrantLock();
 
-    public void notifyAboutClosure(String recipientName, String senderName) {
-        UpdateRequest partnerRequest =
-                UpdateRequest.newBuilder()
-                        .setRequestSenderName(senderName)
-                        .setPartnerName(recipientName)
-                        .build();
-
-        if (chatReaderObservers.containsKey(partnerRequest)) {
-            chatReaderObservers.get(partnerRequest).closeObservers();
-        }
+    public void notifyAboutClosure(String readerName) {
+//        UpdateRequest partnerRequest =
+//                UpdateRequest.newBuilder()
+//                        .setRequestSenderName(senderName)
+//                        .setPartnerName(recipientName)
+//                        .build();
+//
+//        if (chatReaderObservers.containsKey(partnerRequest)) {
+//            chatReaderObservers.get(partnerRequest).closeObservers();
+//        }
     }
 
     private void printChatReaderObservers() {
         StringBuilder status = new StringBuilder("Available Readers: ");
-        for (UpdateRequest request : chatReaderObservers.keySet()) {
-            status.append("Available Reader: ").append(chatReaderObservers.get(request)).append("\n");
+        for (String readerName : chatReaderObservers.keySet()) {
+            status.append("Available Reader: ").append(chatReaderObservers.get(readerName)).append("\n");
         }
         LOGGER.info(status.toString());
     }
@@ -55,13 +55,10 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
     @Override
     public void sendMessage(ChatMessage request, StreamObserver<SendMessageStatus> responseObserver) {
         LOGGER.info("Server received NEW MESSAGE: " + request);
-        UpdateRequest recipientRequest =
-                UpdateRequest.newBuilder()
-                        .setRequestSenderName(request.getToUserName())
-                        .setPartnerName(request.getFromUserName())
-                        .build();
-        if (chatReaderObservers.containsKey(recipientRequest) &&
-            chatReaderObservers.get(recipientRequest).getIncomingMessageStreamObserver() != null) {
+        String recipientName = request.getToUserName();
+
+        if (chatReaderObservers.containsKey(recipientName) &&
+            chatReaderObservers.get(recipientName).getIncomingMessageStreamObserver() != null) {
             ChatMessage newMessage =
                     ChatMessage.newBuilder()
                             .setFromUserName(request.getFromUserName())
@@ -69,7 +66,7 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
                             .setMessage(request.getMessage())
                             .setTimeStamp(LocalDateTime.now().toString())
                             .build();
-            chatReaderObservers.get(recipientRequest).getIncomingMessageStreamObserver().onNext(newMessage);
+            chatReaderObservers.get(recipientName).getIncomingMessageStreamObserver().onNext(newMessage);
 
             responseObserver.onNext(SendMessageStatus.newBuilder().setSentMessage(newMessage).build());
             responseObserver.onCompleted();
@@ -89,16 +86,15 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     @Override
     public void receiveMessage(UpdateRequest request, StreamObserver<ChatMessage> responseObserver) {
-        if (chatReaderObservers.containsKey(request)) {
-            chatReaderObservers.get(request).setIncomingMessageStreamObserver(responseObserver);
+        if (chatReaderObservers.containsKey(request.getRequestSenderName())) {
+            chatReaderObservers.get(request.getRequestSenderName()).setIncomingMessageStreamObserver(responseObserver);
         } else {
             LOGGER.info("Added new ChatReaderObserver for key: " + request);
             ChatReaderObserver observer = new ChatReaderObserver();
             observer.setIncomingMessageStreamObserver(responseObserver);
             observer.setOnClosureCallback(this::notifyAboutClosure);
             observer.setReaderUserName(request.getRequestSenderName());
-            observer.setSenderUserName(request.getPartnerName());
-            chatReaderObservers.put(request, observer);
+            chatReaderObservers.put(request.getRequestSenderName(), observer);
         }
         printChatReaderObservers();
     }
@@ -178,17 +174,12 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     @Override
     public void sendMessageReadingStatusUpdate(MessageReadingStatus request, StreamObserver<Status> responseObserver) {
-        UpdateRequest recipientRequest =
-                UpdateRequest.newBuilder()
-                        .setRequestSenderName(request.getSenderUserName())
-                        .setPartnerName(request.getReaderUserName())
-                        .build();
 
         LOGGER.info("Server received ReadingStatusUpdate " + request);
 
-        if (chatReaderObservers.containsKey(recipientRequest) &&
-                chatReaderObservers.get(recipientRequest).getMessageReadingStatusStreamObserver() != null) {
-            chatReaderObservers.get(recipientRequest).getMessageReadingStatusStreamObserver().onNext(request);
+        if (chatReaderObservers.containsKey(request.getSenderUserName()) &&
+                chatReaderObservers.get(request.getSenderUserName()).getMessageReadingStatusStreamObserver() != null) {
+            chatReaderObservers.get(request.getSenderUserName()).getMessageReadingStatusStreamObserver().onNext(request);
 
             responseObserver.onNext(Status.newBuilder().setSuccessful(true).build());
             responseObserver.onCompleted();
@@ -208,16 +199,15 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
     public void receiveMessageReadingStatusUpdates(UpdateRequest request,
                                                    StreamObserver<MessageReadingStatus> responseObserver) {
 //        chatReaderObserversLock.lock();
-        if (chatReaderObservers.containsKey(request)) {
-            chatReaderObservers.get(request).setMessageReadingStatusStreamObserver(responseObserver);
+        if (chatReaderObservers.containsKey(request.getRequestSenderName())) {
+            chatReaderObservers.get(request.getRequestSenderName()).setMessageReadingStatusStreamObserver(responseObserver);
         } else {
             LOGGER.info("Added new ChatReaderObserver for key: " + request);
             ChatReaderObserver observer = new ChatReaderObserver();
             observer.setMessageReadingStatusStreamObserver(responseObserver);
             observer.setOnClosureCallback(this::notifyAboutClosure);
             observer.setReaderUserName(request.getRequestSenderName());
-            observer.setSenderUserName(request.getPartnerName());
-            chatReaderObservers.put(request, observer);
+            chatReaderObservers.put(request.getRequestSenderName(), observer);
         }
 //        chatReaderObserversLock.unlock();
 //        printChatReaderObservers();
@@ -225,17 +215,11 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     @Override
     public void sendMessageTypingStatusUpdate(MessageTypingStatus request, StreamObserver<Status> responseObserver) {
-        UpdateRequest recipientRequest =
-                UpdateRequest.newBuilder()
-                        .setRequestSenderName(request.getRecipientUserName())
-                        .setPartnerName(request.getTyperUserName())
-                        .build();
-
         LOGGER.info("Server received TypingStatusUpdate " + request);
 
-        if (chatReaderObservers.containsKey(recipientRequest) &&
-                chatReaderObservers.get(recipientRequest).getMessageTypingStatusStreamObserver() != null) {
-            chatReaderObservers.get(recipientRequest).getMessageTypingStatusStreamObserver().onNext(request);
+        if (chatReaderObservers.containsKey(request.getRecipientUserName()) &&
+                chatReaderObservers.get(request.getRecipientUserName()).getMessageTypingStatusStreamObserver() != null) {
+            chatReaderObservers.get(request.getRecipientUserName()).getMessageTypingStatusStreamObserver().onNext(request);
 
             responseObserver.onNext(Status.newBuilder().setSuccessful(true).build());
             responseObserver.onCompleted();
@@ -254,16 +238,15 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
     @Override
     public void receiveMessageTypingStatusUpdate(UpdateRequest request,
                                                  StreamObserver<MessageTypingStatus> responseObserver) {
-        if (chatReaderObservers.containsKey(request)) {
-            chatReaderObservers.get(request).setMessageTypingStatusStreamObserver(responseObserver);
+        if (chatReaderObservers.containsKey(request.getRequestSenderName())) {
+            chatReaderObservers.get(request.getRequestSenderName()).setMessageTypingStatusStreamObserver(responseObserver);
         } else {
             LOGGER.info("Added new ChatReaderObserver for key: " + request);
             ChatReaderObserver observer = new ChatReaderObserver();
             observer.setMessageTypingStatusStreamObserver(responseObserver);
             observer.setOnClosureCallback(this::notifyAboutClosure);
             observer.setReaderUserName(request.getRequestSenderName());
-            observer.setSenderUserName(request.getPartnerName());
-            chatReaderObservers.put(request, observer);
+            chatReaderObservers.put(request.getRequestSenderName(), observer);
         }
     }
 }

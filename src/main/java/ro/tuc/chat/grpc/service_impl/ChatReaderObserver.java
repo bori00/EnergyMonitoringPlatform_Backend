@@ -21,15 +21,13 @@ import java.util.function.Consumer;
 public class ChatReaderObserver {
     private String readerUserName;
 
-    private String senderUserName;
-
     private StreamObserver<ChatMessage> incomingMessageStreamObserver;
 
     private StreamObserver<MessageReadingStatus> messageReadingStatusStreamObserver;
 
     private StreamObserver<MessageTypingStatus> messageTypingStatusStreamObserver;
 
-    private BiConsumer<String, String> onClosureCallback;
+    private Consumer<String> onClosureCallback;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientObserver.class);
 
@@ -83,7 +81,7 @@ public class ChatReaderObserver {
         }
     }
 
-    public void setOnClosureCallback(BiConsumer<String, String> onClosureCallback) {
+    public void setOnClosureCallback(Consumer<String> onClosureCallback) {
         this.onClosureCallback = onClosureCallback;
     }
 
@@ -91,19 +89,14 @@ public class ChatReaderObserver {
         this.readerUserName = readerUserName;
     }
 
-    public void setSenderUserName(String senderUserName) {
-        this.senderUserName = senderUserName;
-    }
-
     private void notifyServiceAboutClosure() {
-        onClosureCallback.accept(readerUserName, senderUserName);
+        onClosureCallback.accept(readerUserName);
     }
 
     @Override
     public String toString() {
         return "ChatReaderObserver{" +
                 "readerUserName='" + readerUserName + '\'' +
-                ", senderUserName='" + senderUserName + '\'' +
                 ", incomingMessageStreamObserver=" + incomingMessageStreamObserver +
                 ", messageReadingStatusStreamObserver=" + messageReadingStatusStreamObserver +
                 ", messageTypingStatusStreamObserver=" + messageTypingStatusStreamObserver +

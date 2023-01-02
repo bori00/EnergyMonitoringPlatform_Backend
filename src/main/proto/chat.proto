@@ -10,9 +10,10 @@ message ChatMessage {
   string timeStamp = 4;
 }
 
-message ChatMessageRequest {
-  string recipientName = 1;
-  string senderName = 2;
+message UpdateRequest {
+  reserved 2;
+
+  string requestSenderName = 1;
 }
 
 message OpenSessionRequest {
@@ -25,13 +26,15 @@ message OpenSessionRequestResponse {
 }
 
 message MessageReadingStatus {
-  string fromUserName = 1;
-  string readMessagesUntil = 2;
+  string readerUserName = 1;
+  string senderUserName = 2;
+  string readMessagesUntil = 3;
 }
 
 message MessageTypingStatus {
-  string fromUserName = 1;
-  bool typing = 2;
+  string typerUserName = 1;
+  string recipientUserName = 2;
+  bool typing = 3;
 }
 
 message Status {
@@ -49,13 +52,20 @@ message SendMessageStatus {
 message Empty {}
 
 service ChatService {
+  // message sending and receiving
   rpc sendMessage(ChatMessage) returns (SendMessageStatus) {}
-  rpc receiveMessage(ChatMessageRequest) returns (stream ChatMessage) {}
+  rpc receiveMessage(UpdateRequest) returns (stream ChatMessage) {}
+
+  // opening a session
   rpc sendOpenSessionRequest(OpenSessionRequest) returns (OpenSessionRequestResponse) {}
   rpc receiveOpenSessionRequest(Empty) returns (stream OpenSessionRequest) {}
   rpc acceptOpenSessionRequest(OpenSessionRequestResponse) returns (Status) {}
+
+  // marking messages that are read
   rpc sendMessageReadingStatusUpdate(MessageReadingStatus) returns (Status) {}
-  rpc receiveMessageReadingStatusUpdates(Empty) returns (stream MessageReadingStatus) {}
+  rpc receiveMessageReadingStatusUpdates(UpdateRequest) returns (stream MessageReadingStatus) {}
+
+  // mark typing
   rpc sendMessageTypingStatusUpdate(MessageTypingStatus) returns (Status) {}
-  rpc receiveMessageTypingStatusUpdate(Empty) returns (stream MessageTypingStatus) {}
+  rpc receiveMessageTypingStatusUpdate(UpdateRequest) returns (stream MessageTypingStatus) {}
 }
