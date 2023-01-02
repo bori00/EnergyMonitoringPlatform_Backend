@@ -2,8 +2,32 @@ version: '3.1'
 services:
   backend:
     container_name: energy-utility-backend-container
-    image: containerregistryborifazakas30411.azurecr.io/energy-utility-backend-image:latest
+    image: energy-utility-backend
     domainname: "energy-utility-backend-bori00"
     build: ./
     ports:
       - "8080:8080"
+      - "9090:9090"
+    networks:
+      - order-pgsql
+    depends_on:
+      - db
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: db
+    networks:
+      - order-pgsql
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=db-password11
+    volumes:
+      - database-data:/var/opt/mssql
+
+networks:
+  order-pgsql:
+
+volumes:
+  database-data:

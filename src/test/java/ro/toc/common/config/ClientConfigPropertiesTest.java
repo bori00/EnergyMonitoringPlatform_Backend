@@ -25,6 +25,6 @@ class ClientConfigPropertiesTest {
 
     @org.junit.jupiter.api.Test
     void getClientUrl() {
-        assertEquals("http://energy-utility-bori00.germanywestcentral.azurecontainer.io", configProperties.getClientUrl());
+        assertEquals("http://localhost", configProperties.getClientUrl());
     }
 }

@@ -93,6 +93,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -231,12 +232,12 @@
             <version>1.51.0</version>
         </dependency>
 
-        <dependency> <!-- necessary for Java 9+ -->
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>annotations-api</artifactId>
-            <version>6.0.53</version>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency> &lt;!&ndash; necessary for Java 9+ &ndash;&gt;-->
+<!--            <groupId>org.apache.tomcat</groupId>-->
+<!--            <artifactId>annotations-api</artifactId>-->
+<!--            <version>6.0.53</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.grpc/grpc-netty-shaded -->
         <dependency>
