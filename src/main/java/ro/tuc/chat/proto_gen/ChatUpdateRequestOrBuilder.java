@@ -3,8 +3,8 @@
 
 package ro.tuc.chat.proto_gen;
 
-public interface UpdateRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ro.tuc.chat.proto_gen.UpdateRequest)
+public interface ChatUpdateRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:ro.tuc.chat.proto_gen.ChatUpdateRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

@@ -4,26 +4,26 @@
 package ro.tuc.chat.proto_gen;
 
 /**
- * Protobuf type {@code ro.tuc.chat.proto_gen.UpdateRequest}
+ * Protobuf type {@code ro.tuc.chat.proto_gen.SessionClosedUpdate}
  */
-public final class UpdateRequest extends
+public final class SessionClosedUpdate extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ro.tuc.chat.proto_gen.UpdateRequest)
-    UpdateRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:ro.tuc.chat.proto_gen.SessionClosedUpdate)
+    SessionClosedUpdateOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use UpdateRequest.newBuilder() to construct.
-  private UpdateRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use SessionClosedUpdate.newBuilder() to construct.
+  private SessionClosedUpdate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private UpdateRequest() {
-    requestSenderName_ = "";
+  private SessionClosedUpdate() {
+    partnerName_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new UpdateRequest();
+    return new SessionClosedUpdate();
   }
 
   @java.lang.Override
@@ -33,49 +33,49 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
+    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_SessionClosedUpdate_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_fieldAccessorTable
+    return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_SessionClosedUpdate_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            ro.tuc.chat.proto_gen.UpdateRequest.class, ro.tuc.chat.proto_gen.UpdateRequest.Builder.class);
+            ro.tuc.chat.proto_gen.SessionClosedUpdate.class, ro.tuc.chat.proto_gen.SessionClosedUpdate.Builder.class);
   }
 
-  public static final int REQUESTSENDERNAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object requestSenderName_;
+  public static final int PARTNERNAME_FIELD_NUMBER = 1;
+  private volatile java.lang.Object partnerName_;
   /**
-   * <code>string requestSenderName = 1;</code>
-   * @return The requestSenderName.
+   * <code>string partnerName = 1;</code>
+   * @return The partnerName.
    */
   @java.lang.Override
-  public java.lang.String getRequestSenderName() {
-    java.lang.Object ref = requestSenderName_;
+  public java.lang.String getPartnerName() {
+    java.lang.Object ref = partnerName_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      requestSenderName_ = s;
+      partnerName_ = s;
       return s;
     }
   }
   /**
-   * <code>string requestSenderName = 1;</code>
-   * @return The bytes for requestSenderName.
+   * <code>string partnerName = 1;</code>
+   * @return The bytes for partnerName.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getRequestSenderNameBytes() {
-    java.lang.Object ref = requestSenderName_;
+      getPartnerNameBytes() {
+    java.lang.Object ref = partnerName_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      requestSenderName_ = b;
+      partnerName_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -96,8 +96,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestSenderName_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, requestSenderName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(partnerName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, partnerName_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -108,8 +108,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(requestSenderName_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, requestSenderName_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(partnerName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, partnerName_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -121,13 +121,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof ro.tuc.chat.proto_gen.UpdateRequest)) {
+    if (!(obj instanceof ro.tuc.chat.proto_gen.SessionClosedUpdate)) {
       return super.equals(obj);
     }
-    ro.tuc.chat.proto_gen.UpdateRequest other = (ro.tuc.chat.proto_gen.UpdateRequest) obj;
+    ro.tuc.chat.proto_gen.SessionClosedUpdate other = (ro.tuc.chat.proto_gen.SessionClosedUpdate) obj;
 
-    if (!getRequestSenderName()
-        .equals(other.getRequestSenderName())) return false;
+    if (!getPartnerName()
+        .equals(other.getPartnerName())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -139,76 +139,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + REQUESTSENDERNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getRequestSenderName().hashCode();
+    hash = (37 * hash) + PARTNERNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getPartnerName().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(byte[] data)
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(java.io.InputStream input)
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseDelimitedFrom(java.io.InputStream input)
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseDelimitedFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ro.tuc.chat.proto_gen.UpdateRequest parseFrom(
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -221,7 +221,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(ro.tuc.chat.proto_gen.UpdateRequest prototype) {
+  public static Builder newBuilder(ro.tuc.chat.proto_gen.SessionClosedUpdate prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -237,26 +237,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ro.tuc.chat.proto_gen.UpdateRequest}
+   * Protobuf type {@code ro.tuc.chat.proto_gen.SessionClosedUpdate}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ro.tuc.chat.proto_gen.UpdateRequest)
-      ro.tuc.chat.proto_gen.UpdateRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:ro.tuc.chat.proto_gen.SessionClosedUpdate)
+      ro.tuc.chat.proto_gen.SessionClosedUpdateOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
+      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_SessionClosedUpdate_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_fieldAccessorTable
+      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_SessionClosedUpdate_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ro.tuc.chat.proto_gen.UpdateRequest.class, ro.tuc.chat.proto_gen.UpdateRequest.Builder.class);
+              ro.tuc.chat.proto_gen.SessionClosedUpdate.class, ro.tuc.chat.proto_gen.SessionClosedUpdate.Builder.class);
     }
 
-    // Construct using ro.tuc.chat.proto_gen.UpdateRequest.newBuilder()
+    // Construct using ro.tuc.chat.proto_gen.SessionClosedUpdate.newBuilder()
     private Builder() {
 
     }
@@ -269,7 +269,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      requestSenderName_ = "";
+      partnerName_ = "";
 
       return this;
     }
@@ -277,17 +277,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_UpdateRequest_descriptor;
+      return ro.tuc.chat.proto_gen.Chat.internal_static_ro_tuc_chat_proto_gen_SessionClosedUpdate_descriptor;
     }
 
     @java.lang.Override
-    public ro.tuc.chat.proto_gen.UpdateRequest getDefaultInstanceForType() {
-      return ro.tuc.chat.proto_gen.UpdateRequest.getDefaultInstance();
+    public ro.tuc.chat.proto_gen.SessionClosedUpdate getDefaultInstanceForType() {
+      return ro.tuc.chat.proto_gen.SessionClosedUpdate.getDefaultInstance();
     }
 
     @java.lang.Override
-    public ro.tuc.chat.proto_gen.UpdateRequest build() {
-      ro.tuc.chat.proto_gen.UpdateRequest result = buildPartial();
+    public ro.tuc.chat.proto_gen.SessionClosedUpdate build() {
+      ro.tuc.chat.proto_gen.SessionClosedUpdate result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -295,9 +295,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public ro.tuc.chat.proto_gen.UpdateRequest buildPartial() {
-      ro.tuc.chat.proto_gen.UpdateRequest result = new ro.tuc.chat.proto_gen.UpdateRequest(this);
-      result.requestSenderName_ = requestSenderName_;
+    public ro.tuc.chat.proto_gen.SessionClosedUpdate buildPartial() {
+      ro.tuc.chat.proto_gen.SessionClosedUpdate result = new ro.tuc.chat.proto_gen.SessionClosedUpdate(this);
+      result.partnerName_ = partnerName_;
       onBuilt();
       return result;
     }
@@ -336,18 +336,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof ro.tuc.chat.proto_gen.UpdateRequest) {
-        return mergeFrom((ro.tuc.chat.proto_gen.UpdateRequest)other);
+      if (other instanceof ro.tuc.chat.proto_gen.SessionClosedUpdate) {
+        return mergeFrom((ro.tuc.chat.proto_gen.SessionClosedUpdate)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(ro.tuc.chat.proto_gen.UpdateRequest other) {
-      if (other == ro.tuc.chat.proto_gen.UpdateRequest.getDefaultInstance()) return this;
-      if (!other.getRequestSenderName().isEmpty()) {
-        requestSenderName_ = other.requestSenderName_;
+    public Builder mergeFrom(ro.tuc.chat.proto_gen.SessionClosedUpdate other) {
+      if (other == ro.tuc.chat.proto_gen.SessionClosedUpdate.getDefaultInstance()) return this;
+      if (!other.getPartnerName().isEmpty()) {
+        partnerName_ = other.partnerName_;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
@@ -377,7 +377,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 10: {
-              requestSenderName_ = input.readStringRequireUtf8();
+              partnerName_ = input.readStringRequireUtf8();
 
               break;
             } // case 10
@@ -397,78 +397,78 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object requestSenderName_ = "";
+    private java.lang.Object partnerName_ = "";
     /**
-     * <code>string requestSenderName = 1;</code>
-     * @return The requestSenderName.
+     * <code>string partnerName = 1;</code>
+     * @return The partnerName.
      */
-    public java.lang.String getRequestSenderName() {
-      java.lang.Object ref = requestSenderName_;
+    public java.lang.String getPartnerName() {
+      java.lang.Object ref = partnerName_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        requestSenderName_ = s;
+        partnerName_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string requestSenderName = 1;</code>
-     * @return The bytes for requestSenderName.
+     * <code>string partnerName = 1;</code>
+     * @return The bytes for partnerName.
      */
     public com.google.protobuf.ByteString
-        getRequestSenderNameBytes() {
-      java.lang.Object ref = requestSenderName_;
+        getPartnerNameBytes() {
+      java.lang.Object ref = partnerName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        requestSenderName_ = b;
+        partnerName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string requestSenderName = 1;</code>
-     * @param value The requestSenderName to set.
+     * <code>string partnerName = 1;</code>
+     * @param value The partnerName to set.
      * @return This builder for chaining.
      */
-    public Builder setRequestSenderName(
+    public Builder setPartnerName(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      requestSenderName_ = value;
+      partnerName_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string requestSenderName = 1;</code>
+     * <code>string partnerName = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearRequestSenderName() {
+    public Builder clearPartnerName() {
       
-      requestSenderName_ = getDefaultInstance().getRequestSenderName();
+      partnerName_ = getDefaultInstance().getPartnerName();
       onChanged();
       return this;
     }
     /**
-     * <code>string requestSenderName = 1;</code>
-     * @param value The bytes for requestSenderName to set.
+     * <code>string partnerName = 1;</code>
+     * @param value The bytes for partnerName to set.
      * @return This builder for chaining.
      */
-    public Builder setRequestSenderNameBytes(
+    public Builder setPartnerNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      requestSenderName_ = value;
+      partnerName_ = value;
       onChanged();
       return this;
     }
@@ -485,23 +485,23 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ro.tuc.chat.proto_gen.UpdateRequest)
+    // @@protoc_insertion_point(builder_scope:ro.tuc.chat.proto_gen.SessionClosedUpdate)
   }
 
-  // @@protoc_insertion_point(class_scope:ro.tuc.chat.proto_gen.UpdateRequest)
-  private static final ro.tuc.chat.proto_gen.UpdateRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:ro.tuc.chat.proto_gen.SessionClosedUpdate)
+  private static final ro.tuc.chat.proto_gen.SessionClosedUpdate DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new ro.tuc.chat.proto_gen.UpdateRequest();
+    DEFAULT_INSTANCE = new ro.tuc.chat.proto_gen.SessionClosedUpdate();
   }
 
-  public static ro.tuc.chat.proto_gen.UpdateRequest getDefaultInstance() {
+  public static ro.tuc.chat.proto_gen.SessionClosedUpdate getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<UpdateRequest>
-      PARSER = new com.google.protobuf.AbstractParser<UpdateRequest>() {
+  private static final com.google.protobuf.Parser<SessionClosedUpdate>
+      PARSER = new com.google.protobuf.AbstractParser<SessionClosedUpdate>() {
     @java.lang.Override
-    public UpdateRequest parsePartialFrom(
+    public SessionClosedUpdate parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -520,17 +520,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<UpdateRequest> parser() {
+  public static com.google.protobuf.Parser<SessionClosedUpdate> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<UpdateRequest> getParserForType() {
+  public com.google.protobuf.Parser<SessionClosedUpdate> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public ro.tuc.chat.proto_gen.UpdateRequest getDefaultInstanceForType() {
+  public ro.tuc.chat.proto_gen.SessionClosedUpdate getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

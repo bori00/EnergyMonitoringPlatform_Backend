@@ -21,64 +21,25 @@ import java.util.function.Consumer;
 public class ChatReaderObserver {
     private String readerUserName;
 
-    private StreamObserver<ChatMessage> incomingMessageStreamObserver;
-
-    private StreamObserver<MessageReadingStatus> messageReadingStatusStreamObserver;
-
-    private StreamObserver<MessageTypingStatus> messageTypingStatusStreamObserver;
+    private StreamObserver<ChatUpdate> observer;
 
     private Consumer<String> onClosureCallback;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ClientObserver.class);
 
-    public void setIncomingMessageStreamObserver(@NotNull StreamObserver<ChatMessage> incomingMessageStreamObserver) {
-        this.incomingMessageStreamObserver = incomingMessageStreamObserver;
+    public void setObserver(@NotNull StreamObserver<ChatUpdate> observer) {
+        this.observer = observer;
 
-        ServerCallStreamObserver<ChatMessage> handledObserver =
-                ((ServerCallStreamObserver<ChatMessage>) incomingMessageStreamObserver);
-        handledObserver.setOnCancelHandler(this::removeObservers);
-        handledObserver.setOnCloseHandler(this::removeObservers);
+        ServerCallStreamObserver<ChatUpdate> handledObserver =
+                ((ServerCallStreamObserver<ChatUpdate>) observer);
+        handledObserver.setOnCancelHandler(this::removeObserver);
+        handledObserver.setOnCloseHandler(this::removeObserver);
     }
 
-    public void setMessageReadingStatusStreamObserver(@NotNull StreamObserver<MessageReadingStatus> messageReadingStatusStreamObserver) {
-        this.messageReadingStatusStreamObserver = messageReadingStatusStreamObserver;
-
-        ServerCallStreamObserver<MessageReadingStatus> handledObserver =
-                ((ServerCallStreamObserver<MessageReadingStatus>) messageReadingStatusStreamObserver);
-        handledObserver.setOnCancelHandler(this::removeObservers);
-        handledObserver.setOnCloseHandler(this::removeObservers);
-    }
-
-    public void setMessageTypingStatusStreamObserver(@NotNull StreamObserver<MessageTypingStatus> messageTypingStatusStreamObserver) {
-        this.messageTypingStatusStreamObserver = messageTypingStatusStreamObserver;
-
-        ServerCallStreamObserver<MessageTypingStatus> handledObserver =
-                ((ServerCallStreamObserver<MessageTypingStatus>) messageTypingStatusStreamObserver);
-        handledObserver.setOnCancelHandler(this::removeObservers);
-        handledObserver.setOnCloseHandler(this::removeObservers);
-    }
-
-    public void removeObservers() {
-        incomingMessageStreamObserver = null;
-        messageReadingStatusStreamObserver = null;
-        messageTypingStatusStreamObserver = null;
+    public void removeObserver() {
+        observer = null;
         notifyServiceAboutClosure();
         LOGGER.info("Server received CANCEL/CLOSE Receive ChatMessages");
-    }
-
-    public void closeObservers() {
-        if (incomingMessageStreamObserver != null) {
-            incomingMessageStreamObserver.onCompleted();
-            incomingMessageStreamObserver = null;
-        }
-        if (messageTypingStatusStreamObserver != null) {
-            messageTypingStatusStreamObserver.onCompleted();
-            messageTypingStatusStreamObserver = null;
-        }
-        if (messageReadingStatusStreamObserver != null) {
-            messageReadingStatusStreamObserver.onCompleted();
-            messageReadingStatusStreamObserver = null;
-        }
     }
 
     public void setOnClosureCallback(Consumer<String> onClosureCallback) {
@@ -97,9 +58,7 @@ public class ChatReaderObserver {
     public String toString() {
         return "ChatReaderObserver{" +
                 "readerUserName='" + readerUserName + '\'' +
-                ", incomingMessageStreamObserver=" + incomingMessageStreamObserver +
-                ", messageReadingStatusStreamObserver=" + messageReadingStatusStreamObserver +
-                ", messageTypingStatusStreamObserver=" + messageTypingStatusStreamObserver +
+                ", observer=" + observer +
                 '}';
     }
 }

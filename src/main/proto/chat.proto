@@ -10,19 +10,10 @@ message ChatMessage {
   string timeStamp = 4;
 }
 
-message UpdateRequest {
+message ChatUpdateRequest {
   reserved 2;
 
   string requestSenderName = 1;
-}
-
-message OpenSessionRequest {
-  string fromUserName = 1;
-}
-
-message OpenSessionRequestResponse {
-  string fromUserName = 1;
-  bool accepted = 2;
 }
 
 message MessageReadingStatus {
@@ -35,6 +26,28 @@ message MessageTypingStatus {
   string typerUserName = 1;
   string recipientUserName = 2;
   bool typing = 3;
+}
+
+message SessionClosedUpdate {
+  string partnerName = 1;
+}
+
+message ChatUpdate {
+  oneof update {
+    ChatMessage message = 1;
+    MessageReadingStatus readingStatus = 2;
+    MessageTypingStatus typingStatus = 3;
+    SessionClosedUpdate sessionClosedUpdate = 4;
+  }
+}
+
+message OpenSessionRequest {
+  string fromUserName = 1;
+}
+
+message OpenSessionRequestResponse {
+  string fromUserName = 1;
+  bool accepted = 2;
 }
 
 message Status {
@@ -52,20 +65,20 @@ message SendMessageStatus {
 message Empty {}
 
 service ChatService {
-  // message sending and receiving
-  rpc sendMessage(ChatMessage) returns (SendMessageStatus) {}
-  rpc receiveMessage(UpdateRequest) returns (stream ChatMessage) {}
-
   // opening a session
   rpc sendOpenSessionRequest(OpenSessionRequest) returns (OpenSessionRequestResponse) {}
   rpc receiveOpenSessionRequest(Empty) returns (stream OpenSessionRequest) {}
   rpc acceptOpenSessionRequest(OpenSessionRequestResponse) returns (Status) {}
 
+  // receive messages, typing status updates and reading status updates - for the open chat sessions
+  rpc receiveChatUpdates(ChatUpdateRequest) returns (stream ChatUpdate) {}
+
+  // message sending and receiving
+  rpc sendMessage(ChatMessage) returns (SendMessageStatus) {}
+
   // marking messages that are read
   rpc sendMessageReadingStatusUpdate(MessageReadingStatus) returns (Status) {}
-  rpc receiveMessageReadingStatusUpdates(UpdateRequest) returns (stream MessageReadingStatus) {}
 
   // mark typing
   rpc sendMessageTypingStatusUpdate(MessageTypingStatus) returns (Status) {}
-  rpc receiveMessageTypingStatusUpdate(UpdateRequest) returns (stream MessageTypingStatus) {}
 }
