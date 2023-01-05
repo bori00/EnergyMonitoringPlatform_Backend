@@ -31,7 +31,8 @@ public class AuthenticationController {
     @Autowired
     public AuthenticationController(LoginRegistrationService loginRegistrationService) {
         this.loginRegistrationService = loginRegistrationService;
-        LOGGER.info("WebApp Started...");
+//        loginRegistrationService.register(new NewUserDTO("admin", "a@a.com", "pass",
+//                NewUserDTO.UserType.ADMIN));
     }
 
     @PostMapping("/register")

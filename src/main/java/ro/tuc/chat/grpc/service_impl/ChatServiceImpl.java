@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -21,27 +22,26 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ChatServiceImpl.class);
 
-    private static final Map<String, ClientObserver> clientObservers = new HashMap<>();
+    private static final Map<String, ClientObserver> clientObservers = new ConcurrentHashMap<>();
 
     private static final AdminObserver adminObserver = new AdminObserver();
 
     private static final List<OpenSessionRequest> unhandledOpenSessionRequests = new ArrayList<>();
 
     private static final Map<String, ChatReaderObserver> chatReaderObservers =
-            new HashMap<>(); //chat reader name to observers
+            new ConcurrentHashMap<>(); //chat reader name to observers
 
 //    Lock chatReaderObserversLock = new ReentrantLock();
 
     public void notifyAboutClosure(String readerName) {
-//        UpdateRequest partnerRequest =
-//                UpdateRequest.newBuilder()
-//                        .setRequestSenderName(senderName)
-//                        .setPartnerName(recipientName)
-//                        .build();
-//
-//        if (chatReaderObservers.containsKey(partnerRequest)) {
-//            chatReaderObservers.get(partnerRequest).closeObservers();
-//        }
+        if (readerName.equals("admin")) {
+            // close all sessions, with all the clients
+            for (ChatReaderObserver chatObserver : chatReaderObservers.values()) {
+                chatObserver.closeObservers();
+            }
+        } else {
+            // TODO: notify the admin
+        }
     }
 
     private void printChatReaderObservers() {
