@@ -34,8 +34,7 @@ public class ChatServiceImpl extends ChatServiceGrpc.ChatServiceImplBase {
 
     public void notifyAboutClosure(String readerName) {
         ChatUpdate update = ChatUpdate.newBuilder()
-                .setSessionClosedUpdate(SessionClosedUpdate.newBuilder().setPartnerName(readerName)
-                        .getDefaultInstanceForType())
+                .setSessionClosedUpdate(SessionClosedUpdate.newBuilder().setPartnerName(readerName).build())
                 .build();
 
         if (readerName.equals("admin")) {
