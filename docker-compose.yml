@@ -3,10 +3,9 @@ services:
   backend:
     container_name: energy-utility-backend-container
     image: energy-utility-backend
-    domainname: "energy-utility-backend-bori00"
     build: ./
     ports:
-      - "8080:8080"
+      - "8443:8443"
       - "9090:9090"
     networks:
       - order-pgsql

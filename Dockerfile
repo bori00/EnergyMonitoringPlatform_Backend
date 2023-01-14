@@ -24,6 +24,11 @@ ENV DB_USER=sa
 ENV DB_PASSWORD=db-password11
 ENV DB_DBNAME=energyutilitydb
 
+ENV GRPC_PORT=9090
+ENV SERVER_PORT=8443
+
+ENV KEYSTORE_FILEPATH=classpath:keystore/hedza06.p12
+
 COPY --from=builder /root/dependencies/ ./
 COPY --from=builder /root/snapshot-dependencies/ ./
 
