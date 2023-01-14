@@ -1,0 +1,4 @@
+protoc chat.proto --js_out=import_style=commonjs:C:\Users\Bori\Documents\Egyetem\year4_sem1\UniCourses\DistributedSystems\Lab\Assignment3\Frontend\src\chat-proto-gen --grpc-web_out=import_style=commonjs,mode=grpcwebtext:C:\Users\Bori\Documents\Egyetem\year4_sem1\UniCourses\DistributedSystems\Lab\Assignment3\Frontend\src\chat-proto-gen
+
+keytool -genkeypair -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore self_signed_cert.p12 -validity 365 -alias sslalias -ext "SAN:c=DNS:localhost,IP:127.0.0.1"
+sslpass
